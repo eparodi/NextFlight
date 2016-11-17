@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_flight"
+            android:icon="@drawable/ic_nav_draw_flight"
+            android:title="Mis Vuelos" />
+        <item
+            android:id="@+id/nav_offers"
+            android:icon="@drawable/ic_nav_draw_offer"
+            android:title="Ofertas" />
+        <item
+            android:id="@+id/nav_converter"
+            android:icon="@drawable/ic_nav_draw_converter"
+            android:title="Conversor" />
+    </group>
+
+    <item android:title="To Do">
+        <menu>
+            <item
+                android:id="@+id/nav_settings"
+                android:icon="@drawable/ic_nav_draw_settings"
+                android:title="Configuración" />
+            <item
+                android:id="@+id/nav_help"
+                android:icon="@drawable/ic_nav_draw_help"
+                android:title="Ayuda" />
+        </menu>
+    </item>
+
+</menu>
