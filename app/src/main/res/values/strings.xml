@@ -1,6 +1,12 @@
 <resources>
     <string name="app_name">NextFlight</string>
 
+    <string name="flights_activity_name">Mis vuelos</string>
+    <string name="offers_activity_name">Ofertas</string>
+    <string name="converter_activity_name">Conversor</string>
+    <string name="settings_activity_name">Configuración</string>
+    <string name="help_activity_name">Ayuda</string>
+
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 

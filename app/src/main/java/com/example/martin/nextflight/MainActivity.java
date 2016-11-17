@@ -14,6 +14,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ListView;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -33,6 +34,17 @@ public class MainActivity extends AppCompatActivity
                         .setAction("Action", null).show();
             }
         });
+
+        Flight[] flights = new Flight[] {
+                new Flight("Active", "LAN", 5620),
+                new Flight("Delayed", "AA", 127),
+                new Flight("Canceled", "SOL", 156)
+        };
+        FlightArrayAdapter adapter = new FlightArrayAdapter(this, flights);
+        ListView listView = (ListView)this.findViewById(R.id.followed_flights_list_view);
+        if (listView != null) {
+            listView.setAdapter(adapter);
+        }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -69,7 +81,7 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_search) {
             return true;
         }
 
