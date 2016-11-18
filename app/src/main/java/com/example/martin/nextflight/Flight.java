@@ -43,10 +43,12 @@ public class Flight {
         this.departure_door = departure_door;
     }
 
-    public Flight(String state, String airline_id, int number) {
+    public Flight(String state, String airline_id, int number, String arrival_time, String arrival_date) {
         this.state = state;
         this.airline_id = airline_id;
         this.number = number;
+        this.arrival_time = arrival_time;
+        this.arrival_date = arrival_date;
     }
 
     public String getState() {
