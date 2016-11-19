@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/content_rate"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.example.martin.nextflight.SingleReviewAcitvity"
+    tools:showIn="@layout/activity_single_review"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/single_review_overall_title"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:textStyle="bold"
+        android:textSize="15dp"/>
+
+    <RatingBar
+        android:progressTint="@color/md_yellow_A700"
+        android:secondaryProgressTint="@android:color/holo_red_dark"
+        style="?android:attr/ratingBarStyleSmall"
+        android:isIndicator="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:id="@+id/single_review_overall_bar" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="2dp"
+        android:textStyle="bold"
+        android:textSize="15dp"
+        android:id="@+id/single_review_friendliness_title" />
+
+    <RatingBar
+        android:progressTint="@color/md_yellow_A700"
+        android:secondaryProgressTint="@android:color/holo_red_dark"
+        style="?android:attr/ratingBarStyleSmall"
+        android:isIndicator="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:id="@+id/single_review_friendliness_bar" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="2dp"
+        android:textStyle="bold"
+        android:textSize="15dp"
+        android:id="@+id/single_review_food_title" />
+
+    <RatingBar
+        android:progressTint="@color/md_yellow_A700"
+        android:secondaryProgressTint="@android:color/holo_red_dark"
+        style="?android:attr/ratingBarStyleSmall"
+        android:isIndicator="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:id="@+id/single_review_food_bar" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="2dp"
+        android:textStyle="bold"
+        android:textSize="15dp"
+        android:id="@+id/single_review_punctuality_title" />
+
+    <RatingBar
+        android:progressTint="@color/md_yellow_A700"
+        android:secondaryProgressTint="@android:color/holo_red_dark"
+        style="?android:attr/ratingBarStyleSmall"
+        android:isIndicator="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:id="@+id/single_review_punctuality_bar" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="2dp"
+        android:textStyle="bold"
+        android:textSize="15dp"
+        android:id="@+id/single_review_mileage_program_title" />
+
+    <RatingBar
+        android:progressTint="@color/md_yellow_A700"
+        android:secondaryProgressTint="@android:color/holo_red_dark"
+        style="?android:attr/ratingBarStyleSmall"
+        android:isIndicator="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:id="@+id/single_review_mileage_program_bar" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="2dp"
+        android:textStyle="bold"
+        android:textSize="15dp"
+        android:id="@+id/single_review_comfort_title" />
+
+    <RatingBar
+        android:progressTint="@color/md_yellow_A700"
+        android:secondaryProgressTint="@android:color/holo_red_dark"
+        style="?android:attr/ratingBarStyleSmall"
+        android:isIndicator="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:id="@+id/single_review_comfort_bar" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="2dp"
+        android:textStyle="bold"
+        android:textSize="15dp"
+        android:id="@+id/single_review_quality_price_title" />
+
+    <RatingBar
+        android:progressTint="@color/md_yellow_A700"
+        android:secondaryProgressTint="@android:color/holo_red_dark"
+        style="?android:attr/ratingBarStyleSmall"
+        android:isIndicator="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:id="@+id/single_review_quality_price_bar" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:textStyle="bold"
+        android:textSize="15dp"
+        android:id="@+id/single_review_yes_recommend_title" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textSize="15dp"
+        android:id="@+id/single_review_yes_recommend" />
+
+</LinearLayout>

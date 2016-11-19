@@ -1,10 +1,12 @@
 package com.example.martin.nextflight.elements;
 
+import java.io.Serializable;
+
 /**
  * Created by Martin on 18/11/2016.
  */
 
-public class Review {
+public class Review implements Serializable {
 
     private Flight flight;
     private Rating rating;

@@ -1,10 +1,12 @@
 package com.example.martin.nextflight.elements;
 
+import java.io.Serializable;
+
 /**
  * Created by Martin on 18/11/2016.
  */
 
-public class Rating {
+public class Rating implements Serializable {
 
     private String overall;
     private String friendliness;

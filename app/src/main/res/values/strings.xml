@@ -1,34 +1,52 @@
 <resources>
+    <!--App name-->
     <string name="app_name">NextFlight</string>
 
+    <!--Navigation Drawer icon names-->
     <string name="flights_activity_name">Mis vuelos</string>
     <string name="offers_activity_name">Ofertas</string>
     <string name="converter_activity_name">Conversor</string>
     <string name="settings_activity_name">Configuración</string>
     <string name="help_activity_name">Ayuda</string>
 
+    <!--Activities titles names-->
+    <string name="title_activity_flight_search">FlightSearchActivity</string>
+    <string name="flight_search_title">Buscando Vuelos</string>
+    <string name="title_activity_review">Opiniones</string>
+    <string name="title_activity_converter">Conversor</string>
+    <string name="title_activity_single_review">Opinion</string>
+
+    <!--Input text validators-->
+    <string name="empty_number_validator">"Ingrese el número de vuelo."</string>
+    <string name="empty_airline_validator">"Ingrese el nombre de una aerolínea."</string>
+    <string name="not_valid_airline">"Ingrese el nombre de una aerolínea."</string>
+
+    <!--Single_review_rating_titles-->
+    <string name="rating_overall_title_name">General</string>
+    <string name="rating_friendliness_title_name">Amabilidad</string>
+    <string name="rating_food_title_name">Comida</string>
+    <string name="rating_punctuality_title_name">Puntualidad</string>
+    <string name="rating_mileage_program_title_name">Viajeros frecuentes</string>
+    <string name="rating_comfort_title_name">Comodidad</string>
+    <string name="rating_quality_price_title_name">Precio/calidad</string>
+    <string name="rating_yes_recommend_title_name">Lo recomendaría</string>
+
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_settings">Settings</string>
-    <string name="title_activity_flight_search">FlightSearchActivity</string>
 
     <string name="error3">Error 3</string>
     <string name="error">Unexpected error</string>
     <string name="error2">Unexpected error 2</string>
-    <string name="title_activity_review">Opiniones</string>
+
     <string name="airline_name">Nombre de la aerolínea</string>
-    <string name="flight_search_title">Busque el estado de su vuelo</string>
     <string name="search_button">Buscar</string>
     <string name="flight_number_hint">Número de vuelo</string>
 
-    <string name="empty_number_validator">"Ingrese el número de vuelo."</string>
-    <string name="empty_airline_validator">"Ingrese el nombre de una aerolínea."</string>
-    <string name="not_valid_airline">"Ingrese un nombre válido."</string>
     <string name="no_connection_error">"Chequee su conexión a internet."</string>
     <string name="unknown_error">"Se ha producido un error, intente más tarde."</string>
 
-    <string name="title_activity_converter">ConverterActivity</string>
     <string name="converter_spinner1_prompt">Opciones</string>
     <string-array name="converter_spinner1_options">
         <item>Pesos</item>

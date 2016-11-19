@@ -1,10 +1,16 @@
 package com.example.martin.nextflight;
 
+import android.app.PendingIntent;
+import android.app.TaskStackBuilder;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.app.NotificationCompat;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -14,8 +20,6 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import org.json.JSONObject;
-
-import com.example.martin.nextflight.adapters.CommentsArrayAdapter;
 
 import java.io.BufferedInputStream;
 import java.io.ByteArrayOutputStream;
@@ -87,7 +91,7 @@ public class ReviewActivity extends AppCompatActivity {
                 }.getType();
 
                 String jsonFragment = obj.getString("reviews");
-                ArrayList<Review> review_list = gson.fromJson(jsonFragment, listType);
+                final ArrayList<Review> review_list = gson.fromJson(jsonFragment, listType);
 
                 ArrayAdapter<String> result_list = new ArrayAdapter<>(context,
                         android.R.layout.simple_list_item_1);
@@ -102,6 +106,28 @@ public class ReviewActivity extends AppCompatActivity {
                 ListView listView = (ListView) findViewById(R.id.review_comments_list_view);
                 if (listView != null) {
                     listView.setAdapter(result_list);
+                    listView.setOnItemClickListener(new AdapterView.OnItemClickListener()
+                    {
+                        @Override
+                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                            Intent intent = new Intent(context,SingleReviewAcitvity.class);
+                            intent.putExtra("complete_rating", review_list.get(position).getRating());
+                            intent.putExtra("yes_recommend", review_list.get(position).getYes_recommend());
+
+                            // Use TaskStackBuilder to build the back stack and get the PendingIntent
+                            PendingIntent pendingIntent =
+                                    TaskStackBuilder.create(context)
+                                            // add all of DetailsActivity's parents to the stack,
+                                            // followed by DetailsActivity itself
+                                            .addNextIntentWithParentStack(intent)
+                                            .getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
+
+                            NotificationCompat.Builder builder = new NotificationCompat.Builder(context);
+                            builder.setContentIntent(pendingIntent);
+
+                            startActivity(intent);
+                        }
+                    });
                 }
             } catch (Exception exception) {
                 Toast.makeText(context, getString(R.string.error), Toast.LENGTH_LONG).show();
