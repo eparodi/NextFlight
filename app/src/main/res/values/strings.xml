@@ -23,5 +23,13 @@
     <string name="empty_number_validator">"Ingrese el número de vuelo."</string>
     <string name="empty_airline_validator">"Ingrese el nombre de una aerolínea."</string>
     <string name="not_valid_airline">"Ingrese el nombre de una aerolínea."</string>
+    
+    <string name="title_activity_converter">ConverterActivity</string>
+    <string name="converter_spinner1_prompt">Opciones</string>
+    <string-array name="converter_spinner1_options">
+        <item>Pesos</item>
+        <item>Dólares</item>
+        <item>Reales</item>
+    </string-array>
 
 </resources>
