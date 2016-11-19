@@ -49,8 +49,10 @@ public class ReviewActivity extends AppCompatActivity {
         TextView review_flight_number = (TextView)findViewById(R.id.review_flight_number_text_view);
         TextView review_airline_name = (TextView)findViewById(R.id.review_flight_airline_text_view);
 
-        review_flight_number.setText("Vuelo " + "5620");
-        review_airline_name.setText("Aerolìnea " + "Air Canada");
+        review_flight_number.setText("5620");
+        review_flight_number.setTextColor(getResources().getColor(R.color.md_blue_400));
+        review_airline_name.setText("Air Canada");
+        review_airline_name.setTextColor(getResources().getColor(R.color.md_blue_400));
 
         new HttpGetReviews().execute();
     }
@@ -80,12 +82,6 @@ public class ReviewActivity extends AppCompatActivity {
 
             try {
                 JSONObject obj = new JSONObject(result);
-            } catch (Exception exception) {
-                Toast.makeText(context, getString(R.string.error3), Toast.LENGTH_LONG).show();
-                return;
-            }
-            try {
-                JSONObject obj = new JSONObject(result);
                 Gson gson = new Gson();
                 Type listType = new TypeToken<ArrayList<Review>>() {
                 }.getType();
@@ -93,20 +89,22 @@ public class ReviewActivity extends AppCompatActivity {
                 String jsonFragment = obj.getString("reviews");
                 ArrayList<Review> review_list = gson.fromJson(jsonFragment, listType);
 
-                ArrayAdapter<String> resultList = new ArrayAdapter<>(context,
+                ArrayAdapter<String> result_list = new ArrayAdapter<>(context,
                         android.R.layout.simple_list_item_1);
 
-                for (Review review : review_list) {
-                    if (review.getComments() != null)
-                        resultList.add(review.getComments());
-                }
+                getComments(result_list, review_list);
+                Double overall = getOverallRating(review_list);
+
+                TextView overall_rating = (TextView)findViewById(R.id.review_general_rating);
+                overall_rating.setText(overall.toString());
+                overall_rating.setTextColor(getResources().getColor(getOverallColor(overall)));
 
                 ListView listView = (ListView) findViewById(R.id.review_comments_list_view);
                 if (listView != null) {
-                    listView.setAdapter(resultList);
+                    listView.setAdapter(result_list);
                 }
             } catch (Exception exception) {
-                Toast.makeText(context, getString(R.string.error2), Toast.LENGTH_LONG).show();
+                Toast.makeText(context, getString(R.string.error), Toast.LENGTH_LONG).show();
             }
 
 
@@ -125,6 +123,40 @@ public class ReviewActivity extends AppCompatActivity {
                 return "";
             }
         }
+    }
+
+    public void getComments(ArrayAdapter<String> result_list, ArrayList<Review> review_list) {
+        for (Review review : review_list) {
+            String comment = review.getComments();
+            if (comment != null)
+                result_list.add(comment);
+        }
+    }
+
+    public double getOverallRating(ArrayList<Review> review_list) {
+        int overall = 0;
+        for (Review review : review_list) {
+            Integer review_overall = Integer.parseInt(review.getRating().getOverall());
+            overall += review_overall;
+        }
+        double resp = (double)overall / review_list.size();
+        resp = Math.floor(resp * 100) / 100;
+        return resp;
+    }
+
+    public int getOverallColor(Double overall) {
+        int[] colors = {
+                R.color.md_red_A700,                // 1
+                R.color.md_deep_orange_A700,        // 2
+                R.color.md_orange_A700,             // 3
+                R.color.md_amber_A700,              // 4
+                R.color.md_yellow_A700,             // 5
+                R.color.md_lime_A400,               // 6
+                R.color.md_lime_A700,               // 7
+                R.color.md_light_green_A700,        // 8
+                R.color.md_green_A700,              // 9
+                R.color.md_green_A700};             // 10
+        return colors[overall.intValue() - 1];
     }
 
 }
