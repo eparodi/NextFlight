@@ -1,19 +1,19 @@
-package status;
+package com.example.martin.nextflight.elements;
 
 /**
  * Created by Martin on 18/11/2016.
  */
 
-public class Status {
+public class Flight {
 
-    private String flight_number;
+    private String number;
     private Airline airline;
     private String status;
     private Departure departure;
     private Arrival arrival;
 
-    public Status(String flight_number, Airline airline, String status, Arrival arrival, Departure departure) {
-        this.flight_number = flight_number;
+    public Flight(String number, Airline airline, String status, Arrival arrival, Departure departure) {
+        this.number = number;
         this.airline = airline;
         this.status = status;
         this.arrival = arrival;
@@ -21,11 +21,11 @@ public class Status {
     }
 
     public String getFlight_number() {
-        return flight_number;
+        return number;
     }
 
-    public void setFlight_number(String flight_number) {
-        this.flight_number = flight_number;
+    public void setFlight_number(String number) {
+        this.number = number;
     }
 
     public Airline getAirline() {

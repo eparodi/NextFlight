@@ -1,4 +1,4 @@
-package status;
+package com.example.martin.nextflight.elements;
 
 public class Airline {
 
