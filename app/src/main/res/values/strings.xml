@@ -15,4 +15,13 @@
 
     <string name="error">Unexpected error</string>
     <string name="title_activity_review">Opiniones</string>
+    <string name="airline_name">Nombre de la aerolínea</string>
+    <string name="flight_search_title">Buscando Vuelos</string>
+    <string name="search_button">Buscar</string>
+    <string name="flight_number_hint">Número de vuelo</string>
+
+    <string name="empty_number_validator">"Ingrese el número de vuelo."</string>
+    <string name="empty_airline_validator">"Ingrese el nombre de una aerolínea."</string>
+    <string name="not_valid_airline">"Ingrese el nombre de una aerolínea."</string>
+
 </resources>

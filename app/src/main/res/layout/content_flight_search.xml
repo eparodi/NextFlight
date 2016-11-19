@@ -13,37 +13,43 @@
     tools:context="com.example.martin.nextflight.FlightSearchActivity"
     tools:showIn="@layout/app_bar_flight_search">
 
-    <TextView
-        android:text=" Buscando Vuelos"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView1" />
-
-    <Button
-        android:text="Buscar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/button"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
-
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="number"
         android:ems="10"
-        android:id="@+id/editText1"
-        android:layout_below="@+id/textView1"
-        android:layout_alignParentStart="true"
+        android:id="@+id/flightNumber"
         android:layout_marginTop="26dp"
-        android:hint="Número de vuelo" />
+        android:hint="@string/flight_number_hint"
+        android:layout_below="@+id/StatusSearchTitle"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true" />
 
     <AutoCompleteTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/autoCompleteTextView2"
-        android:layout_below="@+id/editText1"
+        android:id="@+id/airlineName"
+        android:hint="@string/airline_name"
+        android:layout_below="@+id/flightNumber"
         android:layout_alignParentStart="true"
-        android:text="Nombre de la aerolínea" />
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:text="@string/flight_search_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/StatusSearchTitle"
+        android:textSize="24sp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:text="@string/search_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/status_search_button"
+        android:layout_below="@+id/airlineName"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp" />
 
 </RelativeLayout>
