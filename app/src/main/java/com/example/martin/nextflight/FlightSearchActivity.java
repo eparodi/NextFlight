@@ -10,7 +10,6 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,6 +17,7 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import java.io.BufferedInputStream;
 import java.io.ByteArrayOutputStream;
@@ -33,7 +33,7 @@ import com.google.gson.reflect.TypeToken;
 
 import org.json.JSONObject;
 
-import status.Airline;
+import com.example.martin.nextflight.elements.Airline;
 
 public class FlightSearchActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -200,7 +200,6 @@ public class FlightSearchActivity extends AppCompatActivity
 
                 airline_name_input.setAdapter(resultList);
             }catch(Exception e){
-
                 // TODO: Add a message.
             }
 

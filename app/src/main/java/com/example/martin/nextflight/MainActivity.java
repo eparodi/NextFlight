@@ -172,17 +172,6 @@ public class MainActivity extends AppCompatActivity
         @Override
         protected void onPostExecute(String result) {
 
-            Flight[] flights = new Flight[] {
-                    new Flight("A", "LAN", 5620, "22:00", "10/10/16"),
-                    new Flight("D", "AA", 127, "08:30", "05/08/16"),
-                    new Flight("C", "SOL", 156, "15:15", "17/09/16")
-            };
-            FlightArrayAdapter adapter = new FlightArrayAdapter(context, flights);
-            ListView listView = (ListView)context.findViewById(R.id.followed_flights_list_view);
-            if (listView != null) {
-                listView.setAdapter(adapter);
-            }
-
             String json = "{\"meta\":{\"uuid\":\"d26efa4a-6de6-447c-aaa7-f1a4bf62ba4b\",\"time\":\"102.224ms\"},\"page\":1,\"page_size\":30,\"total\":13,\"countries\":[{\"id\":\"AR\",\"name\":\"Argentina\",\"longitude\":-34.6,\"latitude\":-58.3833},{\"id\":\"PY\",\"name\":\"Paraguay\",\"longitude\":-25.2666,\"latitude\":-57.6666},{\"id\":\"ES\",\"name\":\"Espa&#241;a\",\"longitude\":40.4166,\"latitude\":-3.75},{\"id\":\"CO\",\"name\":\"Colombia\",\"longitude\":4.5833,\"latitude\":-74.0666},{\"id\":\"MX\",\"name\":\"Mexico\",\"longitude\":19.05,\"latitude\":-99.3666},{\"id\":\"BR\",\"name\":\"Brasil\",\"longitude\":-15.7833,\"latitude\":-47.8666},{\"id\":\"US\",\"name\":\"Estados Unidos\",\"longitude\":38.8833,\"latitude\":-77.0333},{\"id\":\"PE\",\"name\":\"Peru\",\"longitude\":-12.0433,\"latitude\":-77.0283},{\"id\":\"UY\",\"name\":\"Uruguay\",\"longitude\":-34.8833,\"latitude\":-56.1666},{\"id\":\"IT\",\"name\":\"Italia\",\"longitude\":41.9,\"latitude\":12.4833},{\"id\":\"FR\",\"name\":\"Francia\",\"longitude\":48.8166,\"latitude\":2.4833},{\"id\":\"GB\",\"name\":\"Reino Unido\",\"longitude\":51.5,\"latitude\":-0.1166},{\"id\":\"CL\",\"name\":\"Chile\",\"longitude\":-70.5665,\"latitude\":-33.4254}]}";
 
             /*

@@ -8,8 +8,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.martin.nextflight.Flight;
 import com.example.martin.nextflight.R;
+import com.example.martin.nextflight.elements.Flight;
 import com.example.martin.nextflight.holders.FlightViewHolder;
 
 /**
@@ -36,7 +36,7 @@ public class FlightArrayAdapter extends ArrayAdapter<Flight> {
         } else {
             holder = (FlightViewHolder) convertView.getTag();
         }
-
+        /*
         Flight flight = getItem(position);
         if (flight.getState().equals("A")) {
             holder.flight_state_image_view.setImageResource(R.drawable.ic_avatar_active);
@@ -54,7 +54,7 @@ public class FlightArrayAdapter extends ArrayAdapter<Flight> {
         holder.flight_number_text_view.setText(flight_number.toString());
         holder.flight_time_text_view.setText(flight.getArrival_time());
         holder.flight_date_text_view.setText(flight.getArrival_date());
-
+        */
         return convertView;
     }
 }
