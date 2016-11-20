@@ -11,6 +11,8 @@ public class Airport {
     private City city;
     private String terminal;
     private String gate;
+    private double latitude;
+    private double longitude;
 
     public Airport(String id, City city, String description, String terminal, String gate) {
         this.id = id;
@@ -18,6 +20,22 @@ public class Airport {
         this.description = description;
         this.terminal = terminal;
         this.gate = gate;
+    }
+
+    public double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
+    }
+
+    public double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
     }
 
     public String getId() {

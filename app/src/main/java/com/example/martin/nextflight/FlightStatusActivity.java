@@ -1,12 +1,18 @@
 package com.example.martin.nextflight;
 
+import android.app.PendingIntent;
+import android.app.TaskStackBuilder;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.NotificationCompat;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -72,6 +78,36 @@ public class FlightStatusActivity extends AppCompatActivity{
 
         new HttpGetStatus(airline_id,flight_number).execute();
 
+        FloatingActionButton map_button = (FloatingActionButton) findViewById(R.id.map_button);
+        map_button.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), StatusMapsActivity.class);
+
+                PendingIntent pendingIntent =
+                        TaskStackBuilder.create(getApplicationContext())
+                                .addNextIntentWithParentStack(intent)
+                                .getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
+
+                NotificationCompat.Builder builder = new NotificationCompat.Builder(getApplicationContext());
+                builder.setContentIntent(pendingIntent);
+
+                intent.putExtra("DEPLAT", currentStatus.getDeparture().getAirport().getLatitude());
+                intent.putExtra("DEPLONG", currentStatus.getDeparture().getAirport().getLongitude());
+                intent.putExtra("DEPMARK",currentStatus.getDeparture().getAirport().getDescription());
+                intent.putExtra("ARVLAT", currentStatus.getArrival().getAirport().getLatitude());
+                intent.putExtra("ARVLONG", currentStatus.getArrival().getAirport().getLongitude());
+                intent.putExtra("ARVMARK",currentStatus.getArrival().getAirport().getDescription());
+
+                /*
+                    Bundle bundle = new Bundle();
+                    bundle.putString("FlightNumber", flight_number);
+                    bundle.putString("AirlineId", airline_id);
+
+                    intent.putExtras(bundle); */
+
+                startActivity(intent);
+            }
+        });
     }
 
     private void fillTextView(){

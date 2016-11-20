@@ -58,5 +58,6 @@
     <string name="str_button_map">Ver mapa</string>
     <string name="stview_status">Estado</string>
     <string name="flight_unknown">El vuelo buscado no existe.</string>
+    <string name="title_activity_status_maps">Map</string>
 
 </resources>
