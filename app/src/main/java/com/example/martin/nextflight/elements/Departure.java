@@ -6,7 +6,7 @@ package com.example.martin.nextflight.elements;
 
 public class Departure {
 
-    private Airport departure_airport;
+    private Airport airport;
 
     private String scheduled_time;
     private String actual_time;
@@ -17,9 +17,9 @@ public class Departure {
     private String actual_runway_time;
     private String runway_delay;
 
-    public Departure(String gate_delay, Airport departure_airport, String scheduled_time, String actual_time, String scheduled_gate_time, String actual_gate_time, String estimate_runway_time, String actual_runway_time, String runway_delay) {
+    public Departure(String gate_delay, Airport airport, String scheduled_time, String actual_time, String scheduled_gate_time, String actual_gate_time, String estimate_runway_time, String actual_runway_time, String runway_delay) {
         this.gate_delay = gate_delay;
-        this.departure_airport = departure_airport;
+        this.airport = airport;
         this.scheduled_time = scheduled_time;
         this.actual_time = actual_time;
         this.scheduled_gate_time = scheduled_gate_time;
@@ -29,12 +29,12 @@ public class Departure {
         this.runway_delay = runway_delay;
     }
 
-    public Airport getDeparture_airport() {
-        return departure_airport;
+    public Airport getAirport() {
+        return airport;
     }
 
-    public void setDeparture_airport(Airport departure_airport) {
-        this.departure_airport = departure_airport;
+    public void setAirport(Airport airport) {
+        this.airport = airport;
     }
 
     public String getScheduled_time() {

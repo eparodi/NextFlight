@@ -39,8 +39,7 @@ import org.json.JSONObject;
 import com.example.martin.nextflight.elements.Airline;
 import com.google.gson.reflect.TypeToken;
 
-public class FlightSearchActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+public class FlightSearchActivity extends AppCompatActivity{
 
     AutoCompleteTextView airline_name_input;
     private final String AIRLINE = "airlines";
@@ -57,15 +56,6 @@ public class FlightSearchActivity extends AppCompatActivity
 
         // Enable the Up button
         ab.setDisplayHomeAsUpEnabled(true);
-
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.setDrawerListener(toggle);
-        toggle.syncState();
-
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
 
         final EditText flight_number_input = (EditText) findViewById(R.id.flightNumber);
         airline_name_input = (AutoCompleteTextView) findViewById(R.id.airlineName);
@@ -113,11 +103,14 @@ public class FlightSearchActivity extends AppCompatActivity
                     NotificationCompat.Builder builder = new NotificationCompat.Builder(getApplicationContext());
                     builder.setContentIntent(pendingIntent);
 
+                    intent.putExtra("FlightNumber", flight_number);
+                    intent.putExtra("AirlineId", airline_id);
+                    /*
                     Bundle bundle = new Bundle();
                     bundle.putString("FlightNumber", flight_number);
                     bundle.putString("AirlineId", airline_id);
 
-                    intent.putExtras(bundle);
+                    intent.putExtras(bundle); */
 
                     startActivity(intent);
                 }
@@ -155,29 +148,6 @@ public class FlightSearchActivity extends AppCompatActivity
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    @SuppressWarnings("StatementWithEmptyBody")
-    @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        // Handle navigation view item clicks here.
-        int id = item.getItemId();
-
-        if (id == R.id.nav_flight) {
-            // Handle the camera action
-        } else if (id == R.id.nav_offers) {
-
-        } else if (id == R.id.nav_converter) {
-
-        } else if (id == R.id.nav_settings) {
-
-        } else if (id == R.id.nav_help) {
-
-        }
-
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
-        return true;
     }
 
     private class HttpGetAirlines extends AsyncTask<Void, Void, String> {

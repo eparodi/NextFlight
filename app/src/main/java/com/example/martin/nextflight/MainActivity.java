@@ -76,19 +76,6 @@ public class MainActivity extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_search) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
-    @SuppressWarnings("StatementWithEmptyBody")
-    @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        // Handle navigation view item clicks here.
-        int id = item.getItemId();
-
-        if (id == R.id.nav_flight) {
             Intent intent = new Intent(this,FlightSearchActivity.class);
 
             // Use TaskStackBuilder to build the back stack and get the PendingIntent
@@ -103,6 +90,19 @@ public class MainActivity extends AppCompatActivity
             builder.setContentIntent(pendingIntent);
 
             startActivity(intent);
+            //return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    @SuppressWarnings("StatementWithEmptyBody")
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        // Handle navigation view item clicks here.
+        int id = item.getItemId();
+
+        if (id == R.id.nav_flight) {
 
         } else if (id == R.id.nav_offers) {
 

@@ -125,7 +125,7 @@ public class MapFlightFragment extends Fragment implements OnMapReadyCallback {
         }catch(SecurityException e){
             // TODO: Handle no permissions.
         }
-        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, 13));
+        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, 2));
 
         googleMap.addMarker(new MarkerOptions()
                 .title("Sydney")
