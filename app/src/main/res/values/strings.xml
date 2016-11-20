@@ -18,14 +18,16 @@
     <string name="error2">Unexpected error 2</string>
     <string name="title_activity_review">Opiniones</string>
     <string name="airline_name">Nombre de la aerolínea</string>
-    <string name="flight_search_title">Buscando Vuelos</string>
+    <string name="flight_search_title">Busque el estado de su vuelo</string>
     <string name="search_button">Buscar</string>
     <string name="flight_number_hint">Número de vuelo</string>
 
     <string name="empty_number_validator">"Ingrese el número de vuelo."</string>
     <string name="empty_airline_validator">"Ingrese el nombre de una aerolínea."</string>
-    <string name="not_valid_airline">"Ingrese el nombre de una aerolínea."</string>
-    
+    <string name="not_valid_airline">"Ingrese un nombre válido."</string>
+    <string name="no_connection_error">"Chequee su conexión a internet."</string>
+    <string name="unknown_error">"Se ha producido un error, intente más tarde."</string>
+
     <string name="title_activity_converter">ConverterActivity</string>
     <string name="converter_spinner1_prompt">Opciones</string>
     <string-array name="converter_spinner1_options">
@@ -33,5 +35,8 @@
         <item>Dólares</item>
         <item>Reales</item>
     </string-array>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>
