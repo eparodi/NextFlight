@@ -57,8 +57,6 @@ public class FlightStatusActivity extends AppCompatActivity{
         setSupportActionBar(toolbar); */
         ActionBar ab = getSupportActionBar();
 
-        // TODO: Solve this problem.
-
         // Enable the Up button
         ab.setDisplayHomeAsUpEnabled(true);
 

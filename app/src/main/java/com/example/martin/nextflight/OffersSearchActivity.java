@@ -1,23 +1,30 @@
 package com.example.martin.nextflight;
 
+import android.*;
+import android.Manifest;
+import android.app.PendingIntent;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
+import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.AsyncTask;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.TaskStackBuilder;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.Toast;
 
-import com.example.martin.nextflight.elements.Airline;
 import com.example.martin.nextflight.elements.Airport;
 import com.example.martin.nextflight.elements.City;
+import com.example.martin.nextflight.elements.Deal;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -40,6 +47,10 @@ public class OffersSearchActivity extends AppCompatActivity {
     ArrayAdapter<String> resultList;
     HttpGetAirports airportsTask;
     HttpGetCities citiesTask;
+    double latitude;
+    double longitude;
+    LocationListener locationListener;
+    LocationManager locationManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +61,30 @@ public class OffersSearchActivity extends AppCompatActivity {
         resultList = new ArrayAdapter<>(getApplicationContext(),
                 android.R.layout.simple_dropdown_item_1line);
 
+        locationListener = new LocationListener() {
+            public void onLocationChanged(Location location) {
+                longitude = location.getLongitude();
+                latitude = location.getLatitude();
+            }
+
+            @Override
+            public void onStatusChanged(String provider, int status, Bundle extras) {
+
+            }
+
+            @Override
+            public void onProviderEnabled(String provider) {
+
+            }
+
+            @Override
+            public void onProviderDisabled(String provider) {
+
+            }
+
+        };
+        locationManager = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
+
         from_input.setAdapter(resultList);
 
         airportsTask = new HttpGetAirports();
@@ -58,7 +93,46 @@ public class OffersSearchActivity extends AppCompatActivity {
         airportsTask.execute();
         citiesTask.execute();
 
+        Button searchButton = (Button) findViewById(R.id.search_button);
 
+        searchButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                CheckBox checkBox = (CheckBox) findViewById(R.id.location_box);
+                if (checkBox.isChecked()){
+                    ActivityCompat.requestPermissions(OffersSearchActivity.this,new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
+                }else{
+                    String text = from_input.getText().toString();
+                    if (text.equals("")){
+                        from_input.setError("Escriba el nombre del lugar de partida");
+                        return;
+                    }
+
+                    Airport airport = null;
+                    City city = null;
+
+                    for (Airport a : airports){
+                        if (a.getDescription().equals(text)){
+                            airport = a;
+                        }
+                    }
+                    if (airport == null){
+                        for (City c : cities){
+                            if (c.getName().equals(text)){
+                                city = c;
+                            }
+                        }
+                    }else{
+                        new HttpGetOffers(airport.getCity()).execute();
+                    }
+                    if (city == null){
+                        from_input.setError("Seleccione una opción de la lista.");
+                        return;
+                    }
+
+                    new HttpGetOffers(city).execute();
+                }
+            }
+        });
     }
 
     public void onCheckboxClicked(View view) {
@@ -68,6 +142,28 @@ public class OffersSearchActivity extends AppCompatActivity {
             from_input.setFocusable(false);
         } else {
             from_input.setFocusableInTouchMode(true);
+        }
+    }
+
+    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
+        switch (requestCode) {
+            case 1: {
+                // If request is cancelled, the result arrays are empty.
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+
+                    new HttpGetClosestAirport().execute();
+                } else {
+                    Toast.makeText(getApplicationContext(),
+                            getResources().getString(R.string.error_no_ubication),
+                            Toast.LENGTH_SHORT).show();
+                    // permission denied, boo! Disable the
+                    // functionality that depends on this permission.
+                }
+                return;
+            }
+            // other 'case' lines to check for other
+            // permissions this app might request
         }
     }
 
@@ -206,19 +302,15 @@ public class OffersSearchActivity extends AppCompatActivity {
 
         private final static String AIRPORTS = "airports";
         private final static int RADIUS = 40;
-        private double latitude;
-        private double longitude;
 
         @Override
         protected String doInBackground(Void... params) {
 
-            HttpURLConnection urlConnection = null;
-            LocationManager locationManager = (LocationManager)
-                    getSystemService(Context.LOCATION_SERVICE);
+            Location location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+            double longitude = location.getLongitude();
+            double latitude = location.getLatitude();
 
-            Location l = locationManager.getLastKnownLocation(Context.LOCATION_SERVICE);
-            latitude = l.getLatitude();
-            longitude = l.getLongitude();
+            HttpURLConnection urlConnection = null;
 
             try {
                 URL url = new URL("http://hci.it.itba.edu.ar/v1/api/geo.groovy?method=getairportsbyposition&latitude="+latitude+"&longitude="+longitude+"&radius="+RADIUS);
@@ -247,19 +339,32 @@ public class OffersSearchActivity extends AppCompatActivity {
                 }.getType();
 
                 String jsonFragment = obj.getString(AIRPORTS);
-                ArrayList<Airport> airlineList = gson.fromJson(jsonFragment, listType);
-                airports = airlineList;
+                ArrayList<Airport> airportList = gson.fromJson(jsonFragment, listType);
 
-                Airport nearer;
+                Airport nearer = null;
                 double minimum = Double.MAX_VALUE;
 
-                for (Airport a : airlineList) {
+                for (Airport a : airportList) {
                     double dist = distance(a.getLongitude(),a.getLatitude(),longitude,latitude);
                     if (minimum > dist){
                         nearer = a;
                         minimum = dist;
                     }
                 }
+                if( nearer == null ){
+                    Toast.makeText(getApplicationContext(),
+                            R.string.error_no_close_airport,
+                            Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                // This prevents to get a City without name.
+                City depCity = nearer.getCity();
+                for (City c : cities){
+                    if (c.getId().equals(depCity.getId())){
+                        depCity = c;
+                    }
+                }
+                new HttpGetOffers(depCity).execute();
             } catch (Exception e) {
                 Toast.makeText(getApplicationContext(),
                         getResources().getString(R.string.unknown_error),
@@ -270,6 +375,87 @@ public class OffersSearchActivity extends AppCompatActivity {
 
         private double distance(double x1, double y1, double x2, double y2){
             return Math.sqrt(Math.pow(x2-x1,2)+Math.pow(y2-y1,2));
+        }
+
+        private String readStream(InputStream inputStream) {
+            try {
+                ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+                int i = inputStream.read();
+                while (i != -1) {
+                    outputStream.write(i);
+                    i = inputStream.read();
+                }
+                return outputStream.toString();
+            } catch (IOException e) {
+                return "";
+            }
+        }
+    }
+
+    private class HttpGetOffers extends AsyncTask<Void, Void, String> {
+
+        private final static String DEALS = "deals";
+
+        private City city;
+
+        HttpGetOffers(City city){
+            this.city = city;
+        }
+
+        @Override
+        protected String doInBackground(Void... params) {
+
+            HttpURLConnection urlConnection = null;
+
+            try {
+                URL url = new URL("http://hci.it.itba.edu.ar/v1/api/booking.groovy?method=getflightdeals&from="+city.getId());
+                urlConnection = (HttpURLConnection) url.openConnection();
+                InputStream in = new BufferedInputStream(urlConnection.getInputStream());
+                return readStream(in);
+            } catch (Exception exception) {
+                Toast.makeText(getApplicationContext(),
+                        getResources().getString(R.string.no_connection_error),
+                        Toast.LENGTH_SHORT).show();
+                exception.printStackTrace();
+                return getResources().getString(R.string.error);
+            } finally {
+                if (urlConnection != null)
+                    urlConnection.disconnect();
+            }
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            try {
+                JSONObject obj = new JSONObject(result);
+
+                Gson gson = new Gson();
+                Type listType = new TypeToken<ArrayList<Deal>>() {
+                }.getType();
+
+                String jsonFragment = obj.getString(DEALS);
+
+                ArrayList<Deal> dealList = gson.fromJson(jsonFragment, listType);
+
+                Intent intent = new Intent(getApplicationContext(), OffersResultActivity.class);
+
+                PendingIntent pendingIntent =
+                        TaskStackBuilder.create(getApplicationContext())
+                                .addNextIntentWithParentStack(intent)
+                                .getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
+
+                NotificationCompat.Builder builder = new NotificationCompat.Builder(getApplicationContext());
+                builder.setContentIntent(pendingIntent);
+
+                intent.putExtra("FlightList",dealList);
+                intent.putExtra("DepartureCity",city);
+                startActivity(intent);
+            } catch (Exception e) {
+                Toast.makeText(getApplicationContext(),
+                        getResources().getString(R.string.unknown_error),
+                        Toast.LENGTH_SHORT).show();
+            }
+
         }
 
         private String readStream(InputStream inputStream) {

@@ -1,10 +1,12 @@
 package com.example.martin.nextflight.elements;
 
+import java.io.Serializable;
+
 /**
  * Created by Martin on 18/11/2016.
  */
 
-public class Country {
+public class Country implements Serializable{
 
     private String id;
     private String name;

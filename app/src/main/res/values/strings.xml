@@ -62,5 +62,9 @@
     <string name="offer_search_title">Buscar ofertas</string>
     <string name="from_check_box">Usar mi ubicación actual</string>
     <string name="from_option_hint">Ciudad o Aeropuerto de Origen</string>
+    <string name="title_activity_offers_results">OffersResultsActivity</string>
+    <string name="error_no_close_airport">No se ha encontrado ningún aeropuerto cercano a su ubicación</string>
+    <string name="from">"Desde: "</string>
+    <string name="error_no_ubication">No se puede acceder a su ubicación.</string>
 
 </resources>
