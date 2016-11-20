@@ -161,10 +161,38 @@ public class FlightStatusActivity extends AppCompatActivity{
             // TODO: Message.
         }
 
-        departure_data += "Terminal: " + departure.getAirport().getTerminal() + "\n";
-        arrival_data += "Terminal: " + arrival.getAirport().getTerminal() + "\n";
-        departure_data += "Puerta: " + departure.getAirport().getGate() + "\n";
-        arrival_data += "Puerta: " + arrival.getAirport().getGate() + "\n";
+        departure_data += "Terminal: ";
+
+        String terminal = departure.getAirport().getTerminal();
+        if (terminal == null){
+            departure_data +=  "No hay información disponible\n";
+        }else{
+            departure_data += terminal + "\n";
+        }
+
+        arrival_data += "Terminal: ";
+        terminal = arrival.getAirport().getTerminal();
+        if (terminal == null){
+            arrival_data +=  "No hay información disponible\n";
+        }else{
+            arrival_data += terminal + "\n";
+        }
+
+        arrival_data += "Puerta: ";
+        String puerta = departure.getAirport().getGate();
+        if (puerta == null){
+            arrival_data +=  "No hay información disponible\n";
+        }else{
+            arrival_data += puerta + "\n";
+        }
+
+        departure_data += "Puerta: ";
+        puerta = arrival.getAirport().getGate();
+        if (puerta == null){
+            departure_data +=  "No hay información disponible\n";
+        }else{
+            departure_data += puerta + "\n";
+        }
 
         textDeparture.setText(departure_data);
         textArrival.setText(arrival_data);
@@ -281,4 +309,5 @@ public class FlightStatusActivity extends AppCompatActivity{
             bmImage.setImageBitmap(Bitmap.createScaledBitmap(result,100,60,false));
         }
     }
+
 }

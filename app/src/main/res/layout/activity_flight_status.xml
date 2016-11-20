@@ -150,7 +150,7 @@
             android:layout_height="wrap_content"
             android:clickable="true"
             app:fabSize="mini"
-            app:srcCompat="@android:drawable/btn_star"
+            app:srcCompat="@drawable/ic_favorite_border_black_24dp"
             android:id="@+id/favourite_button"
             android:layout_alignParentBottom="true"
             android:layout_toStartOf="@+id/map_button" />

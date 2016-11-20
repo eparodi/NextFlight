@@ -103,9 +103,22 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_flight) {
-
+            // Current Activity.
         } else if (id == R.id.nav_offers) {
+            Intent intent = new Intent(this,OffersSearchActivity.class);
 
+            // Use TaskStackBuilder to build the back stack and get the PendingIntent
+            PendingIntent pendingIntent =
+                    TaskStackBuilder.create(this)
+                            // add all of DetailsActivity's parents to the stack,
+                            // followed by DetailsActivity itself
+                            .addNextIntentWithParentStack(intent)
+                            .getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
+
+            NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
+            builder.setContentIntent(pendingIntent);
+
+            startActivity(intent);
         } else if (id == R.id.nav_converter) {
 
             Intent intent = new Intent(this,ConverterActivity.class);

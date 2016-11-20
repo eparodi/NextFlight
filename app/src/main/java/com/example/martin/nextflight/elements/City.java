@@ -4,7 +4,7 @@ package com.example.martin.nextflight.elements;
  * Created by Martin on 18/11/2016.
  */
 
-public class City {
+public class City{
 
     private String id;
     private String name;

@@ -10,8 +10,8 @@
     <string name="help_activity_name">Ayuda</string>
 
     <!--Activities titles names-->
-    <string name="title_activity_flight_search">FlightSearchActivity</string>
-    <string name="flight_search_title">Buscando Vuelos</string>
+    <string name="title_activity_flight_search">NextFlight</string>
+    <string name="flight_search_title">Buscar vuelos</string>
     <string name="title_activity_review">Opiniones</string>
     <string name="title_activity_converter">Conversor</string>
     <string name="title_activity_single_review">Opinion</string>
@@ -59,5 +59,8 @@
     <string name="stview_status">Estado</string>
     <string name="flight_unknown">El vuelo buscado no existe.</string>
     <string name="title_activity_status_maps">Map</string>
+    <string name="offer_search_title">Buscar ofertas</string>
+    <string name="from_check_box">Usar mi ubicación actual</string>
+    <string name="from_option_hint">Ciudad o Aeropuerto de Origen</string>
 
 </resources>
