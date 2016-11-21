@@ -57,7 +57,7 @@
     <string name="str_button_review">See reviews</string>
     <string name="str_button_map">See maps</string>
     <string name="stview_status">Flight status</string>
-    <string name="flight_unknown">The flight you are looking for doesn't exist.</string>
+    <string name="flight_unknown">The flight you are looking for does not exist.</string>
     <string name="title_activity_status_maps">Map</string>
     <string name="offer_search_title">Search for offers</string>
     <string name="from_check_box">Use my current location</string>
