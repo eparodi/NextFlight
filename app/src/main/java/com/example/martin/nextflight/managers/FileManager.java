@@ -20,6 +20,7 @@ public class FileManager {
 
     public static void startFileManager(Context context) {
         if (flightsList == null){
+            flightsList = new ArrayList<>();
             FileInputStream in = null;
             try {
                 in = context.openFileInput(FLIGHT_FILE);

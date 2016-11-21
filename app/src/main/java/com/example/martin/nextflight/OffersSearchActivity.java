@@ -110,6 +110,13 @@ public class OffersSearchActivity extends AppCompatActivity {
                     Airport airport = null;
                     City city = null;
 
+                    if ( airports == null ){
+                        Toast.makeText(getApplicationContext(),
+                                getResources().getString(R.string.no_connection_error),
+                                Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+
                     for (Airport a : airports){
                         if (a.getDescription().equals(text)){
                             airport = a;

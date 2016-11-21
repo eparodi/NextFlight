@@ -80,6 +80,12 @@ public class FlightSearchActivity extends AppCompatActivity{
                     error = true;
                 } else {
                     boolean found = false;
+                    if (allAirlines == null){
+                        Toast.makeText(getApplicationContext(),
+                                getResources().getString(R.string.no_connection_error),
+                                Toast.LENGTH_SHORT).show();
+                        return;
+                    }
                     for (Airline a : allAirlines) {
                         if (a.getAirlineName().equals(airline_name)) {
                             found = true;
