@@ -1,10 +1,12 @@
 package com.example.martin.nextflight.elements;
 
+import java.io.Serializable;
+
 /**
  * Created by Martin on 18/11/2016.
  */
 
-public class Departure {
+public class Departure implements Serializable{
 
     private Airport airport;
 

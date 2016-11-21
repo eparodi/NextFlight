@@ -20,13 +20,16 @@ import android.widget.Toast;
 import com.example.martin.nextflight.elements.Airline;
 import com.example.martin.nextflight.elements.Arrival;
 import com.example.martin.nextflight.elements.Departure;
+import com.example.martin.nextflight.elements.Flight;
 import com.example.martin.nextflight.elements.Status;
+import com.example.martin.nextflight.managers.FileManager;
 import com.google.gson.Gson;
 
 import org.json.JSONObject;
 
 import java.io.BufferedInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
@@ -71,8 +74,8 @@ public class FlightStatusActivity extends AppCompatActivity{
 
         Bundle bundle = getIntent().getExtras();
 
-        String airline_id = bundle.getString("AirlineId");
-        String flight_number = bundle.getString("FlightNumber");
+        final String airline_id = bundle.getString("AirlineId");
+        final String flight_number = bundle.getString("FlightNumber");
 
         new HttpGetStatus(airline_id,flight_number).execute();
 
@@ -106,6 +109,29 @@ public class FlightStatusActivity extends AppCompatActivity{
                 startActivity(intent);
             }
         });
+
+        FloatingActionButton review_button = (FloatingActionButton) findViewById(R.id.review_button);
+        review_button.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), ReviewActivity.class);
+
+                PendingIntent pendingIntent =
+                        TaskStackBuilder.create(getApplicationContext())
+                                .addNextIntentWithParentStack(intent)
+                                .getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
+
+                NotificationCompat.Builder builder = new NotificationCompat.Builder(getApplicationContext());
+                builder.setContentIntent(pendingIntent);
+
+                intent.putExtra("FlightNumber", flight_number);
+                intent.putExtra("AirlineId", airline_id);
+                intent.putExtra("AirlineName", currentStatus.getAirline().getAirlineName());
+
+                startActivity(intent);
+            }
+        });
+
+
     }
 
     private void fillTextView(){
@@ -205,6 +231,32 @@ public class FlightStatusActivity extends AppCompatActivity{
         ((TextView) findViewById(R.id.departure_title)).setText("");
     }
 
+    private void configurateFavButton(){
+        FloatingActionButton fav_button = (FloatingActionButton) findViewById(R.id.favourite_button);
+        Flight f = new Flight(currentStatus.getNumber()+"",currentStatus.getAirline(),
+                currentStatus.getStatus(),currentStatus.getArrival(),currentStatus.getDeparture());
+        FileManager.startFileManager(getApplicationContext());
+        if (FileManager.checkFlight(f)){
+            fav_button.setImageResource(R.drawable.ic_favorite_black);
+        }else{
+            fav_button.setImageResource(R.drawable.ic_favorite_border_black_24dp);
+        }
+        fav_button.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                FloatingActionButton fav_button = (FloatingActionButton) findViewById(R.id.favourite_button);
+                Flight f = new Flight(currentStatus.getNumber()+"",currentStatus.getAirline(),
+                        currentStatus.getStatus(),currentStatus.getArrival(),currentStatus.getDeparture());
+                if (FileManager.checkFlight(f)){
+                    fav_button.setImageResource(R.drawable.ic_favorite_border_black_24dp);
+                    FileManager.removeFlight(f,getApplicationContext());
+                }else{
+                    fav_button.setImageResource(R.drawable.ic_favorite_black);
+                    FileManager.addFlight(f,getApplicationContext());
+                }
+            }
+        });
+    }
+
     private class HttpGetStatus extends AsyncTask<Void, Void, String> {
 
         private static final String STATUS = "status";
@@ -255,7 +307,7 @@ public class FlightStatusActivity extends AppCompatActivity{
                 currentStatus = gson.fromJson(jsonFragment, com.example.martin.nextflight.elements.Status.class);
 
                 fillTextView();
-
+                configurateFavButton();
             } catch (Exception e) {
                 Toast.makeText(getApplicationContext(),
                         R.string.flight_unknown,

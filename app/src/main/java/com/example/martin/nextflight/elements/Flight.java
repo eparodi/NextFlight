@@ -1,10 +1,12 @@
 package com.example.martin.nextflight.elements;
 
+import java.io.Serializable;
+
 /**
  * Created by Martin on 18/11/2016.
  */
 
-public class Flight {
+public class Flight implements Serializable {
 
     private String number;
     private Airline airline;
@@ -58,5 +60,14 @@ public class Flight {
 
     public void setArrival(Arrival arrival) {
         this.arrival = arrival;
+    }
+
+    public boolean equals(Object o){
+        if (o == null || o.getClass() != Flight.class){
+            return false;
+        }else{
+            Flight f = (Flight) o;
+            return f.getFlight_number().equals(this.getFlight_number()) && f.getAirline().equals(this.getAirline());
+        }
     }
 }

@@ -1,6 +1,8 @@
 package com.example.martin.nextflight.elements;
 
-public class Airline {
+import java.io.Serializable;
+
+public class Airline implements Serializable {
 
     private String id;
     private String name;
@@ -37,4 +39,12 @@ public class Airline {
         this.name = airline_name;
     }
 
+    public boolean equals(Object o){
+        if (o == null || o.getClass() != Airline.class){
+            return false;
+        }else{
+            Airline airline = (Airline) o;
+            return airline.getAirlineId().equals(this.getAirlineId());
+        }
+    }
 }

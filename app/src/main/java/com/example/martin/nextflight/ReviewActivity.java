@@ -32,6 +32,7 @@ import java.util.ArrayList;
 
 import com.example.martin.nextflight.elements.Review;
 
+// TODO: Fix Bug crashing up button.
 public class ReviewActivity extends AppCompatActivity {
 
     ReviewActivity context;
@@ -50,25 +51,37 @@ public class ReviewActivity extends AppCompatActivity {
 
         context = this;
 
+        Bundle bundle = getIntent().getExtras();
+
+        final String airline_id = bundle.getString("AirlineId");
+        final String flight_number = bundle.getString("FlightNumber");
+        final String airline_name = bundle.getString("AirlineName");
+
         TextView review_flight_number = (TextView)findViewById(R.id.review_flight_number_text_view);
         TextView review_airline_name = (TextView)findViewById(R.id.review_flight_airline_text_view);
 
-        review_flight_number.setText("5620");
+        review_flight_number.setText(flight_number);
         review_flight_number.setTextColor(getResources().getColor(R.color.md_blue_400));
-        review_airline_name.setText("Air Canada");
+        review_airline_name.setText(airline_name);
         review_airline_name.setTextColor(getResources().getColor(R.color.md_blue_400));
 
-        new HttpGetReviews().execute();
+        new HttpGetReviews(airline_id,flight_number).execute();
     }
 
     private class HttpGetReviews extends AsyncTask<Void, Void, String> {
+
+        private String query;
+
+        HttpGetReviews(String id, String number){
+            query = "&airline_id="+id+"&flight_number"+number;
+        }
         @Override
         protected String doInBackground(Void... params) {
 
             HttpURLConnection urlConnection = null;
 
             try {
-                URL url = new URL("http://hci.it.itba.edu.ar/v1/api/review.groovy?method=getairlinereviews");
+                URL url = new URL("http://hci.it.itba.edu.ar/v1/api/review.groovy?method=getairlinereviews"+query);
                 urlConnection = (HttpURLConnection) url.openConnection();
                 InputStream in = new BufferedInputStream(urlConnection.getInputStream());
                 return readStream(in);

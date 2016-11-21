@@ -1,6 +1,8 @@
 package com.example.martin.nextflight.elements;
 
-public class Status {
+import java.io.Serializable;
+
+public class Status implements Serializable {
     private int id;
     private int number;
     private Airline airline;

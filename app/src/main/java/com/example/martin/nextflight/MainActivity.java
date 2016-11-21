@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -15,9 +16,12 @@ import android.support.v7.app.NotificationCompat;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.example.martin.nextflight.adapters.FlightArrayAdapter;
+import com.example.martin.nextflight.elements.Flight;
+import com.example.martin.nextflight.managers.FileManager;
 
 import java.io.BufferedInputStream;
 import java.io.ByteArrayOutputStream;
@@ -25,6 +29,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -48,6 +53,13 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        ListView view = (ListView) findViewById(R.id.followed_flights_list_view);
+
+        FileManager.startFileManager(getApplicationContext());
+        ArrayList<Flight> flights = FileManager.getAllFlights();
+        ArrayAdapter<Flight> flightAdapter = new ArrayAdapter<>(getApplicationContext(),android.R.layout.simple_list_item_1,flights);
+        view.setAdapter(flightAdapter);
     }
 
     @Override
