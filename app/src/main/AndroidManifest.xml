@@ -94,6 +94,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".OffersSearchActivity" />
         </activity>
+        <receiver android:name=".managers.AlarmNotificationReceiver" />
     </application>
 
 </manifest>

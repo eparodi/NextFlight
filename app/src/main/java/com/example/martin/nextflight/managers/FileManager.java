@@ -26,15 +26,11 @@ public class FileManager {
                 in = context.openFileInput(FLIGHT_FILE);
                 ObjectInputStream objin = new ObjectInputStream(in);
                 flightsList = (ArrayList<Flight>) objin.readObject();
-                Log.v("Hello",flightsList.size() + "");
             }catch(FileNotFoundException e){
-                Log.v("Hello","hello");
                 e.printStackTrace();
             }catch(IOException e){
-                Log.v("Hello","hello");
                 e.printStackTrace();
             }catch(ClassNotFoundException e){
-                Log.v("Hello","hello");
                 e.printStackTrace();
             }finally{
                 if (in != null) {
@@ -54,29 +50,26 @@ public class FileManager {
 
     public static void addFlight(Flight f,Context context){
         flightsList.add(f);
-        FileOutputStream out = null;
-        try {
-            out = context.openFileOutput(FLIGHT_FILE,Context.MODE_PRIVATE);
-            ObjectOutputStream objout = new ObjectOutputStream(out);
-            objout.writeObject(flightsList);
-        }catch(FileNotFoundException e){
-            e.printStackTrace();
-        }catch(IOException e){
-            e.printStackTrace();
-        }finally{
-            if (out != null) {
-                try {
-                    out.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
+        writeFlights(context);
     }
 
     public static void removeFlight(Flight f, Context context){
         flightsList.remove(f);
+        writeFlights(context);
+    }
+
+    public static ArrayList<Flight> getAllFlights(){
+        return flightsList;
+    }
+
+    public static void setAllFlights(Context context, ArrayList<Flight> flights){
+        flightsList = flights;
+        writeFlights(context);
+    }
+
+    private static void writeFlights(Context context){
         FileOutputStream out = null;
+
         try {
             out = context.openFileOutput(FLIGHT_FILE,Context.MODE_PRIVATE);
             ObjectOutputStream objout = new ObjectOutputStream(out);
@@ -94,9 +87,5 @@ public class FileManager {
                 }
             }
         }
-    }
-
-    public static ArrayList<Flight> getAllFlights(){
-        return flightsList;
     }
 }
