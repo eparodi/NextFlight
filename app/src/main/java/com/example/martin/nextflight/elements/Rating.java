@@ -8,15 +8,15 @@ import java.io.Serializable;
 
 public class Rating implements Serializable {
 
-    private String overall;
-    private String friendliness;
-    private String food;
-    private String punctuality;
-    private String mileage_program;
-    private String comfort;
-    private String quality_price;
+    private Double overall;
+    private Integer friendliness;
+    private Integer food;
+    private Integer punctuality;
+    private Integer mileage_program;
+    private Integer comfort;
+    private Integer quality_price;
 
-    public Rating(String overall, String friendliness, String food, String punctuality, String mileage_program, String comfort, String quality_price) {
+    public Rating(Double overall, Integer friendliness, Integer food, Integer punctuality, Integer mileage_program, Integer comfort, Integer quality_price) {
         this.overall = overall;
         this.friendliness = friendliness;
         this.food = food;
@@ -26,59 +26,59 @@ public class Rating implements Serializable {
         this.quality_price = quality_price;
     }
 
-    public String getOverall() {
+    public Double getOverall() {
         return overall;
     }
 
-    public void setOverall(String overall) {
+    public void setOverall(Double overall) {
         this.overall = overall;
     }
 
-    public String getFriendliness() {
+    public Integer getFriendliness() {
         return friendliness;
     }
 
-    public void setFriendliness(String friendliness) {
+    public void setFriendliness(Integer friendliness) {
         this.friendliness = friendliness;
     }
 
-    public String getFood() {
+    public Integer getFood() {
         return food;
     }
 
-    public void setFood(String food) {
+    public void setFood(Integer food) {
         this.food = food;
     }
 
-    public String getPunctuality() {
+    public Integer getPunctuality() {
         return punctuality;
     }
 
-    public void setPunctuality(String punctuality) {
+    public void setPunctuality(Integer punctuality) {
         this.punctuality = punctuality;
     }
 
-    public String getMileage_program() {
+    public Integer getMileage_program() {
         return mileage_program;
     }
 
-    public void setMileage_program(String mileage_program) {
+    public void setMileage_program(Integer mileage_program) {
         this.mileage_program = mileage_program;
     }
 
-    public String getComfort() {
+    public Integer getComfort() {
         return comfort;
     }
 
-    public void setComfort(String comfort) {
+    public void setComfort(Integer comfort) {
         this.comfort = comfort;
     }
 
-    public String getQuality_price() {
+    public Integer getQuality_price() {
         return quality_price;
     }
 
-    public void setQuality_price(String quality_price) {
+    public void setQuality_price(Integer quality_price) {
         this.quality_price = quality_price;
     }
 }

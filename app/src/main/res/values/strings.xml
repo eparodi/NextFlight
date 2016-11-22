@@ -15,6 +15,7 @@
     <string name="title_activity_review">Opiniones</string>
     <string name="title_activity_converter">Conversor</string>
     <string name="title_activity_single_review">Opinion</string>
+    <string name="title_activity_submit_review">Puntuar</string>
 
     <!--Input text validators-->
     <string name="empty_number_validator">"Ingrese el número de vuelo."</string>
@@ -31,10 +32,17 @@
     <string name="rating_quality_price_title_name">Precio/calidad</string>
     <string name="rating_yes_recommend_title_name">Lo recomendaría</string>
 
+    <!--Hints-->
+    <string name="submit_comment_hint">Deje un comentario</string>
+    <string name="from_option_hint">Ciudad o Aeropuerto de Origen</string>
+    <string name="flight_number_hint">Número de vuelo</string>
+
+    <!--Action titles-->
+    <string name="action_settings">Settings</string>
+    <string name="action_done">Done</string>
+
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-
-    <string name="action_settings">Settings</string>
 
     <string name="error3">Error 3</string>
     <string name="error">Unexpected error</string>
@@ -42,7 +50,6 @@
 
     <string name="airline_name">Nombre de la aerolínea</string>
     <string name="search_button">Buscar</string>
-    <string name="flight_number_hint">Número de vuelo</string>
 
     <string name="no_connection_error">"Chequee su conexión a internet."</string>
     <string name="unknown_error">"Se ha producido un error, intente más tarde."</string>
@@ -61,7 +68,6 @@
     <string name="title_activity_status_maps">Map</string>
     <string name="offer_search_title">Buscar ofertas</string>
     <string name="from_check_box">Usar mi ubicación actual</string>
-    <string name="from_option_hint">Ciudad o Aeropuerto de Origen</string>
     <string name="title_activity_offers_results">OffersResultsActivity</string>
     <string name="error_no_close_airport">No se ha encontrado ningún aeropuerto cercano a su ubicación</string>
     <string name="from">"Desde: "</string>

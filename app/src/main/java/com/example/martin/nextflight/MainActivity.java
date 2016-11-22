@@ -63,6 +63,7 @@ public class MainActivity extends AppCompatActivity
 
         ListView view = (ListView) findViewById(R.id.followed_flights_list_view);
 
+
         FileManager.startFileManager(getApplicationContext());
         ArrayList<Flight> flights = FileManager.getAllFlights();
         ArrayAdapter<Flight> flightAdapter = new ArrayAdapter<>(getApplicationContext(),android.R.layout.simple_list_item_1,flights);
@@ -158,21 +159,6 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_settings) {
 
         } else if (id == R.id.nav_help) {
-
-            Intent intent = new Intent(this,ReviewActivity.class);
-
-            // Use TaskStackBuilder to build the back stack and get the PendingIntent
-            PendingIntent pendingIntent =
-                    TaskStackBuilder.create(this)
-                            // add all of DetailsActivity's parents to the stack,
-                            // followed by DetailsActivity itself
-                            .addNextIntentWithParentStack(intent)
-                            .getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
-
-            NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
-            builder.setContentIntent(pendingIntent);
-
-            startActivity(intent);
 
         }
 

@@ -13,6 +13,10 @@ public class Airline implements Serializable {
         this.logo = logo;
     }
 
+    public Airline(String airline_id) {
+        this.id = airline_id;
+    }
+
     public String getLogo() {
         return logo;
     }

@@ -8,13 +8,13 @@ import java.io.Serializable;
 
 public class Flight implements Serializable {
 
-    private String number;
+    private Integer number;
     private Airline airline;
     private String status;
     private Departure departure;
     private Arrival arrival;
 
-    public Flight(String number, Airline airline, String status, Arrival arrival, Departure departure) {
+    public Flight(Integer number, Airline airline, String status, Arrival arrival, Departure departure) {
         this.number = number;
         this.airline = airline;
         this.status = status;
@@ -22,11 +22,16 @@ public class Flight implements Serializable {
         this.departure = departure;
     }
 
-    public String getFlight_number() {
+    public Flight(Integer number, Airline airline) {
+        this.number = number;
+        this.airline = airline;
+    }
+
+    public Integer getFlight_number() {
         return number;
     }
 
-    public void setFlight_number(String number) {
+    public void setFlight_number(Integer number) {
         this.number = number;
     }
 

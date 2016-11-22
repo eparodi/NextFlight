@@ -84,6 +84,16 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ReviewActivity" />
         </activity>
+        <activity
+            android:name=".SubmitReviewActivity"
+            android:label="@string/title_activity_submit_review">
+
+            <!--Parent activity meta-data to support 4.0 and lower-->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ReviewActivity" />
+        </activity>
+
         <activity android:name=".OffersSearchActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -96,5 +106,7 @@
         </activity>
         <receiver android:name=".managers.AlarmNotificationReceiver" />
     </application>
+
+
 
 </manifest>

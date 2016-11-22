@@ -233,7 +233,7 @@ public class FlightStatusActivity extends AppCompatActivity{
 
     private void configurateFavButton(){
         FloatingActionButton fav_button = (FloatingActionButton) findViewById(R.id.favourite_button);
-        Flight f = new Flight(currentStatus.getNumber()+"",currentStatus.getAirline(),
+        Flight f = new Flight(currentStatus.getNumber(),currentStatus.getAirline(),
                 currentStatus.getStatus(),currentStatus.getArrival(),currentStatus.getDeparture());
         FileManager.startFileManager(getApplicationContext());
         if (FileManager.checkFlight(f)){
@@ -244,7 +244,7 @@ public class FlightStatusActivity extends AppCompatActivity{
         fav_button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 FloatingActionButton fav_button = (FloatingActionButton) findViewById(R.id.favourite_button);
-                Flight f = new Flight(currentStatus.getNumber()+"",currentStatus.getAirline(),
+                Flight f = new Flight(currentStatus.getNumber(),currentStatus.getAirline(),
                         currentStatus.getStatus(),currentStatus.getArrival(),currentStatus.getDeparture());
                 if (FileManager.checkFlight(f)){
                     fav_button.setImageResource(R.drawable.ic_favorite_border_black_24dp);

@@ -5,6 +5,7 @@ import android.app.TaskStackBuilder;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.NotificationCompat;
@@ -66,6 +67,27 @@ public class ReviewActivity extends AppCompatActivity {
         review_airline_name.setTextColor(getResources().getColor(R.color.md_blue_400));
 
         new HttpGetReviews(airline_id,flight_number).execute();
+
+        FloatingActionButton add_button = (FloatingActionButton) findViewById(R.id.review_add_button);
+        add_button.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(context, SubmitReviewActivity.class);
+
+                intent.putExtra("FlightNumber", flight_number);
+                intent.putExtra("AirlineId", airline_id);
+
+                PendingIntent pendingIntent =
+                        TaskStackBuilder.create(getApplicationContext())
+                                .addNextIntentWithParentStack(intent)
+                                .getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
+
+                NotificationCompat.Builder builder = new NotificationCompat.Builder(getApplicationContext());
+                builder.setContentIntent(pendingIntent);
+
+                startActivity(intent);
+            }
+        });
+
     }
 
     private class HttpGetReviews extends AsyncTask<Void, Void, String> {
@@ -175,7 +197,7 @@ public class ReviewActivity extends AppCompatActivity {
     public double getOverallRating(ArrayList<Review> review_list) {
         int overall = 0;
         for (Review review : review_list) {
-            Integer review_overall = Integer.parseInt(review.getRating().getOverall());
+            Double review_overall = review.getRating().getOverall();
             overall += review_overall;
         }
         double resp = (double)overall / review_list.size();

@@ -47,13 +47,13 @@ public class SingleReviewAcitvity extends AppCompatActivity {
         ((RatingBar)findViewById(R.id.single_review_comfort_bar)).setNumStars(10);
         ((RatingBar)findViewById(R.id.single_review_quality_price_bar)).setNumStars(10);
 
-        ((RatingBar)findViewById(R.id.single_review_overall_bar)).setRating(Float.parseFloat(rating.getOverall()));
-        ((RatingBar)findViewById(R.id.single_review_friendliness_bar)).setRating(Float.parseFloat(rating.getFriendliness()));
-        ((RatingBar)findViewById(R.id.single_review_food_bar)).setRating(Float.parseFloat(rating.getFood()));
-        ((RatingBar)findViewById(R.id.single_review_punctuality_bar)).setRating(Float.parseFloat(rating.getPunctuality()));
-        ((RatingBar)findViewById(R.id.single_review_mileage_program_bar)).setRating(Float.parseFloat(rating.getMileage_program()));
-        ((RatingBar)findViewById(R.id.single_review_comfort_bar)).setRating(Float.parseFloat(rating.getComfort()));
-        ((RatingBar)findViewById(R.id.single_review_quality_price_bar)).setRating(Float.parseFloat(rating.getQuality_price()));
+        ((RatingBar)findViewById(R.id.single_review_overall_bar)).setRating((rating.getOverall()).intValue());
+        ((RatingBar)findViewById(R.id.single_review_friendliness_bar)).setRating(rating.getFriendliness());
+        ((RatingBar)findViewById(R.id.single_review_food_bar)).setRating(rating.getFood());
+        ((RatingBar)findViewById(R.id.single_review_punctuality_bar)).setRating(rating.getPunctuality());
+        ((RatingBar)findViewById(R.id.single_review_mileage_program_bar)).setRating(rating.getMileage_program());
+        ((RatingBar)findViewById(R.id.single_review_comfort_bar)).setRating(rating.getComfort());
+        ((RatingBar)findViewById(R.id.single_review_quality_price_bar)).setRating(rating.getQuality_price());
 
         TextView yes_recommend_text_view = (TextView)findViewById(R.id.single_review_yes_recommend);
 
