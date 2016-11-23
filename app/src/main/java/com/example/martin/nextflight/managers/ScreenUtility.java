@@ -7,7 +7,6 @@ import android.view.Display;
 /**
  * Created by joaquin on 23/11/16.
  */
-
 public class ScreenUtility {
 
     private float dpWidth;
@@ -24,4 +23,5 @@ public class ScreenUtility {
     public float getWidth(){
         return dpWidth;
     }
+
 }
