@@ -12,6 +12,8 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.example.martin.nextflight.managers.ScreenUtility;
+
 public class ConverterActivity extends AppCompatActivity {
 
     private String item = "Pesos";
@@ -31,6 +33,8 @@ public class ConverterActivity extends AppCompatActivity {
 
         // Enable the Up button
         ab.setDisplayHomeAsUpEnabled(true);
+
+        final ScreenUtility screenUtility = new ScreenUtility(this);
 
         Spinner spinner = (Spinner) findViewById(R.id.converter_spinner);
         // Create an ArrayAdapter using the string array and a default spinner layout
@@ -84,14 +88,21 @@ public class ConverterActivity extends AppCompatActivity {
                 public void onClick(View v) {
                     TextView textView = (TextView) findViewById(R.id.converter_converted_text);
                     EditText editText = (EditText) findViewById(R.id.converter_number1);
+                    TextView textView2 = (TextView) findViewById(R.id.converter_succes);
                     if (editText != null && textView != null) {
                         try {
                             String text = editText.getText().toString();
                             double number = Double.parseDouble(text);
                             number = convertNumber(number);
                             textView.setText(Double.toString(number));
+                            if (screenUtility.getWidth() > 700.0 && textView2 != null){
+                                textView2.setText("Conversión exitosa");
+                            }
                         } catch(Exception e) {
                             textView.setText("");
+                            if (screenUtility.getWidth() > 700.0 && textView2 != null){
+                                textView2.setText("");
+                            }
                         }
                     }
                 }
