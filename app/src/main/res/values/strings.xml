@@ -72,5 +72,6 @@
     <string name="error_no_close_airport">No se ha encontrado ningún aeropuerto cercano a su ubicación</string>
     <string name="from">"Desde: "</string>
     <string name="error_no_ubication">No se puede acceder a su ubicación.</string>
+    <string name="error_localization_request">Habilite la localización del dispositivo.</string>
 
 </resources>

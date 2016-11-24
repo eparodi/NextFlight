@@ -1,8 +1,11 @@
 package com.example.martin.nextflight;
 
+import android.support.v4.app.NavUtils;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -36,5 +39,15 @@ public class OffersResultActivity extends AppCompatActivity {
 
         TextView departureCityText = (TextView) findViewById(R.id.departure_city);
         departureCityText.setText(getString(R.string.from) + departureCity.getName());
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

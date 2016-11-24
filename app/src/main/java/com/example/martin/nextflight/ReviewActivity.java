@@ -10,6 +10,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.NotificationCompat;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -33,7 +34,6 @@ import java.util.ArrayList;
 
 import com.example.martin.nextflight.elements.Review;
 
-// TODO: Fix Bug crashing up button.
 public class ReviewActivity extends AppCompatActivity {
 
     ReviewActivity context;
@@ -220,4 +220,12 @@ public class ReviewActivity extends AppCompatActivity {
         return colors[overall.intValue() - 1];
     }
 
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 }
