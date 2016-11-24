@@ -3,6 +3,7 @@ package com.example.martin.nextflight;
 import android.app.PendingIntent;
 import android.app.TaskStackBuilder;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -36,7 +37,10 @@ import com.example.martin.nextflight.elements.Review;
 
 public class ReviewActivity extends AppCompatActivity {
 
-    ReviewActivity context;
+    private ReviewActivity context;
+    private String AIRLINE_ID;
+    private String FLIGHT_NUMBER;
+    private String AIRLINE_NAME;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,27 +58,31 @@ public class ReviewActivity extends AppCompatActivity {
 
         Bundle bundle = getIntent().getExtras();
 
-        final String airline_id = bundle.getString("AirlineId");
-        final String flight_number = bundle.getString("FlightNumber");
-        final String airline_name = bundle.getString("AirlineName");
+        try {
+            FLIGHT_NUMBER = bundle.getString("FlightNumber");
+            AIRLINE_ID = bundle.getString("AirlineId");
+            AIRLINE_NAME = bundle.getString("AirlineName");
+        } catch (Exception e) {
+            //TODO: this should do nothing, try to find a better solution.
+        }
 
-        TextView review_flight_number = (TextView)findViewById(R.id.review_flight_number_text_view);
-        TextView review_airline_name = (TextView)findViewById(R.id.review_flight_airline_text_view);
+        TextView review_flight_number = (TextView) findViewById(R.id.review_flight_number_text_view);
+        TextView review_airline_name = (TextView) findViewById(R.id.review_flight_airline_text_view);
 
-        review_flight_number.setText(flight_number);
+        review_flight_number.setText(FLIGHT_NUMBER);
         review_flight_number.setTextColor(getResources().getColor(R.color.md_blue_400));
-        review_airline_name.setText(airline_name);
+        review_airline_name.setText(AIRLINE_NAME);
         review_airline_name.setTextColor(getResources().getColor(R.color.md_blue_400));
 
-        new HttpGetReviews(airline_id,flight_number).execute();
+        new HttpGetReviews(AIRLINE_ID, FLIGHT_NUMBER).execute();
 
         FloatingActionButton add_button = (FloatingActionButton) findViewById(R.id.review_add_button);
         add_button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent(context, SubmitReviewActivity.class);
 
-                intent.putExtra("FlightNumber", flight_number);
-                intent.putExtra("AirlineId", airline_id);
+                intent.putExtra("FlightNumber", FLIGHT_NUMBER);
+                intent.putExtra("AirlineId", AIRLINE_ID);
 
                 PendingIntent pendingIntent =
                         TaskStackBuilder.create(getApplicationContext())
@@ -90,20 +98,42 @@ public class ReviewActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onSaveInstanceState(Bundle savedInstanceState) {
+        super.onSaveInstanceState(savedInstanceState);
+        // Save UI state changes to the savedInstanceState.
+        // This bundle will be passed to onCreate if the process is
+        // killed and restarted.
+        savedInstanceState.putString("FlightNumber", FLIGHT_NUMBER);
+        savedInstanceState.putString("AirlineId", AIRLINE_ID);
+        savedInstanceState.putString("AirlineName", AIRLINE_NAME);
+    }
+
+    @Override
+    public void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        // Restore UI state from the savedInstanceState.
+        // This bundle has also been passed to onCreate.
+        String FLIGHT_NUMBER = savedInstanceState.getString("FlightNumber");
+        String AIRLINE_ID = savedInstanceState.getString("AirlineId");
+        String AIRLINE_NAME = savedInstanceState.getString("AirlineName");
+    }
+
     private class HttpGetReviews extends AsyncTask<Void, Void, String> {
 
         private String query;
 
-        HttpGetReviews(String id, String number){
-            query = "&airline_id="+id+"&flight_number"+number;
+        HttpGetReviews(String id, String number) {
+            query = "&airline_id=" + id + "&flight_number" + number;
         }
+
         @Override
         protected String doInBackground(Void... params) {
 
             HttpURLConnection urlConnection = null;
 
             try {
-                URL url = new URL("http://hci.it.itba.edu.ar/v1/api/review.groovy?method=getairlinereviews"+query);
+                URL url = new URL("http://hci.it.itba.edu.ar/v1/api/review.groovy?method=getairlinereviews" + query);
                 urlConnection = (HttpURLConnection) url.openConnection();
                 InputStream in = new BufferedInputStream(urlConnection.getInputStream());
                 return readStream(in);
@@ -134,18 +164,17 @@ public class ReviewActivity extends AppCompatActivity {
                 getComments(result_list, review_list);
                 Double overall = getOverallRating(review_list);
 
-                TextView overall_rating = (TextView)findViewById(R.id.review_general_rating);
+                TextView overall_rating = (TextView) findViewById(R.id.review_general_rating);
                 overall_rating.setText(overall.toString());
                 overall_rating.setTextColor(getResources().getColor(getOverallColor(overall)));
 
                 ListView listView = (ListView) findViewById(R.id.review_comments_list_view);
                 if (listView != null) {
                     listView.setAdapter(result_list);
-                    listView.setOnItemClickListener(new AdapterView.OnItemClickListener()
-                    {
+                    listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                         @Override
                         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                            Intent intent = new Intent(context,SingleReviewAcitvity.class);
+                            Intent intent = new Intent(context, SingleReviewAcitvity.class);
                             intent.putExtra("complete_rating", review_list.get(position).getRating());
                             intent.putExtra("yes_recommend", review_list.get(position).getYes_recommend());
 
@@ -200,7 +229,7 @@ public class ReviewActivity extends AppCompatActivity {
             Double review_overall = review.getRating().getOverall();
             overall += review_overall;
         }
-        double resp = (double)overall / review_list.size();
+        double resp = (double) overall / review_list.size();
         resp = Math.floor(resp * 100) / 100;
         return resp;
     }

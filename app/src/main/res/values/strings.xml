@@ -16,6 +16,7 @@
     <string name="title_activity_converter">Conversor</string>
     <string name="title_activity_single_review">Opinion</string>
     <string name="title_activity_submit_review">Puntuar</string>
+    <string name="title_activity_flight_status">Detalle de vuelo</string>
 
     <!--Input text validators-->
     <string name="empty_number_validator">"Ingrese el número de vuelo."</string>
@@ -73,5 +74,7 @@
     <string name="from">"Desde: "</string>
     <string name="error_no_ubication">No se puede acceder a su ubicación.</string>
     <string name="error_localization_request">Habilite la localización del dispositivo.</string>
+
+    <string name="loading_message">"Loading images..."</string>
 
 </resources>

@@ -46,20 +46,20 @@
         <activity
             android:name=".ReviewActivity"
             android:label="@string/title_activity_review"
-            android:parentActivityName=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
 
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
+                android:value=".FlightStatusActivity" />
         </activity>
         <activity android:name=".FlightStatusActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".FlightSearchActivity" />
         </activity>
-        <activity android:name=".StatusMapsActivity">
+        <activity android:name=".StatusMapsActivity"
+            android:label="@string/title_activity_flight_status">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".FlightStatusActivity" />
@@ -104,7 +104,11 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".OffersSearchActivity" />
         </activity>
-        <receiver android:name=".managers.AlarmNotificationReceiver" />
+        <receiver android:name=".managers.AlarmNotificationReceiver" /><!-- ATTENTION: This was auto-generated to add Google Play services to your project for
+     App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information. -->
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
     </application>
 
 
