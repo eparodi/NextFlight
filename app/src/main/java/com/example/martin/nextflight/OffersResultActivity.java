@@ -12,6 +12,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.support.v7.app.NotificationCompat;
 import android.view.View;
@@ -48,7 +49,9 @@ import java.util.List;
 
 public class OffersResultActivity extends AppCompatActivity {
 
-    ArrayList<OneWayFlight> allFlights;
+    private ArrayList<OneWayFlight> allFlights;
+    private City departureCity;
+    private ArrayList<Deal> dealList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,9 +64,8 @@ public class OffersResultActivity extends AppCompatActivity {
 
         Bundle bundle = getIntent().getExtras();
 
-        final ArrayList<Deal> dealList = ((ArrayList<Deal>) bundle.getSerializable("FlightList"));
-
-        final City departureCity = (City) bundle.getSerializable("DepartureCity");
+        dealList = ((ArrayList<Deal>) bundle.getSerializable("FlightList"));
+        departureCity = (City) bundle.getSerializable("DepartureCity");
 
         // Comentado para que no se carguen las fotos y se pueda usar la app. Al descomentarlo,
         // descomentar tambien el momento en que se cargan en la view las imagenes. (OffersArrayAdapter).
@@ -111,6 +113,21 @@ public class OffersResultActivity extends AppCompatActivity {
             case android.R.id.home:
                 finish();
                 return true;
+            case R.id.action_offer_map:
+                Intent intent = new Intent(getApplicationContext(), AllOffersMapActivity.class);
+
+                PendingIntent pendingIntent =
+                        android.support.v4.app.TaskStackBuilder.create(getApplicationContext())
+                                .addNextIntentWithParentStack(intent)
+                                .getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
+
+                android.support.v4.app.NotificationCompat.Builder builder = new android.support.v4.app.NotificationCompat.Builder(getApplicationContext());
+                builder.setContentIntent(pendingIntent);
+
+                intent.putExtra("FlightList",dealList);
+                intent.putExtra("DepartureCity",departureCity);
+                startActivity(intent);
+                break;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -140,6 +157,12 @@ public class OffersResultActivity extends AppCompatActivity {
         }
         return false;
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.activity_offers_result_menu, menu);
+        return super.onCreateOptionsMenu(menu);
     }
 
     private class HttpGetPhotos extends AsyncTask<Void, Void, String> {

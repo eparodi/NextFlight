@@ -76,5 +76,6 @@
     <string name="error_localization_request">Habilite la localización del dispositivo.</string>
 
     <string name="loading_message">"Loading images..."</string>
+    <string name="title_activity_all_offers_map">Map</string>
 
 </resources>
