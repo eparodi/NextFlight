@@ -31,7 +31,16 @@
     <string name="rating_mileage_program_title_name">Viajeros frecuentes</string>
     <string name="rating_comfort_title_name">Comodidad</string>
     <string name="rating_quality_price_title_name">Precio/calidad</string>
-    <string name="rating_yes_recommend_title_name">Lo recomendaría</string>
+    <string name="rating_yes_recommend_title_name">¿Lo recomendaría?</string>
+    <string name="rating_comment_title_name">Comentario</string>
+
+    <!--Review titles-->
+    <string name="review_flight_title">Vuelo</string>
+    <string name="review_airline_title">Aerolínea</string>
+    <string name="review_general_rating_title">Puntuacón general</string>
+    <string name="review_comments_list_title">Comentarios</string>
+    <string name="review_submit_title">Puntue el vuelo</string>
+    <string name="review_submit_button">Enviar</string>
 
     <!--Hints-->
     <string name="submit_comment_hint">Deje un comentario</string>

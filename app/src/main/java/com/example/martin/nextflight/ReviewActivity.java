@@ -15,10 +15,19 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.SeekBar;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.martin.nextflight.elements.Airline;
+import com.example.martin.nextflight.elements.Flight;
+import com.example.martin.nextflight.elements.Rating;
+import com.example.martin.nextflight.elements.SubmitReview;
+import com.example.martin.nextflight.managers.ScreenUtility;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -31,6 +40,7 @@ import java.io.InputStream;
 import java.lang.reflect.Type;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 
 import com.example.martin.nextflight.elements.Review;
@@ -54,7 +64,7 @@ public class ReviewActivity extends AppCompatActivity {
         // Enable the Up button
         ab.setDisplayHomeAsUpEnabled(true);
 
-        context = this;
+        final ScreenUtility screenUtility = new ScreenUtility(this);
 
         Bundle bundle = getIntent().getExtras();
 
@@ -76,47 +86,53 @@ public class ReviewActivity extends AppCompatActivity {
 
         new HttpGetReviews(AIRLINE_ID, FLIGHT_NUMBER).execute();
 
-        FloatingActionButton add_button = (FloatingActionButton) findViewById(R.id.review_add_button);
-        add_button.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Intent intent = new Intent(context, SubmitReviewActivity.class);
+        if (screenUtility.getWidth() > 700.0) {
+            Button button = (Button) findViewById(R.id.review_submit_button);
+            button.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    Integer flight_number = Integer.parseInt(FLIGHT_NUMBER);
+                    String airline_id = AIRLINE_ID;
 
-                intent.putExtra("FlightNumber", FLIGHT_NUMBER);
-                intent.putExtra("AirlineId", AIRLINE_ID);
+                    Boolean yes_recommend = ((Switch)findViewById(R.id.submit_switch)).isChecked();
+                    Airline airline = new Airline(airline_id);
+                    Flight flight = new Flight(flight_number, airline);
+                    String comments = ((EditText)findViewById(R.id.submit_comment_input)).getText().toString();
+                    Rating rating = new Rating(
+                            4.5,
+                            ((SeekBar)findViewById(R.id.submit_review_friendliness_seek_bar)).getProgress() + 1,
+                            ((SeekBar)findViewById(R.id.submit_review_food_seek_bar)).getProgress() + 1,
+                            ((SeekBar)findViewById(R.id.submit_review_punctuality_seek_bar)).getProgress() + 1,
+                            ((SeekBar)findViewById(R.id.submit_review_mileage_program_seek_bar)).getProgress() + 1,
+                            ((SeekBar)findViewById(R.id.submit_review_comfort_seek_bar)).getProgress() + 1,
+                            ((SeekBar)findViewById(R.id.submit_review_quality_price_seek_bar)).getProgress() + 1
+                    );
+                    SubmitReview submit = new SubmitReview(flight, rating, yes_recommend, comments);
 
-                PendingIntent pendingIntent =
-                        TaskStackBuilder.create(getApplicationContext())
-                                .addNextIntentWithParentStack(intent)
-                                .getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
+                    new HttpSubmitReview(submit).execute();
+                }
+            });
+        }
+        else {
+            FloatingActionButton add_button = (FloatingActionButton) findViewById(R.id.review_add_button);
+            add_button.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    Intent intent = new Intent(ReviewActivity.this, SubmitReviewActivity.class);
 
-                NotificationCompat.Builder builder = new NotificationCompat.Builder(getApplicationContext());
-                builder.setContentIntent(pendingIntent);
+                    intent.putExtra("FlightNumber", FLIGHT_NUMBER);
+                    intent.putExtra("AirlineId", AIRLINE_ID);
 
-                startActivity(intent);
-            }
-        });
+                    PendingIntent pendingIntent =
+                            TaskStackBuilder.create(getApplicationContext())
+                                    .addNextIntentWithParentStack(intent)
+                                    .getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
 
-    }
+                    NotificationCompat.Builder builder = new NotificationCompat.Builder(getApplicationContext());
+                    builder.setContentIntent(pendingIntent);
 
-    @Override
-    protected void onSaveInstanceState(Bundle savedInstanceState) {
-        super.onSaveInstanceState(savedInstanceState);
-        // Save UI state changes to the savedInstanceState.
-        // This bundle will be passed to onCreate if the process is
-        // killed and restarted.
-        savedInstanceState.putString("FlightNumber", FLIGHT_NUMBER);
-        savedInstanceState.putString("AirlineId", AIRLINE_ID);
-        savedInstanceState.putString("AirlineName", AIRLINE_NAME);
-    }
-
-    @Override
-    public void onRestoreInstanceState(Bundle savedInstanceState) {
-        super.onRestoreInstanceState(savedInstanceState);
-        // Restore UI state from the savedInstanceState.
-        // This bundle has also been passed to onCreate.
-        String FLIGHT_NUMBER = savedInstanceState.getString("FlightNumber");
-        String AIRLINE_ID = savedInstanceState.getString("AirlineId");
-        String AIRLINE_NAME = savedInstanceState.getString("AirlineName");
+                    startActivity(intent);
+                }
+            });
+        }
     }
 
     private class HttpGetReviews extends AsyncTask<Void, Void, String> {
@@ -158,7 +174,7 @@ public class ReviewActivity extends AppCompatActivity {
                 String jsonFragment = obj.getString("reviews");
                 final ArrayList<Review> review_list = gson.fromJson(jsonFragment, listType);
 
-                ArrayAdapter<String> result_list = new ArrayAdapter<>(context,
+                ArrayAdapter<String> result_list = new ArrayAdapter<>(ReviewActivity.this,
                         android.R.layout.simple_list_item_1);
 
                 getComments(result_list, review_list);
@@ -174,19 +190,20 @@ public class ReviewActivity extends AppCompatActivity {
                     listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                         @Override
                         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                            Intent intent = new Intent(context, SingleReviewAcitvity.class);
+                            Intent intent = new Intent(ReviewActivity.this, SingleReviewAcitvity.class);
+                            intent.putExtra("comments", review_list.get(position).getComments());
                             intent.putExtra("complete_rating", review_list.get(position).getRating());
                             intent.putExtra("yes_recommend", review_list.get(position).getYes_recommend());
 
                             // Use TaskStackBuilder to build the back stack and get the PendingIntent
                             PendingIntent pendingIntent =
-                                    TaskStackBuilder.create(context)
+                                    TaskStackBuilder.create(getApplicationContext())
                                             // add all of DetailsActivity's parents to the stack,
                                             // followed by DetailsActivity itself
                                             .addNextIntentWithParentStack(intent)
                                             .getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
 
-                            NotificationCompat.Builder builder = new NotificationCompat.Builder(context);
+                            NotificationCompat.Builder builder = new NotificationCompat.Builder(getApplicationContext());
                             builder.setContentIntent(pendingIntent);
 
                             startActivity(intent);
@@ -194,7 +211,7 @@ public class ReviewActivity extends AppCompatActivity {
                     });
                 }
             } catch (Exception exception) {
-                Toast.makeText(context, getString(R.string.error), Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), getString(R.string.error), Toast.LENGTH_LONG).show();
             }
 
 
@@ -247,6 +264,102 @@ public class ReviewActivity extends AppCompatActivity {
                 R.color.md_green_A700,              // 9
                 R.color.md_green_A700};             // 10
         return colors[overall.intValue() - 1];
+    }
+
+    private class HttpSubmitReview extends AsyncTask<Void, Void, String> {
+
+        private SubmitReview submit;
+
+        HttpSubmitReview(SubmitReview submit){
+            this.submit = submit;
+        }
+        @Override
+        protected String doInBackground(Void... params) {
+
+            HttpURLConnection urlConnection = null;
+
+            try {
+                URL url = new URL("http://hci.it.itba.edu.ar/v1/api/review.groovy?method=reviewairline2" + getQuery(submit));
+                urlConnection = (HttpURLConnection) url.openConnection();
+                InputStream in = new BufferedInputStream((urlConnection.getInputStream()));
+                return readStream(in);
+            } catch (Exception exception) {
+                exception.printStackTrace();
+                return getResources().getString(R.string.error);
+            } finally {
+                if (urlConnection != null)
+                    urlConnection.disconnect();
+            }
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+
+            try {
+                JSONObject obj = new JSONObject(result);
+                Gson gson = new Gson();
+                Type resultType = new TypeToken<Boolean>() {
+                }.getType();
+
+                String jsonFragment = obj.getString("review");
+                final Boolean review_result = gson.fromJson(jsonFragment, resultType);
+
+                if (review_result == true) {
+                    Toast.makeText(getApplicationContext(), "Se subio con éxito", Toast.LENGTH_LONG).show();
+                }
+                else
+                    Toast.makeText(getApplicationContext(), "Ocurrió un error", Toast.LENGTH_LONG).show();
+            } catch (Exception exception) {
+                Toast.makeText(getApplicationContext(), getString(R.string.error), Toast.LENGTH_LONG).show();
+            }
+
+        }
+
+        private String readStream(InputStream inputStream) {
+            try {
+                ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+                int i = inputStream.read();
+                while (i != -1) {
+                    outputStream.write(i);
+                    i = inputStream.read();
+                }
+                return outputStream.toString();
+            } catch (IOException e) {
+                return "";
+            }
+        }
+
+        private String getQuery(SubmitReview submit) {
+            String query = "";
+
+            try {
+                query = "&review=%7b%22flight%22:%7b%22airline%22:%7b%22id%22:%22" +
+                        URLEncoder.encode(submit.getFlight().getAirline().getAirlineId(), "UTF-8") +
+                        "%22%7d,%22number%22:" +
+                        submit.getFlight().getFlight_number().toString() +
+                        "%7d,%22rating%22:%7b%22friendliness%22:" +
+                        submit.getRating().getFriendliness().toString() +
+                        ",%22food%22:" +
+                        submit.getRating().getFood().toString() +
+                        ",%22punctuality%22:" +
+                        submit.getRating().getPunctuality().toString() +
+                        ",%22mileage_program%22:" +
+                        submit.getRating().getMileage_program().toString() +
+                        ",%22comfort%22:" +
+                        submit.getRating().getComfort().toString() +
+                        ",%22quality_price%22:" +
+                        submit.getRating().getQuality_price().toString() +
+                        "%7d,%22yes_recommend%22:" +
+                        submit.getYes_recommend().toString() +
+                        ",%22comments%22:%22" +
+                        URLEncoder.encode(submit.getComments(), "UTF-8") +
+                        "%22%7d";
+                return query;
+            } catch(Exception e) {
+                // TODO: Set messagges.
+            }
+            return query;
+        }
     }
 
     public boolean onOptionsItemSelected(MenuItem item) {

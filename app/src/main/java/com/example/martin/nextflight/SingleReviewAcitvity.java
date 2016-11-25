@@ -4,11 +4,13 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.method.ScrollingMovementMethod;
 import android.view.MenuItem;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.example.martin.nextflight.elements.Rating;
+import com.example.martin.nextflight.managers.ScreenUtility;
 
 public class SingleReviewAcitvity extends AppCompatActivity {
 
@@ -24,8 +26,11 @@ public class SingleReviewAcitvity extends AppCompatActivity {
         // Enable the Up button
         ab.setDisplayHomeAsUpEnabled(true);
 
+        final ScreenUtility screenUtility = new ScreenUtility(this);
+
         Rating rating = (Rating) getIntent().getSerializableExtra("complete_rating");
         String yes_recommend = (String) getIntent().getSerializableExtra("yes_recommend");
+        String comments = (String) getIntent().getSerializableExtra("comments");
         if (yes_recommend.equals("true"))
             yes_recommend = "Si";
         else if (yes_recommend.equals("false"))
@@ -39,6 +44,12 @@ public class SingleReviewAcitvity extends AppCompatActivity {
         ((TextView)findViewById(R.id.single_review_comfort_title)).setText(R.string.rating_comfort_title_name);
         ((TextView)findViewById(R.id.single_review_quality_price_title)).setText(R.string.rating_quality_price_title_name);
         ((TextView)findViewById(R.id.single_review_yes_recommend_title)).setText(R.string.rating_yes_recommend_title_name);
+        if (screenUtility.getWidth() > 700.0){
+            ((TextView)findViewById(R.id.single_review_comment_title)).setText(R.string.rating_comment_title_name);
+            TextView comments_text = (TextView)findViewById(R.id.single_review_comment_text);
+            comments_text.setText(comments);
+            comments_text.setMovementMethod(ScrollingMovementMethod.getInstance());
+        }
 
         ((RatingBar)findViewById(R.id.single_review_overall_bar)).setNumStars(10);
         ((RatingBar)findViewById(R.id.single_review_friendliness_bar)).setNumStars(10);
