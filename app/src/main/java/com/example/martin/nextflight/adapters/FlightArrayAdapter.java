@@ -37,6 +37,12 @@ public class FlightArrayAdapter extends ArrayAdapter<Flight> {
             holder.flight_number_text_view = (TextView) convertView.findViewById(R.id.flight_list_number_text);
             holder.flight_time_text_view = (TextView) convertView.findViewById(R.id.flight_list_time_text);
             holder.flight_date_text_view = (TextView) convertView.findViewById(R.id.flight_list_date_text);
+            try {
+                holder.flight_takeoff_text_view = (TextView) convertView.findViewById(R.id.flight_list_takeoff_text);
+                holder.flight_land_text_view = (TextView) convertView.findViewById(R.id.flight_list_land_text);
+            }catch (Exception e) {
+                //nothing
+            }
             convertView.setTag(holder);
         } else {
             holder = (FlightViewHolder) convertView.getTag();
@@ -44,6 +50,10 @@ public class FlightArrayAdapter extends ArrayAdapter<Flight> {
 
         holder.flight_number_text_view.setText(getItem(position).getFlight_number().toString());
         holder.flight_airline_id_text_view.setText(getItem(position).getAirline().getAirlineId());
+        if (holder.flight_takeoff_text_view != null) {
+            holder.flight_takeoff_text_view.setText(getItem(position).getDeparture().getAirport().getCity().getId());
+            holder.flight_land_text_view.setText(getItem(position).getArrival().getAirport().getCity().getId());
+        }
 
         SimpleDateFormat parser = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");

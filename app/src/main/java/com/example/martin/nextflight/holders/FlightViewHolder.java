@@ -13,4 +13,6 @@ public class FlightViewHolder {
     public TextView flight_airline_id_text_view;
     public TextView flight_time_text_view;
     public TextView flight_date_text_view;
+    public TextView flight_takeoff_text_view;
+    public TextView flight_land_text_view;
 }
