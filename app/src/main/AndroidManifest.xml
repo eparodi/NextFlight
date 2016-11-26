@@ -30,7 +30,7 @@ package="com.example.martin.nextflight">
         <!-- Parent activity meta-data to support 4.0 and lower -->
         <meta-data android:name="android.support.PARENT_ACTIVITY" android:value=".FlightStatusActivity" />
     </activity>
-    <activity android:name=".FlightStatusActivity">
+    <activity android:name=".FlightStatusActivity" android:label="@string/title_activity_flight_status">
         <meta-data android:name="android.support.PARENT_ACTIVITY" android:value=".FlightSearchActivity" />
     </activity>
     <activity android:name=".StatusMapsActivity" android:label="@string/title_activity_flight_status">
