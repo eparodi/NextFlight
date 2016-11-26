@@ -1,72 +1,137 @@
-<?xml version="1.0" encoding="utf-8"?><manifest xmlns:android="http://schemas.android.com/apk/res/android"
-package="com.example.martin.nextflight">
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.martin.nextflight">
 
-<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-<uses-permission android:name="android.permission.INTERNET" />
-<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" android:maxSdkVersion="22" />
-<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" android:maxSdkVersion="22" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:maxSdkVersion="22" />
+    <uses-permission
+        android:name="android.permission.READ_EXTERNAL_STORAGE"
+        android:maxSdkVersion="22" />
 
-<application android:allowBackup="true" android:icon="@mipmap/ic_launcher" android:label="@string/app_name"
-    android:supportsRtl="true" android:theme="@style/AppTheme">
-    <meta-data android:name="com.google.android.geo.API_KEY" android:value="AIzaSyAI9UXBmxoaXI5L-JJdG9lgvJ2kXGCv96A" />
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyAI9UXBmxoaXI5L-JJdG9lgvJ2kXGCv96A" />
 
-    <activity android:name=".MainActivity" android:label="@string/app_name" android:theme="@style/AppTheme.NoActionBar">
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
-    </activity>
-    <activity android:name=".FlightSearchActivity" android:label="@string/title_activity_flight_search"
-        android:parentActivityName=".MainActivity" android:theme="@style/AppTheme.NoActionBar">
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".FlightSearchActivity"
+            android:label="@string/title_activity_flight_search"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
 
-        <!-- Parent activity meta-data to support 4.0 and lower -->
-        <meta-data android:name="android.support.PARENT_ACTIVITY" android:value=".MainActivity" />
-    </activity>
-    <activity android:name=".ReviewActivity" android:label="@string/title_activity_review"
-        android:theme="@style/AppTheme.NoActionBar">
+            <!-- Parent activity meta-data to support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+        <activity
+            android:name=".ReviewActivity"
+            android:label="@string/title_activity_review"
+            android:theme="@style/AppTheme.NoActionBar">
 
-        <!-- Parent activity meta-data to support 4.0 and lower -->
-        <meta-data android:name="android.support.PARENT_ACTIVITY" android:value=".FlightStatusActivity" />
-    </activity>
-    <activity android:name=".FlightStatusActivity" android:label="@string/title_activity_flight_status">
-        <meta-data android:name="android.support.PARENT_ACTIVITY" android:value=".FlightSearchActivity" />
-    </activity>
-    <activity android:name=".StatusMapsActivity" android:label="@string/title_activity_flight_status">
-        <meta-data android:name="android.support.PARENT_ACTIVITY" android:value=".FlightStatusActivity" />
-    </activity>
-    <activity android:name=".ConverterActivity" android:label="@string/title_activity_converter"
-        android:theme="@style/AppTheme.NoActionBar">
+            <!-- Parent activity meta-data to support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".FlightStatusActivity" />
+        </activity>
+        <activity
+            android:name=".FlightStatusActivity"
+            android:label="@string/title_activity_flight_status">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".FlightSearchActivity" />
+        </activity>
+        <activity
+            android:name=".StatusMapsActivity"
+            android:label="@string/title_activity_flight_status">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".FlightStatusActivity" />
+        </activity>
+        <activity
+            android:name=".ConverterActivity"
+            android:label="@string/title_activity_converter"
+            android:theme="@style/AppTheme.NoActionBar">
 
-        <!-- Parent activity meta-data to support 4.0 and lower -->
-        <meta-data android:name="android.support.PARENT_ACTIVITY" android:value=".MainActivity" />
-    </activity>
-    <activity android:name=".SingleReviewAcitvity" android:label="@string/title_activity_single_review"
-        android:theme="@style/AppTheme.NoActionBar">
+            <!-- Parent activity meta-data to support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+        <activity
+            android:name=".SingleReviewAcitvity"
+            android:label="@string/title_activity_single_review"
+            android:theme="@style/AppTheme.NoActionBar">
 
-        <!-- Parent activity meta-data to support 4.0 and lower -->
-        <meta-data android:name="android.support.PARENT_ACTIVITY" android:value=".ReviewActivity" />
-    </activity>
-    <activity android:name=".SubmitReviewActivity" android:label="@string/title_activity_submit_review">
+            <!-- Parent activity meta-data to support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ReviewActivity" />
+        </activity>
+        <activity
+            android:name=".SubmitReviewActivity"
+            android:label="@string/title_activity_submit_review">
 
-        <!--Parent activity meta-data to support 4.0 and lower-->
-        <meta-data android:name="android.support.PARENT_ACTIVITY" android:value=".ReviewActivity" />
-    </activity>
+            <!-- Parent activity meta-data to support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ReviewActivity" />
+        </activity>
+        <activity android:name=".OffersSearchActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+        <activity android:name=".OffersResultActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".OffersSearchActivity" />
+        </activity>
+        <activity
+            android:name=".AllOffersMapActivity"
+            android:label="@string/title_activity_all_offers_map">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".OffersResultActivity" />
+        </activity>
 
-    <activity android:name=".OffersSearchActivity">
-        <meta-data android:name="android.support.PARENT_ACTIVITY" android:value=".MainActivity" />
-    </activity>
-    <activity android:name=".OffersResultActivity">
-        <meta-data android:name="android.support.PARENT_ACTIVITY" android:value=".OffersSearchActivity" />
-    </activity>
-    <activity android:name="com.example.martin.nextflight.AllOffersMapActivity" android:label="@string/title_activity_all_offers_map">
-        <meta-data android:name="android.support.PARENT_ACTIVITY" android:value=".OffersResultActivity" />
-    </activity>
-    <receiver android:name=".managers.AlarmNotificationReceiver" /><!-- ATTENTION: This was auto-generated to add Google Play services to your project for
-     App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information. -->
-    <meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version" />
-</application>
+        <receiver android:name=".managers.AlarmNotificationReceiver" />
+        <!--
+ ATTENTION: This was auto-generated to add Google Play services to your project for
+     App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information.
+        -->
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
 
+        <activity
+            android:name=".FollowedFlightsActivity"
+            android:label="@string/title_activity_followed_flights"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.martin.nextflight.MainActivity" />
+        </activity>
+    </application>
 
 </manifest>

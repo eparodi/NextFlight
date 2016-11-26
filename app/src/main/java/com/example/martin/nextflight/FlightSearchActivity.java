@@ -111,6 +111,7 @@ public class FlightSearchActivity extends AppCompatActivity{
 
                     intent.putExtra("FlightNumber", flight_number);
                     intent.putExtra("AirlineId", airline_id);
+                    intent.putExtra("Reload",false);
                     /*
                     Bundle bundle = new Bundle();
                     bundle.putString("FlightNumber", flight_number);
@@ -122,16 +123,6 @@ public class FlightSearchActivity extends AppCompatActivity{
                 }
             }
         });
-    }
-
-    @Override
-    public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
-        }
     }
 
     @Override

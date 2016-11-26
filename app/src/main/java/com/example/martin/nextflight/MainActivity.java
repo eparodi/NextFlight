@@ -31,8 +31,6 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private MainActivity context;
-    private AlarmManager alarmManager;
-    private PendingIntent alarmNotificationReceiverPendingIntent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,12 +40,11 @@ public class MainActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
 
         context = this;
-        alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+        AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
 
         Intent alarmNotificationReceiverIntent =
                 new Intent(MainActivity.this, AlarmNotificationReceiver.class);
-        alarmNotificationReceiverPendingIntent =
-                PendingIntent.getBroadcast(MainActivity.this, 0, alarmNotificationReceiverIntent, 0);
+        PendingIntent alarmNotificationReceiverPendingIntent = PendingIntent.getBroadcast(MainActivity.this, 0, alarmNotificationReceiverIntent, 0);
 
         alarmManager.setRepeating(AlarmManager.ELAPSED_REALTIME,
                 SystemClock.elapsedRealtime() + 30000,

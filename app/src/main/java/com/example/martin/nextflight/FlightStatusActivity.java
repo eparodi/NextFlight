@@ -1,7 +1,9 @@
 package com.example.martin.nextflight;
 
+import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.TaskStackBuilder;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -72,6 +74,8 @@ public class FlightStatusActivity extends AppCompatActivity{
 
     ScreenUtility screen_utility;
 
+    private boolean reload;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -111,8 +115,13 @@ public class FlightStatusActivity extends AppCompatActivity{
 
         final String airline_id = bundle.getString("AirlineId");
         flightNumber = bundle.getString("FlightNumber");
+        reload = bundle.getBoolean("RELOAD");
 
         new HttpGetStatus(airline_id,flightNumber).execute();
+
+        // Clear notifications.
+        NotificationManager nMgr = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        nMgr.cancel(Integer.parseInt(flightNumber,10));
     }
 
     private void fillTextView(){
@@ -233,8 +242,11 @@ public class FlightStatusActivity extends AppCompatActivity{
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                finish();
-                return true;
+                if (!reload){
+                    finish();
+                    return true;
+                }
+                break;
             case R.id.action_reviews_action_icon:
                 Intent review_intent = new Intent(getApplicationContext(), ReviewActivity.class);
 
