@@ -124,7 +124,7 @@ public class AlarmNotificationReceiver extends BroadcastReceiver {
             NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
             // TODO: Make prettier the notification.
             synchronized (lock1) {
-                if (status.getStatus().equals(flight.getStatus())) {
+                if (!status.getStatus().equals(flight.getStatus())) {
                     FileManager.startFileManager(context);
                     FileManager.removeFlight(flight, context);
                     flight.setArrival(status.getArrival());
