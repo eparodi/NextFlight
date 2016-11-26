@@ -13,6 +13,14 @@
     tools:context="com.example.martin.nextflight.MainActivity"
     tools:showIn="@layout/app_bar_main">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/no_followed_flights"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:textColor="@color/md_blue_900"/>
+
     <ListView
         android:id="@+id/followed_flights_list_view"
         android:layout_width="match_parent"

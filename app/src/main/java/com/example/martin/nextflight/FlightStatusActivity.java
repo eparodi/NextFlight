@@ -214,11 +214,20 @@ public class FlightStatusActivity extends AppCompatActivity{
     }
 
     private void hideAll(){
-        ((TextView) findViewById(R.id.status_title)).setText("");
-        ((TextView) findViewById(R.id.from_title)).setText("");
-        ((TextView) findViewById(R.id.to_title)).setText("");
-        ((TextView) findViewById(R.id.arrival_title)).setText("");
-        ((TextView) findViewById(R.id.departure_title)).setText("");
+        ((TextView) findViewById(R.id.status_state_title_text_view)).setText("");
+        ((TextView) findViewById(R.id.status_flight_title_text_view)).setText("");
+        ((TextView) findViewById(R.id.status_airline_title_text_view)).setText("");
+        ((TextView) findViewById(R.id.status_from_title_text_view)).setText("");
+        ((TextView) findViewById(R.id.status_departure_title_text_view)).setText("");
+        ((TextView) findViewById(R.id.status_departure_date_title_text_view)).setText("");
+        ((TextView) findViewById(R.id.status_departure_terminal_title_text_view)).setText("");
+        ((TextView) findViewById(R.id.status_departure_hour_title_text_view)).setText("");
+        ((TextView) findViewById(R.id.status_departure_gate_title_text_view)).setText("");
+        ((TextView) findViewById(R.id.status_arrival_title_text_view)).setText("");
+        ((TextView) findViewById(R.id.status_arrival_date_title_text_view)).setText("");
+        ((TextView) findViewById(R.id.status_arrival_terminal_title_text_view)).setText("");
+        ((TextView) findViewById(R.id.status_arrival_hour_title_text_view)).setText("");
+        ((TextView) findViewById(R.id.status_arrival_gate_title_text_view)).setText("");
     }
 
     public boolean onOptionsItemSelected(MenuItem item) {

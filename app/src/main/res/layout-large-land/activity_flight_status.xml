@@ -44,6 +44,7 @@
             android:layout_marginEnd="250dp"/>
 
         <TextView
+            android:id="@+id/status_flight_title_text_view"
             android:text="@string/review_flight_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -67,6 +68,7 @@
         android:layout_marginBottom="30dp">
 
         <TextView
+            android:id="@+id/status_airline_title_text_view"
             android:text="@string/review_airline_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -97,6 +99,7 @@
         android:layout_marginBottom="30dp">
 
         <TextView
+            android:id="@+id/status_from_title_text_view"
             android:text="@string/status_from_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -120,6 +123,7 @@
         android:layout_marginBottom="30dp">
 
         <TextView
+            android:id="@+id/status_to_title_text_view"
             android:text="@string/status_to_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -137,6 +141,7 @@
     </LinearLayout>
 
     <TextView
+        android:id="@+id/status_departure_title_text_view"
         android:text="@string/status_departure_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -163,6 +168,7 @@
                 android:layout_marginBottom="10dp">
 
                 <TextView
+                    android:id="@+id/status_departure_date_title_text_view"
                     android:text="@string/status_date_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -186,6 +192,7 @@
                 android:layout_marginBottom="10dp">
 
                 <TextView
+                    android:id="@+id/status_departure_terminal_title_text_view"
                     android:text="@string/status_terminal_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -216,6 +223,7 @@
                 android:layout_marginBottom="10dp">
 
                 <TextView
+                    android:id="@+id/status_departure_hour_title_text_view"
                     android:text="@string/status_hour_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -239,6 +247,7 @@
                 android:layout_marginBottom="10dp">
 
                 <TextView
+                    android:id="@+id/status_departure_gate_title_text_view"
                     android:text="@string/status_gate_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -260,6 +269,7 @@
     </LinearLayout>
 
     <TextView
+        android:id="@+id/status_arrival_title_text_view"
         android:text="@string/status_arrival_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -286,6 +296,7 @@
                 android:layout_marginBottom="10dp">
 
                 <TextView
+                    android:id="@+id/status_arrival_date_title_text_view"
                     android:text="@string/status_date_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -309,6 +320,7 @@
                 android:layout_marginBottom="10dp">
 
                 <TextView
+                    android:id="@+id/status_arrival_terminal_title_text_view"
                     android:text="@string/status_terminal_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -339,6 +351,7 @@
                 android:layout_marginBottom="10dp">
 
                 <TextView
+                    android:id="@+id/status_arrival_hour_title_text_view"
                     android:text="@string/status_hour_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -362,6 +375,7 @@
                 android:layout_marginBottom="10dp">
 
                 <TextView
+                    android:id="@+id/status_arrival_gate_title_text_view"
                     android:text="@string/status_gate_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

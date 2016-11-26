@@ -9,15 +9,20 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.martin.nextflight.R;
+import com.example.martin.nextflight.elements.Departure;
 import com.example.martin.nextflight.elements.Flight;
 import com.example.martin.nextflight.holders.FlightViewHolder;
+
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 
 /**
  * Created by Martin on 17/11/2016.
  */
 
 public class FlightArrayAdapter extends ArrayAdapter<Flight> {
-    public FlightArrayAdapter(Activity context, Flight[] objects) {
+    public FlightArrayAdapter(Activity context, ArrayList<Flight> objects) {
         super(context, R.layout.flight_list_view_item, objects);
     }
 
@@ -36,25 +41,36 @@ public class FlightArrayAdapter extends ArrayAdapter<Flight> {
         } else {
             holder = (FlightViewHolder) convertView.getTag();
         }
-        /*
-        Flight flight = getItem(position);
-        if (flight.getState().equals("A")) {
-            holder.flight_state_image_view.setImageResource(R.drawable.ic_avatar_active);
-        } else if(flight.getState().equals("C")) {
-            holder.flight_state_image_view.setImageResource(R.drawable.ic_avatar_canceled);
-        } else if(flight.getState().equals("D")) {
-            holder.flight_state_image_view.setImageResource(R.drawable.ic_avatar_delayed);
-        } else if(flight.getState().equals("L")) {
-            holder.flight_state_image_view.setImageResource(R.drawable.ic_avatar_landed);
-        } else if(flight.getState().equals("S")) {
-            holder.flight_state_image_view.setImageResource(R.drawable.ic_avatar_programmed);
+
+        holder.flight_number_text_view.setText(getItem(position).getFlight_number().toString());
+        holder.flight_airline_id_text_view.setText(getItem(position).getAirline().getAirlineId());
+
+        SimpleDateFormat parser = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
+        Date departure_date;
+        Date arrival_date;
+        Departure departure = getItem(position).getDeparture();
+        try {
+            departure_date = parser.parse(departure.getScheduled_time());
+            holder.flight_date_text_view.setText(dateFormat.format(departure_date));
+            holder.flight_time_text_view.setText(timeFormat.format(departure_date));
+        }catch (Exception e){
+            // TODO: Message.
         }
-        holder.flight_airline_id_text_view.setText(flight.getAirline_id());
-        Integer flight_number = flight.getNumber();
-        holder.flight_number_text_view.setText(flight_number.toString());
-        holder.flight_time_text_view.setText(flight.getArrival_time());
-        holder.flight_date_text_view.setText(flight.getArrival_date());
-        */
+        String status = getItem(position).getStatus();
+        if (status.equals("S")){
+            holder.flight_state_image_view.setImageResource(R.drawable.ic_avatar_programmed);
+        }else if (status.equals("L")){
+            holder.flight_state_image_view.setImageResource(R.drawable.ic_avatar_landed);
+        }else if (status.equals("A")){
+            holder.flight_state_image_view.setImageResource(R.drawable.ic_avatar_active);
+        }else if (status.equals("C")){
+            holder.flight_state_image_view.setImageResource(R.drawable.ic_avatar_canceled);
+        }else if (status.equals("R")){
+            holder.flight_state_image_view.setImageResource(R.drawable.ic_avatar_delayed);
+        }
+
         return convertView;
     }
 }

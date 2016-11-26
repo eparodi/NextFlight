@@ -18,7 +18,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
+import com.example.martin.nextflight.adapters.FlightArrayAdapter;
 import com.example.martin.nextflight.elements.Flight;
 import com.example.martin.nextflight.managers.AlarmNotificationReceiver;
 import com.example.martin.nextflight.managers.FileManager;
@@ -63,11 +65,16 @@ public class MainActivity extends AppCompatActivity
 
         ListView view = (ListView) findViewById(R.id.followed_flights_list_view);
 
-
         FileManager.startFileManager(getApplicationContext());
         ArrayList<Flight> flights = FileManager.getAllFlights();
-        ArrayAdapter<Flight> flightAdapter = new ArrayAdapter<>(getApplicationContext(),android.R.layout.simple_list_item_1,flights);
-        view.setAdapter(flightAdapter);
+
+        if (!flights.isEmpty()) {
+            FlightArrayAdapter flights_adapter = new FlightArrayAdapter(this, flights);
+            //ArrayAdapter<Flight> flightAdapter = new ArrayAdapter<>(getApplicationContext(),android.R.layout.simple_list_item_1,flights);
+            view.setAdapter(flights_adapter);
+        }else {
+            ((TextView) findViewById(R.id.no_followed_flights)).setText(R.string.no_followed_flights_information);
+        }
     }
 
     @Override
