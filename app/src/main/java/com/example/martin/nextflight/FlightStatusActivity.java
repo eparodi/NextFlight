@@ -129,7 +129,7 @@ public class FlightStatusActivity extends AppCompatActivity{
         }else if (status.equals("C")){
             textStatus.setText("Cancelado");
             imageStatus.setImageResource(R.drawable.ic_avatar_canceled);
-        }else if (status.equals("D")){
+        }else if (status.equals("R")){
             textStatus.setText("Desviado");
             imageStatus.setImageResource(R.drawable.ic_avatar_delayed);
         }

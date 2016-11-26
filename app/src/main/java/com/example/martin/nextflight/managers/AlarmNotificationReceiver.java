@@ -10,8 +10,10 @@ import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.provider.Settings;
+import android.service.notification.StatusBarNotification;
 import android.util.Log;
 
+import com.example.martin.nextflight.FlightStatusActivity;
 import com.example.martin.nextflight.MainActivity;
 import com.example.martin.nextflight.R;
 import com.example.martin.nextflight.elements.Flight;
@@ -28,8 +30,14 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class AlarmNotificationReceiver extends BroadcastReceiver {
+
+    private List<Flight> changed_flights = new ArrayList<>();
+    private final static String NOTIF_KEY = "FLIGHT_STATUS";
+    private final static int STACK_NOTIF_ID = 0;
 
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -86,35 +94,10 @@ public class AlarmNotificationReceiver extends BroadcastReceiver {
 
                 com.example.martin.nextflight.elements.Status status =
                         gson.fromJson(jsonFragment, com.example.martin.nextflight.elements.Status.class);
-                Log.d("Hola","Hola");
-                if (status.getStatus().equals(flight.getStatus())){
-                    Log.d("Hola","Hola");
-                    TaskStackBuilder stackBuilder = TaskStackBuilder.create(context);
-                    stackBuilder.addParentStack(MainActivity.class);
-                    stackBuilder.addNextIntent(intent);
-                    // Create the pending intent granting the Operating System to launch activity
-                    // when notification in action bar is clicked.
-                    final PendingIntent contentIntent =
-                            stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
-                    flight.setArrival(status.getArrival());
-                    flight.setDeparture(status.getDeparture());
-                    flight.setStatus(status.getStatus());
-                    Notification notification = new Notification.Builder(context)
-                            .setContentTitle("TODO: Set Title")
-                            .setContentText("TODO: Set Text and Icons.")
-                            .setVibrate(new long[] { 1000, 1000, 1000, 1000, 1000 })
-                            .setSound(Settings.System.DEFAULT_NOTIFICATION_URI)
-                            .setLargeIcon(BitmapFactory.decodeResource(context.getResources(), android.R.drawable.stat_sys_download_done))
-                            .setSmallIcon(android.R.drawable.stat_sys_download_done)
-                            .setContentIntent(contentIntent).build();
-                    NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
 
-                    // Ignore deprecated warning. In newer devices SDK 16+ should use build() method.
-                    // getNotification() method internally calls build() method.
-                    notificationManager.notify(1, notification);
-                }
+                notifManager(status);
             }catch(Exception e){
-                Log.d("Hola",e.getMessage());
+
             }
         }
 
@@ -130,6 +113,61 @@ public class AlarmNotificationReceiver extends BroadcastReceiver {
             } catch (IOException e) {
                 return "";
             }
+        }
+
+        private void notifManager(com.example.martin.nextflight.elements.Status status){
+            NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+            // TODO: Stack notifications.
+            if (status.getStatus().equals(flight.getStatus())){
+                Intent flightIntent = new Intent(context, FlightStatusActivity.class);
+                TaskStackBuilder stackBuilder = TaskStackBuilder.create(context);
+                stackBuilder.addParentStack(MainActivity.class);
+                stackBuilder.addNextIntent(flightIntent);
+                flightIntent.putExtra("AirlineId",flight.getAirline().getAirlineId());
+                flightIntent.putExtra("FlightNumber",flight.getFlight_number().toString());
+
+                flight.setArrival(status.getArrival());
+                flight.setDeparture(status.getDeparture());
+                flight.setStatus(status.getStatus());
+
+                if (!changed_flights.contains(flight)){
+                    changed_flights.add(flight);
+                }
+
+                String title;
+                String content;
+                Notification.Builder notification;
+                final PendingIntent contentIntent =
+                        stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
+
+                title = "Vuelo " + flight.getFlight_number() + " de " + flight.getAirline().getAirlineName();
+                content = "Estado: ";
+                if (status.getStatus().equals("S")){
+                    content +="Programado";
+                }else if (status.getStatus().equals("L")){
+                    content +="Aterrizado";
+                }else if (status.getStatus().equals("A")){
+                    content +="Activo";
+                }else if (status.getStatus().equals("C")){
+                    content +="Cancelado";
+                }else if (status.getStatus().equals("R")){
+                    content +="Desviado";
+                }
+                // Create the pending intent granting the Operating System to launch activity
+                // when notification in action bar is clicked.
+                notification = new Notification.Builder(context)
+                        .setContentTitle(title)
+                        .setContentText(content)
+                        .setVibrate(new long[] { 1000, 1000, 1000, 1000, 1000 })
+                        .setSound(Settings.System.DEFAULT_NOTIFICATION_URI)
+                        .setSmallIcon(R.drawable.ic_flight)
+                        .setGroup(NOTIF_KEY)
+                        .setContentIntent(contentIntent);
+                // Ignore deprecated warning. In newer devices SDK 16+ should use build() method.
+                // getNotification() method internally calls build() method.
+                notificationManager.notify(flight.getFlight_number(), notification.build());
+            }
+
         }
     }
 
