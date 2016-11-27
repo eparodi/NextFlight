@@ -27,40 +27,41 @@
             android:id="@+id/linearLayout1">
 
             <TextView
+                android:text="@string/rating_overall_title_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/single_review_overall_title"
                 android:layout_marginBottom="2dp"
                 android:textStyle="bold"
                 android:textSize="30dp"/>
 
             <RatingBar
+                android:id="@+id/single_review_overall_bar"
                 android:progressTint="@color/md_yellow_A700"
                 android:secondaryProgressTint="@android:color/holo_red_dark"
                 android:isIndicator="true"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="15dp"
-                android:id="@+id/single_review_overall_bar"/>
+                android:layout_marginBottom="15dp"/>
 
             <TextView
+                android:text="@string/rating_friendliness_title_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="2dp"
                 android:textStyle="bold"
-                android:textSize="30dp"
-                android:id="@+id/single_review_friendliness_title"/>
+                android:textSize="30dp"/>
 
             <RatingBar
+                android:id="@+id/single_review_friendliness_bar"
                 android:progressTint="@color/md_yellow_A700"
                 android:secondaryProgressTint="@android:color/holo_red_dark"
                 android:isIndicator="true"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="15dp"
-                android:id="@+id/single_review_friendliness_bar"/>
+                android:layout_marginBottom="15dp"/>
 
             <TextView
+                android:text="@string/rating_punctuality_title_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="2dp"
@@ -69,30 +70,30 @@
                 android:id="@+id/single_review_punctuality_title"/>
 
             <RatingBar
+                android:id="@+id/single_review_punctuality_bar"
                 android:progressTint="@color/md_yellow_A700"
                 android:secondaryProgressTint="@android:color/holo_red_dark"
                 android:isIndicator="true"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="15dp"
-                android:id="@+id/single_review_punctuality_bar"/>
+                android:layout_marginBottom="15dp"/>
 
             <TextView
+                android:text="@string/rating_comment_title_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="2dp"
                 android:textStyle="bold"
-                android:textSize="30dp"
-                android:id="@+id/single_review_comfort_title"/>
+                android:textSize="30dp" />
 
             <RatingBar
+                android:id="@+id/single_review_comfort_bar"
                 android:progressTint="@color/md_yellow_A700"
                 android:secondaryProgressTint="@android:color/holo_red_dark"
                 android:isIndicator="true"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="15dp"
-                android:id="@+id/single_review_comfort_bar"/>
+                android:layout_marginBottom="15dp"/>
 
         </LinearLayout>
 
@@ -104,55 +105,55 @@
             android:layout_toEndOf="@+id/linearLayout1">
 
             <TextView
+                android:text="@string/rating_food_title_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="2dp"
                 android:textStyle="bold"
-                android:textSize="30dp"
-                android:id="@+id/single_review_food_title"/>
+                android:textSize="30dp"/>
 
             <RatingBar
+                android:id="@+id/single_review_food_bar"
                 android:progressTint="@color/md_yellow_A700"
                 android:secondaryProgressTint="@android:color/holo_red_dark"
                 android:isIndicator="true"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="15dp"
-                android:id="@+id/single_review_food_bar"/>
+                android:layout_marginBottom="15dp"/>
 
             <TextView
+                android:text="@string/rating_mileage_program_title_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="2dp"
                 android:textStyle="bold"
-                android:textSize="30dp"
-                android:id="@+id/single_review_mileage_program_title"/>
+                android:textSize="30dp"/>
 
             <RatingBar
+                android:id="@+id/single_review_mileage_program_bar"
                 android:progressTint="@color/md_yellow_A700"
                 android:secondaryProgressTint="@android:color/holo_red_dark"
                 android:isIndicator="true"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="15dp"
-                android:id="@+id/single_review_mileage_program_bar"/>
+                android:layout_marginBottom="15dp"/>
 
             <TextView
+                android:text="@string/rating_quality_price_title_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="2dp"
                 android:textStyle="bold"
-                android:textSize="30dp"
-                android:id="@+id/single_review_quality_price_title"/>
+                android:textSize="30dp"/>
 
             <RatingBar
+                android:id="@+id/single_review_quality_price_bar"
                 android:progressTint="@color/md_yellow_A700"
                 android:secondaryProgressTint="@android:color/holo_red_dark"
                 android:isIndicator="true"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="15dp"
-                android:id="@+id/single_review_quality_price_bar"/>
+                android:layout_marginBottom="15dp"/>
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -160,6 +161,7 @@
                 android:layout_marginBottom="10dp">
 
                 <TextView
+                    android:text="@string/rating_yes_recommend_title_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textStyle="bold"
@@ -167,11 +169,11 @@
                     android:id="@+id/single_review_yes_recommend_title" />
 
                 <TextView
+                    android:id="@+id/single_review_yes_recommend"
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:textStyle="bold"
                     android:textSize="30dp"
-                    android:id="@+id/single_review_yes_recommend"
                     android:layout_marginStart="20dp"
                     android:layout_alignParentTop="true"
                     android:layout_toEndOf="@+id/single_review_yes_recommend_title" />
@@ -183,19 +185,19 @@
     </LinearLayout>
 
     <TextView
+        android:text="@string/rating_comment_title_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="5dp"
         android:textStyle="bold"
-        android:textSize="30dp"
-        android:id="@+id/single_review_comment_title" />
+        android:textSize="30dp"/>
 
     <TextView
+        android:id="@+id/single_review_comment_text"
         android:layout_width="match_parent"
         android:layout_height="180dp"
         android:maxLines="3"
         android:textSize="25dp"
-        android:scrollbars="vertical"
-        android:id="@+id/single_review_comment_text" />
+        android:scrollbars="vertical"/>
 
 </LinearLayout>

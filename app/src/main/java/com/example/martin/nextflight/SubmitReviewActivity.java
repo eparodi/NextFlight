@@ -49,14 +49,6 @@ public class SubmitReviewActivity extends AppCompatActivity {
 
         // Enable the Up button
         ab.setDisplayHomeAsUpEnabled(true);
-
-        ((TextView)findViewById(R.id.submit_review_friendliness_title)).setText(R.string.rating_friendliness_title_name);
-        ((TextView)findViewById(R.id.submit_review_food_title)).setText(R.string.rating_food_title_name);
-        ((TextView)findViewById(R.id.submit_review_punctuality_title)).setText(R.string.rating_punctuality_title_name);
-        ((TextView)findViewById(R.id.submit_review_mileage_program_title)).setText(R.string.rating_mileage_program_title_name);
-        ((TextView)findViewById(R.id.submit_review_comfort_title)).setText(R.string.rating_comfort_title_name);
-        ((TextView)findViewById(R.id.submit_review_quality_price_title)).setText(R.string.rating_quality_price_title_name);
-        ((TextView)findViewById(R.id.submit_switch)).setText(R.string.rating_yes_recommend_title_name);
     }
 
     @Override

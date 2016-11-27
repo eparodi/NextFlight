@@ -23,6 +23,7 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.martin.nextflight.adapters.CommentsArrayAdapter;
 import com.example.martin.nextflight.elements.Airline;
 import com.example.martin.nextflight.elements.Flight;
 import com.example.martin.nextflight.elements.Rating;
@@ -37,6 +38,7 @@ import java.io.BufferedInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Type;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -68,13 +70,9 @@ public class ReviewActivity extends AppCompatActivity {
 
         Bundle bundle = getIntent().getExtras();
 
-        try {
-            FLIGHT_NUMBER = bundle.getString("FlightNumber");
-            AIRLINE_ID = bundle.getString("AirlineId");
-            AIRLINE_NAME = bundle.getString("AirlineName");
-        } catch (Exception e) {
-            //TODO: this should do nothing, try to find a better solution.
-        }
+        FLIGHT_NUMBER = String.valueOf(bundle.getInt("FlightNumber"));
+        AIRLINE_ID = bundle.getString("AirlineId");
+        AIRLINE_NAME = bundle.getString("AirlineName");
 
         TextView review_flight_number = (TextView) findViewById(R.id.review_flight_number_text_view);
         TextView review_airline_name = (TextView) findViewById(R.id.review_flight_airline_text_view);
@@ -174,8 +172,8 @@ public class ReviewActivity extends AppCompatActivity {
                 String jsonFragment = obj.getString("reviews");
                 final ArrayList<Review> review_list = gson.fromJson(jsonFragment, listType);
 
-                ArrayAdapter<String> result_list = new ArrayAdapter<>(ReviewActivity.this,
-                        android.R.layout.simple_list_item_1);
+                CommentsArrayAdapter result_list = new CommentsArrayAdapter(ReviewActivity.this,
+                        new ArrayList<String>());
 
                 getComments(result_list, review_list);
                 Double overall = getOverallRating(review_list);
@@ -234,9 +232,16 @@ public class ReviewActivity extends AppCompatActivity {
 
     public void getComments(ArrayAdapter<String> result_list, ArrayList<Review> review_list) {
         for (Review review : review_list) {
-            String comment = review.getComments();
-            if (comment != null)
+            String comment_raw = review.getComments();
+            try
+            {
+                String comment = new String(comment_raw.getBytes(), "UTF-8");
                 result_list.add(comment);
+            }
+            catch (UnsupportedEncodingException e)
+            {
+                e.printStackTrace();
+            }
         }
     }
 

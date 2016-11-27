@@ -8,8 +8,9 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.example.martin.nextflight.R;
-import com.example.martin.nextflight.holders.FlightViewHolder;
 import com.example.martin.nextflight.holders.ReviewViewHolder;
+
+import java.util.ArrayList;
 
 /**
  * Created by Martin on 18/11/2016.
@@ -17,7 +18,7 @@ import com.example.martin.nextflight.holders.ReviewViewHolder;
 
 public class CommentsArrayAdapter extends ArrayAdapter<String> {
 
-    public CommentsArrayAdapter(Activity context, String[] objects) {
+    public CommentsArrayAdapter(Activity context, ArrayList<String> objects) {
         super(context, R.layout.review_list_view_item, objects);
     }
 

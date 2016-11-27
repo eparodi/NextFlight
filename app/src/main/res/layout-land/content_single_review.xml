@@ -18,74 +18,21 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginBottom="15dp">
+        android:layout_marginBottom="10dp">
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_marginEnd="20dp">
+            android:layout_marginEnd="40dp">
 
             <TextView
                 android:text="@string/rating_friendliness_title_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:layout_marginBottom="15dp"
                 android:textStyle="bold"
-                android:textSize="15dp"/>
-
-            <TextView
-                android:text="@string/rating_food_title_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:layout_marginBottom="15dp"
-                android:textStyle="bold"
-                android:textSize="15dp"/>
-
-            <TextView
-                android:text="@string/rating_punctuality_title_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:layout_marginBottom="15dp"
-                android:textStyle="bold"
-                android:textSize="15dp"/>
-
-            <TextView
-                android:text="@string/rating_mileage_program_title_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:layout_marginBottom="15dp"
-                android:textStyle="bold"
-                android:textSize="15dp"/>
-
-            <TextView
-                android:text="@string/rating_comfort_title_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:layout_marginBottom="15dp"
-                android:textStyle="bold"
-                android:textSize="15dp"/>
-
-            <TextView
-                android:text="@string/rating_quality_price_title_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:layout_marginBottom="15dp"
-                android:textStyle="bold"
-                android:textSize="15dp"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+                android:textSize="15dp"
+                android:layout_marginBottom="5dp"/>
 
             <RatingBar
                 android:id="@+id/single_review_friendliness_bar"
@@ -95,19 +42,15 @@
                 android:isIndicator="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="17dp"
-                android:layout_marginBottom="17dp"/>
+                android:layout_marginBottom="15dp"/>
 
-            <RatingBar
-                android:id="@+id/single_review_food_bar"
-                android:progressTint="@color/md_yellow_A700"
-                android:secondaryProgressTint="@android:color/holo_red_dark"
-                style="?android:attr/ratingBarStyleSmall"
-                android:isIndicator="true"
+            <TextView
+                android:text="@string/rating_punctuality_title_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="17dp"
-                android:layout_marginBottom="17dp"/>
+                android:textStyle="bold"
+                android:textSize="15dp"
+                android:layout_marginBottom="5dp"/>
 
             <RatingBar
                 android:id="@+id/single_review_punctuality_bar"
@@ -117,19 +60,15 @@
                 android:isIndicator="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="17dp"
-                android:layout_marginBottom="17dp"/>
+                android:layout_marginBottom="15dp"/>
 
-            <RatingBar
-                android:id="@+id/single_review_mileage_program_bar"
-                android:progressTint="@color/md_yellow_A700"
-                android:secondaryProgressTint="@android:color/holo_red_dark"
-                style="?android:attr/ratingBarStyleSmall"
-                android:isIndicator="true"
+            <TextView
+                android:text="@string/rating_comfort_title_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="17dp"
-                android:layout_marginBottom="17dp"/>
+                android:textStyle="bold"
+                android:textSize="15dp"
+                android:layout_marginBottom="5dp"/>
 
             <RatingBar
                 android:id="@+id/single_review_comfort_bar"
@@ -139,8 +78,59 @@
                 android:isIndicator="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="17dp"
-                android:layout_marginBottom="17dp"/>
+                android:layout_marginBottom="15dp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginEnd="40dp">
+
+            <TextView
+                android:text="@string/rating_food_title_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textSize="15dp"
+                android:layout_marginBottom="5dp"/>
+
+            <RatingBar
+                android:id="@+id/single_review_food_bar"
+                android:progressTint="@color/md_yellow_A700"
+                android:secondaryProgressTint="@android:color/holo_red_dark"
+                style="?android:attr/ratingBarStyleSmall"
+                android:isIndicator="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"/>
+
+            <TextView
+                android:text="@string/rating_mileage_program_title_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textSize="15dp"
+                android:layout_marginBottom="5dp"/>
+
+            <RatingBar
+                android:id="@+id/single_review_mileage_program_bar"
+                android:progressTint="@color/md_yellow_A700"
+                android:secondaryProgressTint="@android:color/holo_red_dark"
+                style="?android:attr/ratingBarStyleSmall"
+                android:isIndicator="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"/>
+
+            <TextView
+                android:text="@string/rating_quality_price_title_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textSize="15dp"
+                android:layout_marginBottom="5dp"/>
 
             <RatingBar
                 android:id="@+id/single_review_quality_price_bar"
@@ -150,27 +140,33 @@
                 android:isIndicator="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="17dp"
-                android:layout_marginBottom="17dp"/>
+                android:layout_marginBottom="15dp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:text="@string/rating_yes_recommend_title_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:textStyle="bold"
+                android:textSize="15dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textSize="25dp"
+                android:id="@+id/single_review_yes_recommend" />
 
         </LinearLayout>
 
     </LinearLayout>
-
-    <TextView
-        android:text="@string/rating_yes_recommend_title_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
-        android:textStyle="bold"
-        android:textSize="15dp"/>
-
-    <TextView
-        android:id="@+id/single_review_yes_recommend"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textStyle="bold"
-        android:textSize="25dp"/>
 
     <TextView
         android:text="@string/rating_comment_title_name"

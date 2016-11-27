@@ -18,106 +18,106 @@
         android:layout_marginBottom="25dp"
         android:hint="@string/submit_comment_hint"
         android:ems="10"
-        android:id="@+id/submit_comment_input" />
+        android:id="@+id/submit_comment_input"/>
 
     <TextView
+        android:text="@string/rating_friendliness_title_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textStyle="bold"
-        android:textSize="15dp"
-        android:id="@+id/submit_review_friendliness_title" />
+        android:textSize="15dp"/>
 
     <SeekBar
+        android:id="@+id/submit_review_friendliness_seek_bar"
         style="@style/Widget.AppCompat.SeekBar.Discrete"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:max="9"
-        android:progress="5"
-        android:id="@+id/submit_review_friendliness_seek_bar"/>
+        android:progress="5"/>
 
     <TextView
+        android:text="@string/rating_food_title_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textStyle="bold"
-        android:textSize="15dp"
-        android:id="@+id/submit_review_food_title" />
+        android:textSize="15dp"/>
 
     <SeekBar
+        android:id="@+id/submit_review_food_seek_bar"
         style="@style/Widget.AppCompat.SeekBar.Discrete"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:max="9"
-        android:progress="5"
-        android:id="@+id/submit_review_food_seek_bar"/>
+        android:progress="5"/>
 
     <TextView
+        android:text="@string/rating_punctuality_title_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textStyle="bold"
-        android:textSize="15dp"
-        android:id="@+id/submit_review_punctuality_title" />
+        android:textSize="15dp"/>
 
     <SeekBar
+        android:id="@+id/submit_review_punctuality_seek_bar"
         style="@style/Widget.AppCompat.SeekBar.Discrete"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:max="9"
-        android:progress="5"
-        android:id="@+id/submit_review_punctuality_seek_bar"/>
+        android:progress="5"/>
 
     <TextView
+        android:text="@string/rating_mileage_program_title_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textStyle="bold"
-        android:textSize="15dp"
-        android:id="@+id/submit_review_mileage_program_title" />
+        android:textSize="15dp"/>
 
     <SeekBar
+        android:id="@+id/submit_review_mileage_program_seek_bar"
         style="@style/Widget.AppCompat.SeekBar.Discrete"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:max="9"
-        android:progress="5"
-        android:id="@+id/submit_review_mileage_program_seek_bar"/>
+        android:progress="5"/>
 
     <TextView
+        android:text="@string/rating_comfort_title_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textStyle="bold"
-        android:textSize="15dp"
-        android:id="@+id/submit_review_comfort_title" />
+        android:textSize="15dp"/>
 
     <SeekBar
+        android:id="@+id/submit_review_comfort_seek_bar"
         style="@style/Widget.AppCompat.SeekBar.Discrete"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:max="9"
-        android:progress="5"
-        android:id="@+id/submit_review_comfort_seek_bar"/>
+        android:progress="5"/>
 
     <TextView
+        android:text="@string/rating_quality_price_title_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textStyle="bold"
-        android:textSize="15dp"
-        android:id="@+id/submit_review_quality_price_title" />
+        android:textSize="15dp"/>
 
     <SeekBar
+        android:id="@+id/submit_review_quality_price_seek_bar"
         style="@style/Widget.AppCompat.SeekBar.Discrete"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:max="9"
-        android:progress="5"
-        android:id="@+id/submit_review_quality_price_seek_bar"/>
+        android:progress="5"/>
 
     <Switch
-        android:text="¿Lo recomendaría?"
+        android:text="@string/rating_yes_recommend_title_name"
         android:textSize="15dp"
         android:textStyle="bold"
         android:layout_width="match_parent"

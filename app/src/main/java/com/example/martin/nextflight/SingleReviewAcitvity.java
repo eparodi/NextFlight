@@ -36,22 +36,15 @@ public class SingleReviewAcitvity extends AppCompatActivity {
         else if (yes_recommend.equals("false"))
             yes_recommend = "No";
 
-        ((TextView)findViewById(R.id.single_review_overall_title)).setText(R.string.rating_overall_title_name);
-        ((TextView)findViewById(R.id.single_review_friendliness_title)).setText(R.string.rating_friendliness_title_name);
-        ((TextView)findViewById(R.id.single_review_food_title)).setText(R.string.rating_food_title_name);
-        ((TextView)findViewById(R.id.single_review_punctuality_title)).setText(R.string.rating_punctuality_title_name);
-        ((TextView)findViewById(R.id.single_review_mileage_program_title)).setText(R.string.rating_mileage_program_title_name);
-        ((TextView)findViewById(R.id.single_review_comfort_title)).setText(R.string.rating_comfort_title_name);
-        ((TextView)findViewById(R.id.single_review_quality_price_title)).setText(R.string.rating_quality_price_title_name);
-        ((TextView)findViewById(R.id.single_review_yes_recommend_title)).setText(R.string.rating_yes_recommend_title_name);
-        if (screenUtility.getWidth() > 700.0){
-            ((TextView)findViewById(R.id.single_review_comment_title)).setText(R.string.rating_comment_title_name);
-            TextView comments_text = (TextView)findViewById(R.id.single_review_comment_text);
-            comments_text.setText(comments);
-            comments_text.setMovementMethod(ScrollingMovementMethod.getInstance());
-        }
+        TextView comments_text = (TextView)findViewById(R.id.single_review_comment_text);
+        comments_text.setText(comments);
+        comments_text.setMovementMethod(ScrollingMovementMethod.getInstance());
 
-        ((RatingBar)findViewById(R.id.single_review_overall_bar)).setNumStars(10);
+        if (screenUtility.getWidth() > 700.0) {
+            ((RatingBar)findViewById(R.id.single_review_overall_bar)).setNumStars(10);
+            ((RatingBar)findViewById(R.id.single_review_overall_bar)).setRating((rating.getOverall()).intValue());
+
+        }
         ((RatingBar)findViewById(R.id.single_review_friendliness_bar)).setNumStars(10);
         ((RatingBar)findViewById(R.id.single_review_food_bar)).setNumStars(10);
         ((RatingBar)findViewById(R.id.single_review_punctuality_bar)).setNumStars(10);
@@ -59,7 +52,6 @@ public class SingleReviewAcitvity extends AppCompatActivity {
         ((RatingBar)findViewById(R.id.single_review_comfort_bar)).setNumStars(10);
         ((RatingBar)findViewById(R.id.single_review_quality_price_bar)).setNumStars(10);
 
-        ((RatingBar)findViewById(R.id.single_review_overall_bar)).setRating((rating.getOverall()).intValue());
         ((RatingBar)findViewById(R.id.single_review_friendliness_bar)).setRating(rating.getFriendliness());
         ((RatingBar)findViewById(R.id.single_review_food_bar)).setRating(rating.getFood());
         ((RatingBar)findViewById(R.id.single_review_punctuality_bar)).setRating(rating.getPunctuality());
