@@ -22,6 +22,8 @@
     <string name="title_activity_all_offers_map">Mapa</string>
     <string name="title_activity_offers_results">Ofertas</string>
     <string name="offer_search_title">Buscar ofertas</string>
+    <string name="title_activity_settings">Configuraciones</string>
+    <string name="title_activity_followed_flights">Mis vuelos</string>
 
     <!--Input text validators-->
     <string name="empty_number_validator">"Ingrese el número de vuelo."</string>
@@ -106,5 +108,45 @@
     <string name="from_check_box">Usar mi ubicación actual</string>
     <string name="from">"Desde: "</string>
     <string name="loading_message">"Loading images..."</string>
-    <string name="title_activity_followed_flights">FollowedFlightsActivity</string>
+
+    <!-- Strings related to Settings -->
+
+    <!-- Currency and payment settings -->
+    <string name="pref_header_currency">Moneda</string>
+    <string name="pref_currency_title">Cambiar</string>
+    <string-array name="pref_currency_list_titles">
+        <item>Pesos</item>
+        <item>Dólares</item>
+        <item>Reales</item>
+    </string-array>
+    <string-array name="pref_currency_list_values">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+
+    <!--Language settings-->
+    <string name="pref_header_language">Lenguaje</string>
+
+    <string name="pref_language_title">Seleccionar lenguaje</string>
+    <string-array name="pref_language_list_titles">
+        <item>Español</item>
+        <item>Inglés</item>
+        <item>Portugués</item>
+    </string-array>
+    <string-array name="pref_language_list_values">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+
+    <!-- Example settings for Notifications -->
+    <string name="pref_header_notifications">Notificaciones</string>
+
+    <string name="pref_title_new_message_notifications">Activar notificaciones</string>
+
+    <string name="pref_title_ringtone">Ringtone</string>
+    <string name="pref_ringtone_silent">Silent</string>
+
+    <string name="pref_title_vibrate">Activar vibrador</string>
 </resources>

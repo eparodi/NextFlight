@@ -1,5 +1,6 @@
 package com.example.martin.nextflight;
 
+import android.content.SharedPreferences;
 import android.support.v4.app.NavUtils;
 import android.app.PendingIntent;
 import android.app.ProgressDialog;
@@ -30,6 +31,7 @@ import com.example.martin.nextflight.elements.Flight;
 import com.example.martin.nextflight.elements.flickr.FlickrObject;
 import com.example.martin.nextflight.elements.flickr.Photo;
 import com.example.martin.nextflight.elements.oneWayFlight.OneWayFlight;
+import com.example.martin.nextflight.managers.SettingsManager;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -76,7 +78,9 @@ public class OffersResultActivity extends AppCompatActivity {
         }
         */
 
-        OffersArrayAdapter showList = new OffersArrayAdapter(this, dealList);
+        String currency = SettingsManager.getCurrency();
+
+        OffersArrayAdapter showList = new OffersArrayAdapter(this, dealList, currency);
 
         ListView dealShowList = (ListView) findViewById(R.id.offer_list);
         dealShowList.setAdapter(showList);

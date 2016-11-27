@@ -4,6 +4,7 @@ import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.app.TaskStackBuilder;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.support.annotation.NonNull;
@@ -24,13 +25,12 @@ import com.example.martin.nextflight.adapters.FlightArrayAdapter;
 import com.example.martin.nextflight.elements.Flight;
 import com.example.martin.nextflight.managers.AlarmNotificationReceiver;
 import com.example.martin.nextflight.managers.FileManager;
+import com.example.martin.nextflight.managers.SettingsManager;
 
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-
-    private MainActivity context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +39,6 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        context = this;
         AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
 
         Intent alarmNotificationReceiverIntent =
@@ -62,6 +61,7 @@ public class MainActivity extends AppCompatActivity
 
         ListView view = (ListView) findViewById(R.id.followed_flights_list_view);
 
+        SettingsManager.startSettingsManager(getApplicationContext());
         FileManager.startFileManager(getApplicationContext());
         ArrayList<Flight> flights = FileManager.getAllFlights();
 
@@ -161,6 +161,21 @@ public class MainActivity extends AppCompatActivity
             startActivity(intent);
 
         } else if (id == R.id.nav_settings) {
+
+            Intent intent = new Intent(this,SettingsActivity.class);
+
+            // Use TaskStackBuilder to build the back stack and get the PendingIntent
+            PendingIntent pendingIntent =
+                    TaskStackBuilder.create(this)
+                            // add all of DetailsActivity's parents to the stack,
+                            // followed by DetailsActivity itself
+                            .addNextIntentWithParentStack(intent)
+                            .getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
+
+            NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
+            builder.setContentIntent(pendingIntent);
+
+            startActivity(intent);
 
         } else if (id == R.id.nav_help) {
 

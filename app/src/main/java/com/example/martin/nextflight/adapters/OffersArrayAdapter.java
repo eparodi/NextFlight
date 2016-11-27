@@ -1,6 +1,7 @@
 package com.example.martin.nextflight.adapters;
 
 import android.app.Activity;
+import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,8 +22,11 @@ import java.util.ArrayList;
 
 public class OffersArrayAdapter extends ArrayAdapter<Deal> {
 
-    public OffersArrayAdapter(Activity context, ArrayList<Deal> deals_list) {
+    String currency;
+
+    public OffersArrayAdapter(Activity context, ArrayList<Deal> deals_list, String currency) {
         super(context, R.layout.offers_result_list_item, deals_list);
+        this.currency = currency;
     }
 
     @Override
@@ -39,8 +43,17 @@ public class OffersArrayAdapter extends ArrayAdapter<Deal> {
             holder = (OffersViewHolder) convertView.getTag();
         }
 
+        Double price = getItem(position).getPrice();
+        if (currency != null) {
+            if (currency.equals("Pesos"))
+                price *= 15.49;
+            else if (currency.equals("Reales"))
+                price *= 3.38;
+        }
+
         holder.offers_destination_text_view.setText("A: " + getItem(position).getCity().getName());
-        holder.offers_price_text_view.setText("Precio: " + getItem(position).getPrice());
+        holder.offers_price_text_view.setText("Precio: " + price);
+
         //holder.offers_destination_image_view.setImageBitmap(getItem(position).getImage());
         return convertView;
     }
