@@ -13,6 +13,7 @@ public class Airport implements Serializable{
     private City city;
     private String terminal;
     private String gate;
+    private String baggage;
     private double latitude;
     private double longitude;
 
@@ -78,5 +79,13 @@ public class Airport implements Serializable{
 
     public void setGate(String gate) {
         this.gate = gate;
+    }
+
+    public String getBaggage() {
+        return baggage;
+    }
+
+    public void setBaggage(String baggage) {
+        this.baggage = baggage;
     }
 }

@@ -9,6 +9,8 @@ public class Status implements Serializable {
     private String status;
     private Departure departure;
     private Arrival arrival;
+    private String gate_delay;
+    private String runway_delay;
 
     public int getId() {
         return id;
