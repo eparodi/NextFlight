@@ -15,6 +15,7 @@ import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.TaskStackBuilder;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
@@ -109,6 +110,11 @@ public class OffersSearchActivity extends AppCompatActivity {
                     for (Airport a : airports){
                         if (a.getDescription().equals(text)){
                             airport = a;
+                            for (City c : cities){
+                                if (a.getCity().getId().equals(c.getId())){
+                                    city = c;
+                                }
+                            }
                         }
                     }
                     if (airport == null){
@@ -118,9 +124,11 @@ public class OffersSearchActivity extends AppCompatActivity {
                             }
                         }
                     }else{
-                        new HttpGetOffers(airport.getCity()).execute();
+                        new HttpGetOffers(city).execute();
+                        return;
                     }
-                    if (city == null){
+
+                    if (city == null && airport == null){
                         from_input.setError("Seleccione una opción de la lista.");
                         return;
                     }
@@ -173,7 +181,7 @@ public class OffersSearchActivity extends AppCompatActivity {
             HttpURLConnection urlConnection = null;
 
             try {
-                URL url = new URL("http://hci.it.itba.edu.ar/v1/api/geo.groovy?method=getcities");
+                URL url = new URL("http://hci.it.itba.edu.ar/v1/api/geo.groovy?method=getcities&page_size=35");
                 urlConnection = (HttpURLConnection) url.openConnection();
                 InputStream in = new BufferedInputStream(urlConnection.getInputStream());
                 return readStream(in);
@@ -239,7 +247,7 @@ public class OffersSearchActivity extends AppCompatActivity {
             HttpURLConnection urlConnection = null;
 
             try {
-                URL url = new URL("http://hci.it.itba.edu.ar/v1/api/geo.groovy?method=getairports");
+                URL url = new URL("http://hci.it.itba.edu.ar/v1/api/geo.groovy?method=getairports&page_size=52");
                 urlConnection = (HttpURLConnection) url.openConnection();
                 InputStream in = new BufferedInputStream(urlConnection.getInputStream());
                 return readStream(in);

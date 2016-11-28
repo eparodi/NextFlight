@@ -1,14 +1,17 @@
 package com.example.martin.nextflight.elements;
 
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.io.Serializable;
 
 public class Deal implements Serializable{
 
     private City city;
     private double price;
-    private Bitmap image = null;
+    private transient Bitmap image = null;
     public boolean loadImage = false;
 
     public Deal(City city, double price){
@@ -52,4 +55,21 @@ public class Deal implements Serializable{
     public int hashCode(){
         return city.getName().hashCode() * (Double.valueOf(price)).hashCode();
     }
+
+    /*
+    private void writeObject(java.io.ObjectOutputStream out) throws IOException {
+        ByteArrayOutputStream byteStream = new ByteArrayOutputStream();
+        image.compress(Bitmap.CompressFormat.PNG, 0, byteStream);
+        byte bitmapBytes[] = byteStream.toByteArray();
+        out.write(bitmapBytes, 0, bitmapBytes.length);
+    }
+    // Deserializes a byte array representing the Bitmap and decodes it
+    private void readObject(java.io.ObjectInputStream in) throws IOException, ClassNotFoundException {
+        ByteArrayOutputStream byteStream = new ByteArrayOutputStream();
+        int b;
+        while((b = in.read()) != -1)
+            byteStream.write(b);
+        byte bitmapBytes[] = byteStream.toByteArray();
+        image = BitmapFactory.decodeByteArray(bitmapBytes, 0, bitmapBytes.length);
+    }*/
 }
