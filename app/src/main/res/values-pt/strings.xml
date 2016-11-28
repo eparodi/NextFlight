@@ -1,0 +1,170 @@
+<resources>
+    <!--App name-->
+    <string name="app_name">NextFlight</string>
+
+    <!--Navigation Drawer icon names-->
+    <string name="flights_activity_name">Meus voss</string>
+    <string name="offers_activity_name">Licitação</string>
+    <string name="converter_activity_name">Conversor</string>
+    <string name="settings_activity_name">Configuração</string>
+    <string name="help_activity_name">Ajuda</string>
+
+    <!--Activities titles names-->
+    <string name="title_activity_main">Meus voos</string>
+    <string name="title_activity_flight_search">Pesquisa</string>
+    <string name="flight_search_title">Olhar voos</string>
+    <string name="title_activity_review">Comentários</string>
+    <string name="title_activity_converter">Conversor</string>
+    <string name="title_activity_single_review">Vista</string>
+    <string name="title_activity_submit_review">Pontuar</string>
+    <string name="title_activity_flight_status">Os detalhes do voo</string>
+    <string name="title_activity_status_maps">Mapa</string>
+    <string name="title_activity_all_offers_map">Mapa</string>
+    <string name="title_activity_offers_results">Licitação</string>
+    <string name="offer_search_title">Olhar licitação</string>
+    <string name="title_activity_settings">Configurações</string>
+    <string name="title_activity_followed_flights">Meus voos</string>
+
+    <!--Input text validators-->
+    <string name="empty_number_validator">"Digite o número do voo."</string>
+    <string name="empty_airline_validator">"Digite o nome de uma companhia aérea."</string>
+    <string name="not_valid_airline">"Digite o nome de uma companhia aérea."</string>
+
+   <!--Single_review_rating_titles-->
+    <string name="rating_overall_title_name">Geral</string>
+    <string name="rating_friendliness_title_name">Benevolência</string>
+    <string name="rating_food_title_name">Comida</string>
+    <string name="rating_punctuality_title_name">Pontualidade</string>
+    <string name="rating_mileage_program_title_name">Viajantes frequentes</string>
+    <string name="rating_comfort_title_name">Conforto</string>
+    <string name="rating_quality_price_title_name">Preço/qualidade</string>
+    <string name="rating_yes_recommend_title_name">Você recomendaria?</string>
+    <string name="rating_comment_title_name">Comentário</string>
+
+    <!--Review titles-->
+    <string name="review_flight_title">Voo</string>
+    <string name="review_airline_title">Companhia aérea</string>
+    <string name="review_general_rating_title">Pontuação geral</string>
+    <string name="review_comments_list_title">Comentários</string>
+    <string name="review_submit_title">Voo taxa</string>
+    <string name="review_submit_button">Enviar</string>
+
+    <!--Flight status titles-->
+    <string name="status_state_title">Status</string>
+    <string name="status_from_title">De</string>
+    <string name="status_to_title">Até</string>
+    <string name="status_departure_title">Partida</string>
+    <string name="status_date_title">Data</string>
+    <string name="status_hour_title">Hora</string>
+    <string name="status_terminal_title">Terminal</string>
+    <string name="status_gate_title">Porta</string>
+    <string name="status_arrival_title">Chegada</string>
+
+    <!--Hints-->
+    <string name="submit_comment_hint">Deixar um comentário</string>
+    <string name="from_option_hint">Origem cidade ou aeroporto</string>
+    <string name="flight_number_hint">Número de vôo</string>
+
+    <!--Action titles-->
+    <string name="action_settings">Configuração</string>
+    <string name="action_done">Pronto</string>
+    <string name="action_reviews">Comentários</string>
+    <string name="action_favorite">Seguir</string>
+    <string name="action_favorite_forget">Esquecer</string>
+    <string name="action_map_status">Ver mapa</string>
+    <string name="action_delete">Remover</string>
+
+    <!--Status names-->
+    <string name="status_programmed">Programado</string>
+    <string name="status_active">Ativo</string>
+    <string name="status_canceled">Cancelado</string>
+    <string name="status_delayed">Defletido</string>
+    <string name="status_landed">Aterrado</string>
+
+    <!--Errors-->
+    <string name="error">Unexpected error</string>
+    <string name="unknown_error">"Ocorreu um erro, tente mais tarde."</string>
+    <string name="no_connection_error">"Verifique sua conexão de internet."</string>
+    <string name="flight_unknown">Voo procurou não foi encontrado.</string>
+     <string name="error_no_close_airport">Ele não encontrou qualquer aeroporto perto da sua localização</string>
+   <string name="error_no_ubication">Não foi possível determinar a sua localização.</string>
+    <string name="error_localization_request">Ppermitir a localização do dispositivo.</string>
+    <string name="null_information">Não disponível</string>
+
+    <!--Converter spinner-->
+    <string name="converter_spinner1_prompt">Opções</string>
+    <!--
+    <string-array name="converter_spinner1_options">
+        <item>Pesos (Argentina)</item>
+        <item>Dólares</item>
+        <item>Reais</item>
+    </string-array>
+    -->
+    <!--Navigation drawer-->
+    <string name="navigation_drawer_open">Abrir a gaveta de navegação</string>
+    <string name="navigation_drawer_close">Fechar a gaveta de navegação</string>
+    <string name="nav_drawer_separator">Outros rótulos</string>
+    <string name="nav_drawer_offers_title">Licitação</string>
+    <string name="nav_drawer_converter_title">Conversor</string>
+    <string name="nav_drawer_settings_title">Configurações</string>
+    <string name="nav_drawer_help_title">Ajuda</string>
+
+    <!--Buttons-->
+    <string name="search_button">Pesquisa</string>
+    <string name="str_button_review">Ver comentários</string>
+    <string name="str_button_map">Ver mapa</string>
+
+    <!--Information charts-->
+    <string name="no_followed_flights_information">Não segue nenhuma vôo hoje.
+        Procure por um ou escolher entre as nossas ofertas.</string>
+
+    <string name="airline_name">Nome da companhia aérea</string>
+    <string name="from_check_box">Usar a minha localização actual</string>
+    <string name="from">"De: "</string>
+    <string name="loading_message">"Carregamento de imagens..."</string>
+
+    <!-- Strings related to Settings -->
+
+    <!-- Currency and payment settings -->
+    <string name="pref_header_currency">Moeda</string>
+    <string name="pref_currency_title">Mudança</string>
+    <!--
+        <string-array name="pref_currency_list_titles">
+        <item>Pesos</item>
+        <item>Dólares</item>
+        <item>Reales</item>
+    </string-array>
+    <string-array name="pref_currency_list_values">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+    -->
+
+    <!--Language settings-->
+    <string name="pref_header_language">Idioma</string>
+
+    <string name="pref_language_title">Seleccionar idioma</string>
+    <!--
+    <string-array name="pref_language_list_titles">
+        <item>Espanhol</item>
+        <item>Inglês</item>
+        <item>Portugues</item>
+    </string-array>
+    <string-array name="pref_language_list_values">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+    -->
+
+    <!-- Example settings for Notifications -->
+    <string name="pref_header_notifications">Notificações</string>
+
+    <string name="pref_title_new_message_notifications">Ativar notificações</string>
+
+    <string name="pref_title_ringtone">Ringtone</string>
+    <string name="pref_ringtone_silent">Silêncio</string>
+
+    <string name="pref_title_vibrate">Ativar vibrador</string>
+</resources>
