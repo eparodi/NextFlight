@@ -12,6 +12,7 @@ import com.example.martin.nextflight.elements.Deal;
 import com.example.martin.nextflight.elements.Flight;
 import com.example.martin.nextflight.elements.oneWayFlight.OneWayFlight;
 import com.example.martin.nextflight.elements.oneWayFlight.Segment;
+import com.example.martin.nextflight.managers.SettingsManager;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -49,10 +50,20 @@ public class AllOffersMapActivity extends AppCompatActivity implements OnMapRead
         addMarker(departure_city);
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(
                 new LatLng(city.getLatitude(),city.getLongitude()), 4));
+        SettingsManager.startSettingsManager(getApplicationContext());
+        String currency = SettingsManager.getCurrency();
+
         for ( Deal d : flights ){
+            double price = d.getPrice();
+            if (currency != null) {
+                if (currency.equals("Pesos"))
+                    price *= 15.49;
+                else if (currency.equals("Reales"))
+                    price *= 3.38;
+            }
             City arrival_city = d.getCity();
             addMarker(arrival_city);
-            addRoute(arrival_city,departure_city, d.getPrice());
+            addRoute(arrival_city,departure_city, price);
         }
     }
 
