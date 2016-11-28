@@ -265,16 +265,19 @@ public class FlightStatusActivity extends AppCompatActivity{
                 startActivity(review_intent);
                 return true;
             case R.id.action_favorite_action_icon:
-                Flight f = new Flight(currentStatus.getNumber(),currentStatus.getAirline(),
-                        currentStatus.getStatus(),currentStatus.getArrival(),currentStatus.getDeparture());
-                if (FileManager.checkFlight(f)){
-                    item.setIcon(R.drawable.ic_favorite_border_black_24dp);
-                    item.setTitle(getResources().getString(R.string.action_favorite_forget));
-                    FileManager.removeFlight(f,getApplicationContext());
-                }else{
-                    item.setIcon(R.drawable.ic_favorite_black);
-                    item.setTitle(getResources().getString(R.string.action_favorite));
-                    FileManager.addFlight(f,getApplicationContext());
+                if (currentStatus!= null){
+                    Flight f = new Flight(currentStatus.getNumber(),currentStatus.getAirline(),
+                            currentStatus.getStatus(),currentStatus.getArrival(),currentStatus.getDeparture());
+                    FileManager.startFileManager(getApplicationContext());
+                    if (FileManager.checkFlight(f)){
+                        item.setIcon(R.drawable.ic_favorite_border_black_24dp);
+                        item.setTitle(getResources().getString(R.string.action_favorite));
+                        FileManager.removeFlight(f,getApplicationContext());
+                    }else{
+                        item.setIcon(R.drawable.ic_favorite_black);
+                        item.setTitle(getResources().getString(R.string.action_favorite_forget));
+                        FileManager.addFlight(f,getApplicationContext());
+                    }
                 }
                 return true;
             case R.id.action_status_map_action_icon:
@@ -372,10 +375,10 @@ public class FlightStatusActivity extends AppCompatActivity{
                 MenuItem favorite_item = status_menu.findItem(R.id.action_favorite_action_icon);
                 if (FileManager.checkFlight(f)){
                     favorite_item.setIcon(R.drawable.ic_favorite_black);
-                    favorite_item.setTitle(getResources().getString(R.string.action_favorite));
+                    favorite_item.setTitle(getResources().getString(R.string.action_favorite_forget));
                 }else{
                     favorite_item.setIcon(R.drawable.ic_favorite_border_black_24dp);
-                    favorite_item.setTitle(getResources().getString(R.string.action_favorite_forget));
+                    favorite_item.setTitle(getResources().getString(R.string.action_favorite));
                 }
             } catch (Exception e) {
                 Toast.makeText(getApplicationContext(),

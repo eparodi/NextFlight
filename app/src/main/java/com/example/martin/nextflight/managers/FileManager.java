@@ -49,6 +49,8 @@ public class FileManager {
     }
 
     public static void addFlight(Flight f,Context context){
+        if (flightsList.contains(f))
+            return;
         flightsList.add(f);
         writeFlights(context);
     }
