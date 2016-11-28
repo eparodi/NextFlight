@@ -120,10 +120,6 @@
     <string name="str_button_review">Ver Opiniones</string>
     <string name="str_button_map">Ver mapa</string>
 
-    <!--Information charts-->
-    <string name="no_followed_flights_information">No sigue ningun vuelo actualmente.
-        Búsque uno o elija de nuestras ofertas.</string>
-
     <string name="airline_name">Nombre de la aerolínea</string>
     <string name="from_check_box">Usar mi ubicación actual</string>
     <string name="from">"Desde: "</string>

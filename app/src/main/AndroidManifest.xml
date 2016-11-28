@@ -96,13 +96,15 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ReviewActivity" />
         </activity>
-        <activity android:name=".OffersSearchActivity"
+        <activity
+            android:name=".OffersSearchActivity"
             android:label="@string/offer_search_title">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
         </activity>
-        <activity android:name=".OffersResultActivity"
+        <activity
+            android:name=".OffersResultActivity"
             android:label="@string/offers_activity_name">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -136,7 +138,14 @@
         </activity>
         <activity
             android:name=".SettingsActivity"
-            android:label="@string/title_activity_settings">
+            android:label="@string/title_activity_settings" />
+        <activity
+            android:name=".HelpActivity"
+            android:label="@string/title_activity_help"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.martin.nextflight.MainActivity" />
         </activity>
     </application>
 

@@ -24,6 +24,7 @@
     <string name="offer_search_title">Buscar ofertas</string>
     <string name="title_activity_settings">Configuraciones</string>
     <string name="title_activity_followed_flights">Mis vuelos</string>
+    <string name="title_activity_help">Ayuda</string>
 
     <!--Input text validators-->
     <string name="empty_number_validator">"Ingrese el número de vuelo."</string>
@@ -90,13 +91,6 @@
     <string name="error_no_ubication">No se puede acceder a su ubicación.</string>
     <string name="error_localization_request">Habilite la localización del dispositivo.</string>
     <string name="null_information">No disponible</string>
-
-    <!--Help messages-->
-    <string name="no_followed_flights_information">No sigue ningun vuelo actualmente.
-       Búsque uno o elija de nuestras ofertas.</string>
-    <string name="help_main_search_title">Buscar vuelo</string>
-    <string name="help_main_offers_title">Buscar oferta</string>
-    <string name="help_main_flight_title">Seguir vuelo</string>
     
     <!--Converter spinner-->
     <string name="converter_spinner1_prompt">Opciones</string>
@@ -120,8 +114,17 @@
     <string name="str_button_review">Ver Opiniones</string>
     <string name="str_button_map">Ver mapa</string>
 
-    <!--Information charts-->
+    <!--Help titles-->
     <string name="no_followed_flights_information">No sigue ningun vuelo actualmente. Búsque uno o elija de nuestras ofertas.</string>
+    <string name="help_search_flight_title">Buscar vuelo</string>
+    <string name="help_search_offers_title">Buscar oferta</string>
+    <string name="help_follow_flight_title">Seguir vuelo</string>
+    <string name="help_search_review_title">Buscar opiniones</string>
+    <string name="help_map_understanding_title">Mapa de ofertas</string>
+    <string name="help_map_cheap_deals">Menor precio de color verde.</string>
+    <string name="help_map_expensive_deals">Mayor precio de color rojo.</string>
+    <string name="help_map_usage">Haciendo click en una etiqueta podrá ver el nombre de destino. Luego búsque ese destino en la lista de ofertas.</string>
+    <string name="help_search_review">Acceda a una opinión haciendo click en un comentario.</string>
 
     <string name="airline_name">Nombre de la aerolínea</string>
     <string name="from_check_box">Usar mi ubicación actual</string>

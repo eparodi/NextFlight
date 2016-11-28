@@ -122,10 +122,6 @@
     <string name="str_button_review">View Opinions</string>
     <string name="str_button_map">Vew map</string>
 
-    <!--Information charts-->
-    <string name="no_followed_flights_information">Do not follow any flight currently.
-        Search one or choose from our offers.</string>
-
     <string name="airline_name">Airline name</string>
     <string name="from_check_box">Use my actual ubication</string>
     <string name="from">"From: "</string>
