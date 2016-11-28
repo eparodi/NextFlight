@@ -72,8 +72,7 @@ public class OffersSearchActivity extends AppCompatActivity {
                 LocationManager.GPS_PROVIDER, 5000, 10, locationListener);
         locationManager.requestLocationUpdates(
                 LocationManager.NETWORK_PROVIDER, 5000, 10, locationListener);
-        if((location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER))==null)
-            location = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+
 
         from_input.setAdapter(resultList);
 
@@ -304,7 +303,11 @@ public class OffersSearchActivity extends AppCompatActivity {
 
         @Override
         protected String doInBackground(Void... params) {
-
+            if((location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER))==null)
+                location = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+            if (location == null){
+                return null;
+            }
             longitude = location.getLongitude();
             latitude = location.getLatitude();
 
