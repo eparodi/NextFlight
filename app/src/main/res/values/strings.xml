@@ -82,7 +82,7 @@
     <string name="status_landed">Aterrizado</string>
 
     <!--Errors-->
-    <string name="error">Unexpected error</string>
+    <string name="error">Error inesperado</string>
     <string name="unknown_error">"Se ha producido un error, intente más tarde."</string>
     <string name="no_connection_error">"Chequee su conexión a internet."</string>
     <string name="flight_unknown">El vuelo buscado no existe.</string>
@@ -90,14 +90,6 @@
     <string name="error_no_ubication">No se puede acceder a su ubicación.</string>
     <string name="error_localization_request">Habilite la localización del dispositivo.</string>
     <string name="null_information">No disponible</string>
-
-    <!--Help messages-->
-    <string name="no_followed_flights_information">No sigue ningun vuelo actualmente.
-        Búsque uno o elija de nuestras ofertas.</string>
-    <string name="help_main_search_title">Buscar vuelo</string>
-    <string name="help_main_offers_title">Buscar oferta</string>
-    <string name="help_main_flight_title">Seguir vuelo</string>
-
 
     <!--Converter spinner-->
     <string name="converter_spinner1_prompt">Opciones</string>
@@ -108,8 +100,8 @@
     </string-array>
 
     <!--Navigation drawer-->
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="navigation_drawer_open">Abrir panel de navegación</string>
+    <string name="navigation_drawer_close">Cerrar panel de navegación</string>
     <string name="nav_drawer_separator">Otras etiquetas</string>
     <string name="nav_drawer_offers_title">Ofertas</string>
     <string name="nav_drawer_converter_title">Conversor</string>
@@ -121,11 +113,13 @@
     <string name="str_button_review">Ver Opiniones</string>
     <string name="str_button_map">Ver mapa</string>
 
+    <!--Information charts-->
+    <string name="no_followed_flights_information">No sigue ningun vuelo actualmente. Búsque uno o elija de nuestras ofertas.</string>
 
     <string name="airline_name">Nombre de la aerolínea</string>
     <string name="from_check_box">Usar mi ubicación actual</string>
     <string name="from">"Desde: "</string>
-    <string name="loading_message">"Loading images..."</string>
+    <string name="loading_message">"Cargando imágenes..."</string>
 
     <!-- Strings related to Settings -->
 
@@ -168,3 +162,4 @@
 
     <string name="pref_title_vibrate">Activar vibrador</string>
 </resources>
+
