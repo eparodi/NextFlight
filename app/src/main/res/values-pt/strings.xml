@@ -91,6 +91,13 @@
     <string name="error_localization_request">Ppermitir a localização do dispositivo.</string>
     <string name="null_information">Não disponível</string>
 
+    <!--Help messages-->
+    <string name="no_followed_flights_information">Não segue nenhuma vôo hoje.
+       Procure por um ou escolher entre as nossas ofertas.</string>
+    <string name="help_main_search_title">Pesquisa voo</string>
+    <string name="help_main_offers_title">Pesquisa oferta</string>
+    <string name="help_main_flight_title">Siga voo</string>    
+
     <!--Converter spinner-->
     <string name="converter_spinner1_prompt">Opções</string>
     <!--
