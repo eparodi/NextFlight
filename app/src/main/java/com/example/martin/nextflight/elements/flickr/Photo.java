@@ -7,6 +7,33 @@ package com.example.martin.nextflight.elements.flickr;
 public class Photo {
     private String id;
     private String owner;
+    private String secret;
+    private String server;
+    private String farm;
+
+    public String getSecret() {
+        return secret;
+    }
+
+    public void setSecret(String secret) {
+        this.secret = secret;
+    }
+
+    public String getServer() {
+        return server;
+    }
+
+    public void setServer(String server) {
+        this.server = server;
+    }
+
+    public String getFarm() {
+        return farm;
+    }
+
+    public void setFarm(String farm) {
+        this.farm = farm;
+    }
 
     public Photo(String id, String owner) {
         this.id = id;

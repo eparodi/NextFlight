@@ -8,7 +8,8 @@ public class Deal implements Serializable{
 
     private City city;
     private double price;
-    private Bitmap image;
+    private Bitmap image = null;
+    public boolean loadImage = false;
 
     public Deal(City city, double price){
         this.city = city;
@@ -37,5 +38,18 @@ public class Deal implements Serializable{
 
     public String toString(){
         return "A " + city.getName() + "\n Precio " + price;
+    }
+
+    public boolean equals(Object o){
+        if (o == null || o.getClass() != Airline.class){
+            return false;
+        }else{
+            Deal deal = (Deal) o;
+            return this.city.equals(deal.city) && this.price == deal.getPrice();
+        }
+    }
+
+    public int hashCode(){
+        return city.getName().hashCode() * (Double.valueOf(price)).hashCode();
     }
 }

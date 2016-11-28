@@ -12,5 +12,4 @@ public class OffersViewHolder {
     public TextView offers_destination_text_view;
     public TextView offers_price_text_view;
     public ImageView offers_destination_image_view;
-
 }

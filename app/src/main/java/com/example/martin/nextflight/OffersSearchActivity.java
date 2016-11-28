@@ -25,6 +25,7 @@ import android.widget.Toast;
 import com.example.martin.nextflight.elements.Airport;
 import com.example.martin.nextflight.elements.City;
 import com.example.martin.nextflight.elements.Deal;
+import com.example.martin.nextflight.managers.OfferLocationListener;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -47,8 +48,7 @@ public class OffersSearchActivity extends AppCompatActivity {
     ArrayAdapter<String> resultList;
     HttpGetAirports airportsTask;
     HttpGetCities citiesTask;
-    double latitude;
-    double longitude;
+    Location location;
     LocationListener locationListener;
     LocationManager locationManager;
 
@@ -61,29 +61,19 @@ public class OffersSearchActivity extends AppCompatActivity {
         resultList = new ArrayAdapter<>(getApplicationContext(),
                 android.R.layout.simple_dropdown_item_1line);
 
-        locationListener = new LocationListener() {
-            public void onLocationChanged(Location location) {
-                longitude = location.getLongitude();
-                latitude = location.getLatitude();
-            }
-
-            @Override
-            public void onStatusChanged(String provider, int status, Bundle extras) {
-
-            }
-
-            @Override
-            public void onProviderEnabled(String provider) {
-
-            }
-
-            @Override
-            public void onProviderDisabled(String provider) {
-
-            }
-
-        };
+        locationListener = new OfferLocationListener();
         locationManager = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
+        locationManager.requestLocationUpdates(
+                LocationManager.GPS_PROVIDER, 5000, 10, locationListener);
+        locationManager.requestLocationUpdates(
+                LocationManager.NETWORK_PROVIDER, 5000, 10, locationListener);
+
+        locationManager.requestLocationUpdates(
+                LocationManager.GPS_PROVIDER, 5000, 10, locationListener);
+        locationManager.requestLocationUpdates(
+                LocationManager.NETWORK_PROVIDER, 5000, 10, locationListener);
+        if((location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER))==null)
+            location = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
 
         from_input.setAdapter(resultList);
 
@@ -309,13 +299,14 @@ public class OffersSearchActivity extends AppCompatActivity {
 
         private final static String AIRPORTS = "airports";
         private final static int RADIUS = 40;
+        double longitude;
+        double latitude;
 
         @Override
         protected String doInBackground(Void... params) {
 
-            Location location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-            double longitude = location.getLongitude();
-            double latitude = location.getLatitude();
+            longitude = location.getLongitude();
+            latitude = location.getLatitude();
 
             HttpURLConnection urlConnection = null;
 

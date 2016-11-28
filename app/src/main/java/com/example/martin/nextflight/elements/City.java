@@ -61,4 +61,13 @@ public class City implements Serializable{
     public void setLongitude(double longitude) {
         this.longitude = longitude;
     }
+
+    public boolean equals(Object o){
+        if (o == null || o.getClass() != Airline.class){
+            return false;
+        }else{
+            City city = (City) o;
+            return this.id.equals(city.getId());
+        }
+    }
 }

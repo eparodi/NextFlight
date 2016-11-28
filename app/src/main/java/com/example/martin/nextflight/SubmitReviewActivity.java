@@ -86,6 +86,9 @@ public class SubmitReviewActivity extends AppCompatActivity {
             SubmitReview submit = new SubmitReview(flight, rating, yes_recommend, comments);
 
             new HttpSubmitReview(submit).execute();
+        }else if (id == android.R.id.home){
+            finish();
+            return true;
         }
 
         return super.onOptionsItemSelected(item);
