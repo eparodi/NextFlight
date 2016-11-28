@@ -215,19 +215,21 @@ public class AlarmNotificationReceiver extends BroadcastReceiver {
 
     private class NotifHolder{
         protected String text;
-        /*
+
         private String[] text_creator = new String[7];
-        private boolean arrival_scheduled_time;
-        private boolean departure_scheduled_time;
-        private boolean arrival_terminal;
-        private boolean departure_terminal;
-        private boolean arrival_gate;
-        private boolean departure_gate;
-        private boolean baggage;*/
+        private boolean status_change = false;
+        private boolean arrival_scheduled_time = false;
+        private boolean departure_scheduled_time = false;
+        private boolean arrival_terminal = false;
+        private boolean departure_terminal = false;
+        private boolean arrival_gate = false;
+        private boolean departure_gate = false;
+        private boolean baggage = false;
 
         protected void createText(Status status, Flight flight){
             text = "";
-            if (!status.getStatus().equals(flight.getStatus())){
+            if (!status.getStatus().equals(flight.getStatus()) || status_change){
+                status_change = true;
                 text += "Estado: ";
                 if (status.getStatus().equals("S")) {
                     text += "Programado";
@@ -243,31 +245,38 @@ public class AlarmNotificationReceiver extends BroadcastReceiver {
                 text += "\n";
             }
 
-            if (!status.getArrival().getAirport().getBaggage().equals(flight.getArrival().getAirport().getBaggage())){
+            if (!status.getArrival().getAirport().getBaggage().equals(flight.getArrival().getAirport().getBaggage()) || baggage){
+                baggage = true;
                 text += "Retiro de equipaje: " + status.getArrival().getAirport().getBaggage() + "\n";
             }
 
-            if(!status.getDeparture().getScheduled_time().equals(flight.getDeparture().getScheduled_time())) {
+            if(!status.getDeparture().getScheduled_time().equals(flight.getDeparture().getScheduled_time()) || departure_scheduled_time) {
+                departure_scheduled_time = true;
                 text += "Horario de partida: " + status.getDeparture().getScheduled_time() + "\n";
             }
 
-            if (!status.getArrival().getScheduled_time().equals(flight.getArrival().getScheduled_time())){
+            if (!status.getArrival().getScheduled_time().equals(flight.getArrival().getScheduled_time()) || arrival_scheduled_time){
+                arrival_scheduled_time = true;
                 text += "Horario de arribo: " + status.getArrival().getAirport().getBaggage() + "\n";
             }
 
-            if(!status.getDeparture().getAirport().getTerminal().equals(flight.getDeparture().getAirport().getTerminal())) {
+            if(!status.getDeparture().getAirport().getTerminal().equals(flight.getDeparture().getAirport().getTerminal()) || departure_terminal) {
+                departure_terminal = true;
                 text += "Terminal de partida: " + status.getArrival().getAirport().getTerminal() + "\n";
             }
 
-            if(!status.getDeparture().getAirport().getGate().equals(flight.getDeparture().getAirport().getGate())){
+            if(!status.getDeparture().getAirport().getGate().equals(flight.getDeparture().getAirport().getGate()) || departure_gate){
+                departure_gate = true;
                 text += "Puerta de partida: " + status.getArrival().getAirport().getTerminal() + "\n";
             }
 
-            if (!status.getArrival().getAirport().getTerminal().equals(flight.getArrival().getAirport().getTerminal())){
+            if (!status.getArrival().getAirport().getTerminal().equals(flight.getArrival().getAirport().getTerminal()) || arrival_terminal){
+                arrival_terminal = true;
                 text += "Terminal de arribo: " + status.getArrival().getAirport().getTerminal() + "\n";
             }
 
-            if (!status.getArrival().getAirport().getGate().equals(flight.getArrival().getAirport().getGate())){
+            if (!status.getArrival().getAirport().getGate().equals(flight.getArrival().getAirport().getGate()) || arrival_gate){
+                arrival_gate = true;
                 text += "Puerta de arribo: " + status.getArrival().getAirport().getTerminal() + "\n";
             }
         }

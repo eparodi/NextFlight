@@ -25,6 +25,7 @@ import android.widget.Toast;
 import com.example.martin.nextflight.adapters.OffersArrayAdapter;
 import com.example.martin.nextflight.elements.City;
 import com.example.martin.nextflight.elements.Deal;
+import com.example.martin.nextflight.elements.Flight;
 import com.example.martin.nextflight.elements.flickr.FlickrObject;
 import com.example.martin.nextflight.elements.flickr.Photo;
 import com.example.martin.nextflight.elements.oneWayFlight.OneWayFlight;
@@ -44,7 +45,10 @@ import java.lang.reflect.Type;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 public class OffersResultActivity extends AppCompatActivity {
 
@@ -52,6 +56,7 @@ public class OffersResultActivity extends AppCompatActivity {
     private City departureCity;
     private ArrayList<Deal> dealList;
     private OffersArrayAdapter showList;
+    private boolean found = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,9 +72,6 @@ public class OffersResultActivity extends AppCompatActivity {
         dealList = ((ArrayList<Deal>) bundle.getSerializable("FlightList"));
         departureCity = (City) bundle.getSerializable("DepartureCity");
 
-        // Comentado para que no se carguen las fotos y se pueda usar la app. Al descomentarlo,
-        // descomentar tambien el momento en que se cargan en la view las imagenes. (OffersArrayAdapter).
-
         String currency = SettingsManager.getCurrency();
 
         final ScreenUtility screenUtility = new ScreenUtility(this);
@@ -83,9 +85,9 @@ public class OffersResultActivity extends AppCompatActivity {
             {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    Intent intent = new Intent(OffersResultActivity.this, FlightStatusActivity.class);
-                    boolean found;
-                    found = fillIntent(intent, dealList.get(position), departureCity);
+                    searchFlight(dealList.get(position),departureCity);
+                    /*Intent intent = new Intent(OffersResultActivity.this, FlightStatusActivity.class);
+                    fillIntent(intent, dealList.get(position), departureCity);
                     PendingIntent pendingIntent =
                             TaskStackBuilder.create(getApplicationContext())
                                     .addNextIntentWithParentStack(intent)
@@ -95,7 +97,7 @@ public class OffersResultActivity extends AppCompatActivity {
                     builder.setContentIntent(pendingIntent);
 
                     if(found)
-                        startActivity(intent);
+                        startActivity(intent);*/
                 }
             });
         }
@@ -106,9 +108,9 @@ public class OffersResultActivity extends AppCompatActivity {
             {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    Intent intent = new Intent(OffersResultActivity.this, FlightStatusActivity.class);
-                    boolean found;
-                    found = fillIntent(intent, dealList.get(position), departureCity);
+                    searchFlight(dealList.get(position),departureCity);
+                    /*Intent intent = new Intent(OffersResultActivity.this, FlightStatusActivity.class);
+                    fillIntent(intent, dealList.get(position), departureCity);
                     PendingIntent pendingIntent =
                             TaskStackBuilder.create(getApplicationContext())
                                     .addNextIntentWithParentStack(intent)
@@ -116,9 +118,8 @@ public class OffersResultActivity extends AppCompatActivity {
 
                     NotificationCompat.Builder builder = new NotificationCompat.Builder(getApplicationContext());
                     builder.setContentIntent(pendingIntent);
-
                     if(found)
-                        startActivity(intent);
+                        startActivity(intent);*/
                 }
             });
         }
@@ -157,7 +158,26 @@ public class OffersResultActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private boolean fillIntent(Intent intent, Deal deal, City dep_city) {
+    public void searchFlight(Deal deal, City dep_city){
+        String from = dep_city.getId();
+        String to = deal.getCity().getId();
+        double price = deal.getPrice();
+
+        SimpleDateFormat parser = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = new Date();
+        Calendar c = Calendar.getInstance();
+        final int WEEK_DAYS = 7;
+        c.add(Calendar.DATE,3);
+
+        for ( int i = 0 ; i < WEEK_DAYS ; i++){
+            c.add(Calendar.DATE,1);
+            date = c.getTime();
+            String dep_date = parser.format(date);
+            new HttpGetFlight(from, to, dep_date,price,1).execute();
+        }
+    }
+    /*
+    private void fillIntent(Intent intent, Deal deal, City dep_city) {
 
         String from = dep_city.getId();
         String to = deal.getCity().getId();
@@ -167,20 +187,18 @@ public class OffersResultActivity extends AppCompatActivity {
 
         for (Integer i = 0; i < week_days; i++) {
             String dep_date = date + i.toString();
-            new HttpGetFlight(from, to, dep_date).execute();
+            new HttpGetFlight(from, to, dep_date,deal.getPrice()).execute();
             if (allFlights != null && !allFlights.isEmpty()) {
                 for (OneWayFlight flight : allFlights) {
                     if (flight.getPrice().getTotal().getTotal() == price) {
                         intent.putExtra("FlightNumber", flight.getOutbound_routes().get(0).getSegments().get(0).getNumber().toString());
                         intent.putExtra("AirlineId", flight.getOutbound_routes().get(0).getSegments().get(0).getAirline().getAirlineId());
-                        return true;
                     }
                 }
             }
         }
-        return false;
-
     }
+    */
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -188,21 +206,24 @@ public class OffersResultActivity extends AppCompatActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
-    private class HttpGetFlight extends AsyncTask<Void, Void, String> {
+    private class HttpGetFlight extends AsyncTask<Void,Void,String>{
 
-        private String from_id;
-        private String to_id;
-        private String dep_date;
+        private final String from_id;
+        private final String to_id;
+        private final String dep_date;
+        private final double price;
+        private final int page;
 
-        public HttpGetFlight(String from_id, String to_id, String dep_date) {
+        public HttpGetFlight(String from_id, String to_id, String dep_date, double price, int page) {
             this.from_id = from_id;
             this.to_id = to_id;
             this.dep_date = dep_date;
+            this.price = price;
+            this.page = page;
         }
 
         @Override
         protected String doInBackground(Void... params) {
-
             HttpURLConnection urlConnection = null;
 
             String from = "&from=" + from_id;
@@ -226,27 +247,6 @@ public class OffersResultActivity extends AppCompatActivity {
             }
         }
 
-        @Override
-        protected void onPostExecute(String result) {
-            try {
-                JSONObject obj = new JSONObject(result);
-
-                Gson gson = new Gson();
-                Type listType = new TypeToken<ArrayList<OneWayFlight>>() {
-                }.getType();
-
-                String jsonFragment = obj.getString("flights");
-                ArrayList<OneWayFlight> flight_list = gson.fromJson(jsonFragment, listType);
-                allFlights = flight_list;
-
-            } catch (Exception e) {
-                Toast.makeText(getApplicationContext(),
-                        getResources().getString(R.string.unknown_error),
-                        Toast.LENGTH_SHORT).show();
-            }
-
-        }
-
         private String readStream(InputStream inputStream) {
             try {
                 ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
@@ -260,6 +260,57 @@ public class OffersResultActivity extends AppCompatActivity {
                 return "";
             }
         }
+
+        @Override
+        protected void onPostExecute(String result) {
+            try {
+                int page_size;
+                int total;
+                JSONObject obj = new JSONObject(result);
+
+                Gson gson = new Gson();
+                Type listType = new TypeToken<ArrayList<OneWayFlight>>() {
+                }.getType();
+                page_size = obj.getInt("page_size");
+                total = obj.getInt("total");
+                String jsonFragment = obj.getString("flights");
+                ArrayList<OneWayFlight> flight_list = gson.fromJson(jsonFragment, listType);
+                allFlights = flight_list;
+                for ( OneWayFlight f : flight_list){
+                    if (f.getPrice().getTotal().getTotal() == price){
+                        if (!found){
+                            found = true;
+                            Intent intent = new Intent(OffersResultActivity.this, FlightStatusActivity.class);
+                            //fillIntent(intent, dealList.get(position), departureCity);
+                            PendingIntent pendingIntent =
+                                    TaskStackBuilder.create(getApplicationContext())
+                                            .addNextIntentWithParentStack(intent)
+                                            .getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
+
+                            NotificationCompat.Builder builder = new NotificationCompat.Builder(getApplicationContext());
+                            builder.setContentIntent(pendingIntent);
+                            intent.putExtra("FlightNumber", f.getOutbound_routes().get(0).getSegments().get(0).getNumber().toString());
+                            intent.putExtra("AirlineId", f.getOutbound_routes().get(0).getSegments().get(0).getAirline().getAirlineId());
+                            startActivity(intent);
+                            return;
+                        }
+                    }
+                }
+                if ( total > page_size * page){
+                    new HttpGetFlight(from_id,to_id,dep_date,price,page+1);
+                }
+            } catch (Exception e) {
+                Toast.makeText(getApplicationContext(),
+                        getResources().getString(R.string.unknown_error),
+                        Toast.LENGTH_SHORT).show();
+            }
+
+        }
+
     }
 
+    public void onResume(){
+        super.onResume();
+        found = false;
+    }
 }
