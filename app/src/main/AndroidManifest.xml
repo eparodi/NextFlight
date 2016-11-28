@@ -96,12 +96,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ReviewActivity" />
         </activity>
-        <activity android:name=".OffersSearchActivity">
+        <activity android:name=".OffersSearchActivity"
+            android:label="@string/offer_search_title">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
         </activity>
-        <activity android:name=".OffersResultActivity">
+        <activity android:name=".OffersResultActivity"
+            android:label="@string/offers_activity_name">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".OffersSearchActivity" />

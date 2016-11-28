@@ -5,6 +5,7 @@ import android.app.PendingIntent;
 import android.app.TaskStackBuilder;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.SystemClock;
@@ -25,6 +26,7 @@ import android.view.View;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -41,6 +43,8 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    private FlightArrayAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,6 +83,7 @@ public class MainActivity extends AppCompatActivity
 
         final FlightArrayAdapter flights_adapter = new FlightArrayAdapter(this, flights, screenUtility);
         view.setAdapter(flights_adapter);
+
         view.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -104,6 +109,14 @@ public class MainActivity extends AppCompatActivity
 
         if (flights.isEmpty()) {
             ((TextView) findViewById(R.id.no_followed_flights)).setText(R.string.no_followed_flights_information);
+            ((TextView) findViewById(R.id.main_help_search_title)).setText(R.string.help_main_search_title);
+            ((ImageView) findViewById(R.id.help_search_icon_phone)).setImageResource(R.mipmap.help_search_icon_phone);
+            ((TextView) findViewById(R.id.main_help_offers_title)).setText(R.string.help_main_offers_title);
+            ((ImageView) findViewById(R.id.help_offers_icon_phone)).setImageResource(R.mipmap.help_offers_phone);
+            if (screenUtility.getWidth() > 700.0) {
+                ((TextView) findViewById(R.id.main_help_flight_title)).setText(R.string.help_main_flight_title);
+                ((ImageView) findViewById(R.id.help_flight_icon_tablet)).setImageResource(R.mipmap.help_favorite_tablet);
+            }
         }
 
         view.setMultiChoiceModeListener(new AbsListView.MultiChoiceModeListener() {
@@ -164,6 +177,7 @@ public class MainActivity extends AppCompatActivity
             }
         });
         view.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE_MODAL);
+        adapter = flights_adapter;
     }
 
     @Override
@@ -181,6 +195,14 @@ public class MainActivity extends AppCompatActivity
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (adapter != null) {
+            adapter.notifyDataSetChanged();
+        }
     }
 
     @Override

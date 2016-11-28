@@ -126,6 +126,7 @@ public class ConverterActivity extends AppCompatActivity {
                             n*=dToR;
                         }
                     }
+                    n = Math.floor(n * 100) / 100;
                     return n;
                 }
 

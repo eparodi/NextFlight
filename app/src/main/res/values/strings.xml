@@ -91,6 +91,14 @@
     <string name="error_localization_request">Habilite la localización del dispositivo.</string>
     <string name="null_information">No disponible</string>
 
+    <!--Help messages-->
+    <string name="no_followed_flights_information">No sigue ningun vuelo actualmente.
+        Búsque uno o elija de nuestras ofertas.</string>
+    <string name="help_main_search_title">Buscar vuelo</string>
+    <string name="help_main_offers_title">Buscar oferta</string>
+    <string name="help_main_flight_title">Seguir vuelo</string>
+
+
     <!--Converter spinner-->
     <string name="converter_spinner1_prompt">Opciones</string>
     <string-array name="converter_spinner1_options">
@@ -102,15 +110,17 @@
     <!--Navigation drawer-->
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_drawer_separator">Otras etiquetas</string>
+    <string name="nav_drawer_offers_title">Ofertas</string>
+    <string name="nav_drawer_converter_title">Conversor</string>
+    <string name="nav_drawer_settings_title">Configuraciones</string>
+    <string name="nav_drawer_help_title">Ayuda</string>
 
     <!--Buttons-->
     <string name="search_button">Buscar</string>
     <string name="str_button_review">Ver Opiniones</string>
     <string name="str_button_map">Ver mapa</string>
 
-    <!--Information charts-->
-    <string name="no_followed_flights_information">No sigue ningun vuelo actualmente.
-        Búsque uno o elija de nuestras ofertas.</string>
 
     <string name="airline_name">Nombre de la aerolínea</string>
     <string name="from_check_box">Usar mi ubicación actual</string>
