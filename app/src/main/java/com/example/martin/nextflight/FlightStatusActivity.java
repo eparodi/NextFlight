@@ -172,7 +172,9 @@ public class FlightStatusActivity extends AppCompatActivity{
             textArrivalDate.setText(dateFormat.format(arrival_date));
             textArrivalHour.setText(timeFormat.format(arrival_date));
         }catch (Exception e){
-            // TODO: Message.
+            Toast.makeText(getApplicationContext(),
+                    getResources().getString(R.string.no_connection_error),
+                    Toast.LENGTH_SHORT).show();
         }
 
         String terminal = departure.getAirport().getTerminal();
@@ -332,7 +334,9 @@ public class FlightStatusActivity extends AppCompatActivity{
                 this.query = "&airline_id=" + URLEncoder.encode(airline_id, "UTF-8") +
                         "&flight_number=" + URLEncoder.encode(flight_number, "UTF-8");
             }catch(Exception e){
-                // TODO: Set messagges.
+                Toast.makeText(getApplicationContext(),
+                        getResources().getString(R.string.no_connection_error),
+                        Toast.LENGTH_SHORT).show();
             }
         }
 
@@ -403,6 +407,9 @@ public class FlightStatusActivity extends AppCompatActivity{
                 }
                 return outputStream.toString();
             } catch (IOException e) {
+                Toast.makeText(getApplicationContext(),
+                        getResources().getString(R.string.no_connection_error),
+                        Toast.LENGTH_SHORT).show();
                 return "";
             }
         }

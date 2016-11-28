@@ -3,6 +3,8 @@ package com.example.martin.nextflight;
 import android.graphics.Color;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.view.MenuItem;
 
 import com.example.martin.nextflight.elements.Airport;
 import com.example.martin.nextflight.elements.City;
@@ -20,7 +22,7 @@ import com.google.android.gms.maps.model.PolylineOptions;
 
 import java.util.ArrayList;
 
-public class AllOffersMapActivity extends FragmentActivity implements OnMapReadyCallback {
+public class AllOffersMapActivity extends AppCompatActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
     private ArrayList<Deal> flights;
@@ -84,5 +86,14 @@ public class AllOffersMapActivity extends FragmentActivity implements OnMapReady
             green = (int)(-255 * (price - 1500)) / 1300;
         }
         return Color.argb(200,red,green,100);
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

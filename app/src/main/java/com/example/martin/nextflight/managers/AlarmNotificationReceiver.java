@@ -134,7 +134,6 @@ public class AlarmNotificationReceiver extends BroadcastReceiver {
 
         private void notifManager(com.example.martin.nextflight.elements.Status status){
             NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-            // TODO: Make prettier the notification.
             synchronized (lock1) {
                 if (hasChange(status)) {
                     FileManager.startFileManager(context);
@@ -215,8 +214,6 @@ public class AlarmNotificationReceiver extends BroadcastReceiver {
 
     private class NotifHolder{
         protected String text;
-
-        private String[] text_creator = new String[7];
         private boolean status_change = false;
         private boolean arrival_scheduled_time = false;
         private boolean departure_scheduled_time = false;

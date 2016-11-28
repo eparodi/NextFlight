@@ -361,7 +361,9 @@ public class ReviewActivity extends AppCompatActivity {
                         "%22%7d";
                 return query;
             } catch(Exception e) {
-                // TODO: Set messagges.
+                Toast.makeText(getApplicationContext(),
+                        getResources().getString(R.string.no_connection_error),
+                        Toast.LENGTH_SHORT).show();
             }
             return query;
         }

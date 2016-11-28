@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.martin.nextflight.R;
 import com.example.martin.nextflight.elements.Departure;
@@ -76,7 +77,9 @@ public class FlightArrayAdapter extends ArrayAdapter<Flight> {
             holder.flight_date_text_view.setText(dateFormat.format(departure_date));
             holder.flight_time_text_view.setText(timeFormat.format(departure_date));
         }catch (Exception e){
-            // TODO: Message.
+            Toast.makeText(getContext(),
+                    getContext().getResources().getString(R.string.no_connection_error),
+                    Toast.LENGTH_SHORT).show();
         }
         String status = getItem(position).getStatus();
         if (status.equals("S")){

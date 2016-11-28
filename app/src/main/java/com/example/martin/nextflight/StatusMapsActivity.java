@@ -2,6 +2,9 @@ package com.example.martin.nextflight;
 
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
+import android.view.MenuItem;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -11,7 +14,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PolylineOptions;
 
-public class StatusMapsActivity extends FragmentActivity implements OnMapReadyCallback {
+public class StatusMapsActivity extends AppCompatActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
     private double departure_airport_lat;
@@ -74,5 +77,14 @@ public class StatusMapsActivity extends FragmentActivity implements OnMapReadyCa
                 .add(departure_airport)  // Departure
                 .add(arrival_airport)  // Arrival
         );
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
