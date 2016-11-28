@@ -12,6 +12,7 @@ import com.example.martin.nextflight.R;
 import com.example.martin.nextflight.elements.Departure;
 import com.example.martin.nextflight.elements.Flight;
 import com.example.martin.nextflight.holders.FlightViewHolder;
+import com.example.martin.nextflight.managers.ScreenUtility;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -22,8 +23,12 @@ import java.util.Date;
  */
 
 public class FlightArrayAdapter extends ArrayAdapter<Flight> {
-    public FlightArrayAdapter(Activity context, ArrayList<Flight> objects) {
+
+    private ScreenUtility screenUtility;
+
+    public FlightArrayAdapter(Activity context, ArrayList<Flight> objects, ScreenUtility screen_utility) {
         super(context, R.layout.flight_list_view_item, objects);
+        screenUtility = screen_utility;
     }
 
     @Override
@@ -32,6 +37,11 @@ public class FlightArrayAdapter extends ArrayAdapter<Flight> {
         if (convertView == null) {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.flight_list_view_item, parent, false);
             holder = new FlightViewHolder();
+
+            if (screenUtility.getWidth() > 700.0) {
+                holder.flight_state_text_view = (TextView) convertView.findViewById(R.id.flight_list_status_text);
+            }
+
             holder.flight_state_image_view = (ImageView) convertView.findViewById(R.id.avatar_state_image_view);
             holder.flight_airline_id_text_view = (TextView) convertView.findViewById(R.id.flight_list_airline_id_text);
             holder.flight_number_text_view = (TextView) convertView.findViewById(R.id.flight_list_number_text);
@@ -71,14 +81,29 @@ public class FlightArrayAdapter extends ArrayAdapter<Flight> {
         String status = getItem(position).getStatus();
         if (status.equals("S")){
             holder.flight_state_image_view.setImageResource(R.drawable.ic_avatar_programmed);
+            if (screenUtility.getWidth() > 700.0) {
+                holder.flight_state_text_view.setText(getContext().getResources().getString(R.string.status_programmed));
+            }
         }else if (status.equals("L")){
             holder.flight_state_image_view.setImageResource(R.drawable.ic_avatar_landed);
+            if (screenUtility.getWidth() > 700.0) {
+                holder.flight_state_text_view.setText(getContext().getResources().getString(R.string.status_landed));
+            }
         }else if (status.equals("A")){
             holder.flight_state_image_view.setImageResource(R.drawable.ic_avatar_active);
+            if (screenUtility.getWidth() > 700.0) {
+                holder.flight_state_text_view.setText(getContext().getResources().getString(R.string.status_active));
+            }
         }else if (status.equals("C")){
             holder.flight_state_image_view.setImageResource(R.drawable.ic_avatar_canceled);
+            if (screenUtility.getWidth() > 700.0) {
+                holder.flight_state_text_view.setText(getContext().getResources().getString(R.string.status_canceled));
+            }
         }else if (status.equals("R")){
             holder.flight_state_image_view.setImageResource(R.drawable.ic_avatar_delayed);
+            if (screenUtility.getWidth() > 700.0) {
+                holder.flight_state_text_view.setText(getContext().getResources().getString(R.string.status_delayed));
+            }
         }
 
         return convertView;

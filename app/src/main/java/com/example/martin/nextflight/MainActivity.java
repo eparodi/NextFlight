@@ -32,6 +32,7 @@ import com.example.martin.nextflight.adapters.FlightArrayAdapter;
 import com.example.martin.nextflight.elements.Flight;
 import com.example.martin.nextflight.managers.AlarmNotificationReceiver;
 import com.example.martin.nextflight.managers.FileManager;
+import com.example.martin.nextflight.managers.ScreenUtility;
 import com.example.martin.nextflight.managers.SettingsManager;
 
 import java.io.File;
@@ -68,20 +69,18 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         final ListView view = (ListView) findViewById(R.id.followed_flights_list_view);
+        final ScreenUtility screenUtility = new ScreenUtility(this);
 
         SettingsManager.startSettingsManager(getApplicationContext());
 
         FileManager.startFileManager(getApplicationContext());
         final ArrayList<Flight> flights = FileManager.getAllFlights();
 
-        final FlightArrayAdapter flights_adapter = new FlightArrayAdapter(this, flights);
+        final FlightArrayAdapter flights_adapter = new FlightArrayAdapter(this, flights, screenUtility);
         view.setAdapter(flights_adapter);
 
-        if (!flights.isEmpty()) {
-            //new FlightArrayAdapter(this, flights);
-            //view.setAdapter(flights_adapter);
-        }else {
-            //((TextView) findViewById(R.id.no_followed_flights)).setText(R.string.no_followed_flights_information);
+        if (flights.isEmpty()) {
+            ((TextView) findViewById(R.id.no_followed_flights)).setText(R.string.no_followed_flights_information);
         }
 
         view.setMultiChoiceModeListener(new AbsListView.MultiChoiceModeListener() {

@@ -70,6 +70,7 @@ public class OffersArrayAdapter extends ArrayAdapter<Deal> {
             else if (currency.equals("Reales"))
                 price *= 3.38;
         }
+        price = Math.floor(price * 100) / 100;
 
         holder.offers_destination_text_view.setText("A: " + deal.getCity().getName());
         holder.offers_price_text_view.setText("Precio: " + price);
