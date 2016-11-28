@@ -23,6 +23,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AbsListView;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -78,6 +79,28 @@ public class MainActivity extends AppCompatActivity
 
         final FlightArrayAdapter flights_adapter = new FlightArrayAdapter(this, flights, screenUtility);
         view.setAdapter(flights_adapter);
+        view.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(getApplicationContext(), FlightStatusActivity.class);
+                intent.putExtra("FlightNumber", flights.get(position).getFlight_number().toString());
+                intent.putExtra("AirlineId", flights.get(position).getAirline().getAirlineId());
+                intent.putExtra("Reload",false);
+
+                // Use TaskStackBuilder to build the back stack and get the PendingIntent
+                PendingIntent pendingIntent =
+                        TaskStackBuilder.create(getApplicationContext())
+                                // add all of DetailsActivity's parents to the stack,
+                                // followed by DetailsActivity itself
+                                .addNextIntentWithParentStack(intent)
+                                .getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
+
+                NotificationCompat.Builder builder = new NotificationCompat.Builder(getApplicationContext());
+                builder.setContentIntent(pendingIntent);
+
+                startActivity(intent);
+            }
+        });
 
         if (flights.isEmpty()) {
             ((TextView) findViewById(R.id.no_followed_flights)).setText(R.string.no_followed_flights_information);

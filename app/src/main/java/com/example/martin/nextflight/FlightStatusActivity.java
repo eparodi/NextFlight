@@ -128,19 +128,19 @@ public class FlightStatusActivity extends AppCompatActivity{
     private void fillTextView(){
         String status = currentStatus.getStatus();
         if (status.equals("S")){
-            textStatus.setText("Programado");
+            textStatus.setText(getResources().getString(R.string.status_programmed));
             imageStatus.setImageResource(R.drawable.ic_avatar_programmed);
         }else if (status.equals("L")){
-            textStatus.setText("Aterrizado");
+            textStatus.setText(getResources().getString(R.string.status_landed));
             imageStatus.setImageResource(R.drawable.ic_avatar_landed);
         }else if (status.equals("A")){
-            textStatus.setText("Activo");
+            textStatus.setText(getResources().getString(R.string.status_active));
             imageStatus.setImageResource(R.drawable.ic_avatar_active);
         }else if (status.equals("C")){
-            textStatus.setText("Cancelado");
+            textStatus.setText(getResources().getString(R.string.status_canceled));
             imageStatus.setImageResource(R.drawable.ic_avatar_canceled);
         }else if (status.equals("R")){
-            textStatus.setText("Desviado");
+            textStatus.setText(getResources().getString(R.string.status_delayed));
             imageStatus.setImageResource(R.drawable.ic_avatar_delayed);
         }
 
