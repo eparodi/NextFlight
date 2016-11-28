@@ -11,14 +11,17 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/departure_city"
         android:layout_alignParentStart="true"
-        android:id="@+id/offer_list" />
+        android:id="@+id/offer_list"/>
 
     <TextView
-        android:text="TextView"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/departure_city"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
-        android:textSize="18sp" />
+        android:textSize="27dp"
+        android:textStyle="bold"
+        android:textColor="@color/md_black_1000"
+        android:gravity="center"
+        android:includeFontPadding="false"/>
 </RelativeLayout>

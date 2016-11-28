@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/activity_offers_result"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.martin.nextflight.OffersResultActivity"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/departure_city"
+        android:textSize="32dp"
+        android:textStyle="bold"
+        android:textColor="@color/md_black_1000"
+        android:gravity="center"
+        android:layout_marginBottom="20dp"
+        android:includeFontPadding="false"/>
+
+    <GridView
+        android:id="@+id/offer_list"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:numColumns="2"
+        android:verticalSpacing="30dp"
+        android:horizontalSpacing="10dp"
+        android:scrollbarStyle="outsideOverlay"
+        android:verticalScrollbarPosition="right"
+        android:layout_marginStart="40dp"
+        android:scrollbars="vertical">
+    </GridView>
+
+</LinearLayout>

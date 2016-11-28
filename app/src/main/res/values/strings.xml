@@ -74,6 +74,13 @@
     <string name="action_map_status">Ver mapa</string>
     <string name="action_delete">Eliminar</string>
 
+    <!--Status names-->
+    <string name="status_programmed">Programado</string>
+    <string name="status_active">Activo</string>
+    <string name="status_canceled">Cancelado</string>
+    <string name="status_delayed">Desviado</string>
+    <string name="status_landed">Aterrizado</string>
+
     <!--Errors-->
     <string name="error">Unexpected error</string>
     <string name="unknown_error">"Se ha producido un error, intente más tarde."</string>

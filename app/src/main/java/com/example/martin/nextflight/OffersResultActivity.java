@@ -3,6 +3,7 @@ package com.example.martin.nextflight;
 import android.app.PendingIntent;
 import android.app.TaskStackBuilder;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
@@ -15,6 +16,7 @@ import android.view.MenuItem;
 import android.support.v7.app.NotificationCompat;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -27,6 +29,7 @@ import com.example.martin.nextflight.elements.flickr.FlickrObject;
 import com.example.martin.nextflight.elements.flickr.Photo;
 import com.example.martin.nextflight.elements.oneWayFlight.OneWayFlight;
 import com.example.martin.nextflight.holders.OffersViewHolder;
+import com.example.martin.nextflight.managers.ScreenUtility;
 import com.example.martin.nextflight.managers.SettingsManager;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -69,34 +72,60 @@ public class OffersResultActivity extends AppCompatActivity {
 
         String currency = SettingsManager.getCurrency();
 
+        final ScreenUtility screenUtility = new ScreenUtility(this);
+
         showList = new OffersArrayAdapter(this, dealList, currency);
 
-        ListView dealShowList = (ListView) findViewById(R.id.offer_list);
-        dealShowList.setAdapter(showList);
+        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE && screenUtility.getWidth() > 700.0){
+            GridView dealShowList = (GridView) findViewById(R.id.offer_list);
+            dealShowList.setAdapter(showList);
+            dealShowList.setOnItemClickListener(new AdapterView.OnItemClickListener()
+            {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    Intent intent = new Intent(OffersResultActivity.this, FlightStatusActivity.class);
+                    boolean found;
+                    found = fillIntent(intent, dealList.get(position), departureCity);
+                    PendingIntent pendingIntent =
+                            TaskStackBuilder.create(getApplicationContext())
+                                    .addNextIntentWithParentStack(intent)
+                                    .getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
+
+                    NotificationCompat.Builder builder = new NotificationCompat.Builder(getApplicationContext());
+                    builder.setContentIntent(pendingIntent);
+
+                    if(found)
+                        startActivity(intent);
+                }
+            });
+        }
+        else {
+            ListView dealShowList = (ListView) findViewById(R.id.offer_list);
+            dealShowList.setAdapter(showList);
+            dealShowList.setOnItemClickListener(new AdapterView.OnItemClickListener()
+            {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    Intent intent = new Intent(OffersResultActivity.this, FlightStatusActivity.class);
+                    boolean found;
+                    found = fillIntent(intent, dealList.get(position), departureCity);
+                    PendingIntent pendingIntent =
+                            TaskStackBuilder.create(getApplicationContext())
+                                    .addNextIntentWithParentStack(intent)
+                                    .getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
+
+                    NotificationCompat.Builder builder = new NotificationCompat.Builder(getApplicationContext());
+                    builder.setContentIntent(pendingIntent);
+
+                    if(found)
+                        startActivity(intent);
+                }
+            });
+        }
 
         //for (Deal deal : dealList) {
         //    new HttpGetPhotos(deal).execute();
         //}
-
-        dealShowList.setOnItemClickListener(new AdapterView.OnItemClickListener()
-        {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(OffersResultActivity.this, FlightStatusActivity.class);
-                boolean found;
-                found = fillIntent(intent, dealList.get(position), departureCity);
-                PendingIntent pendingIntent =
-                        TaskStackBuilder.create(getApplicationContext())
-                                .addNextIntentWithParentStack(intent)
-                                .getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
-
-                NotificationCompat.Builder builder = new NotificationCompat.Builder(getApplicationContext());
-                builder.setContentIntent(pendingIntent);
-
-                if(found)
-                    startActivity(intent);
-            }
-        });
 
         TextView departureCityText = (TextView) findViewById(R.id.departure_city);
         departureCityText.setText(getString(R.string.from) + departureCity.getName());
@@ -135,8 +164,6 @@ public class OffersResultActivity extends AppCompatActivity {
         String date = "2016-12-2";
         Double price = deal.getPrice();
         final Integer week_days = 7;
-
-        Toast.makeText(getApplicationContext(), price.toString(), Toast.LENGTH_SHORT).show();
 
         for (Integer i = 0; i < week_days; i++) {
             String dep_date = date + i.toString();
