@@ -72,6 +72,7 @@
     <string name="action_favorite">Seguir</string>
     <string name="action_favorite_forget">Olvidar</string>
     <string name="action_map_status">Ver mapa</string>
+    <string name="action_delete">Eliminar</string>
 
     <!--Errors-->
     <string name="error">Unexpected error</string>

@@ -1,8 +1,10 @@
 package com.example.martin.nextflight.managers;
 
 import android.content.Context;
+import android.widget.Toast;
 
 import com.example.martin.nextflight.MainActivity;
+import com.example.martin.nextflight.R;
 import com.example.martin.nextflight.elements.Flight;
 
 import java.io.FileInputStream;
@@ -25,16 +27,14 @@ public class SettingsManager {
 
     public static void startSettingsManager(Context context) {
         if (currency == null){
+            settings_context = context;
             FileInputStream in = null;
             try {
                 in = context.openFileInput(CURRENCY_FILE);
                 ObjectInputStream objin = new ObjectInputStream(in);
                 currency = (String) objin.readObject();
-                if (currency == null || currency.equals("")) {
-                    setCurrency("Dólares", context);
-                }
-                settings_context = context;
             }catch(FileNotFoundException e){
+                setCurrency("Dólares", context);
                 e.printStackTrace();
             }catch(IOException e){
                 e.printStackTrace();
