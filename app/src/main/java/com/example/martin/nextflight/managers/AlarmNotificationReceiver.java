@@ -43,7 +43,7 @@ public class AlarmNotificationReceiver extends BroadcastReceiver {
     private final static String NOTIF_KEY = "FLIGHT_STATUS";
     private final static int STACK_NOTIF_ID = 0;
     private Object lock1 = new Object();
-    public static NotifHolder notif;
+    public static NotifHolder notif = null;
 
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -185,7 +185,7 @@ public class AlarmNotificationReceiver extends BroadcastReceiver {
                             final PendingIntent contentIntent =
                                     stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
 
-                            title = context.getString(R.string.notif_single_flight_title_1) + flight.getFlight_number() + context.getString(R.string.notif_single_flight_title_2) + flight.getAirline().getAirlineName();
+                            title = context.getString(R.string.notif_single_flight_title_1) + " " + flight.getFlight_number() + " " +  context.getString(R.string.notif_single_flight_title_2) + " " +  flight.getAirline().getAirlineName();
                             notif.createText(status, flight,context);
                             // Create the pending intent granting the Operating System to launch activity
                             // when notification in action bar is clicked.
@@ -213,7 +213,7 @@ public class AlarmNotificationReceiver extends BroadcastReceiver {
                             final PendingIntent contentIntent =
                                     stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
 
-                            title = changed_flights.size() + context.getString(R.string.notif_multi_title);
+                            title = changed_flights.size() + " " +  context.getString(R.string.notif_multi_title);
                             notification = new NotificationCompat.Builder(context)
                                     .setSmallIcon(R.drawable.ic_flight)
                                     .setGroup(NOTIF_KEY)
