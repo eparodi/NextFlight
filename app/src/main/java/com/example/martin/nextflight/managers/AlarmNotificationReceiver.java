@@ -122,11 +122,11 @@ public class AlarmNotificationReceiver extends BroadcastReceiver {
         }
 
         private boolean hasChange(com.example.martin.nextflight.elements.Status status){
-            boolean arrival_terminal = false;
-            boolean departure_terminal = false;
-            boolean arrival_gate = false;
-            boolean departure_gate = false;
-            boolean baggage = false;
+            boolean arrival_terminal = true;
+            boolean departure_terminal = true;
+            boolean arrival_gate = true;
+            boolean departure_gate = true;
+            boolean baggage = true;
 
             if (status.getArrival().getAirport().getTerminal() != null){
                 arrival_terminal = status.getArrival().getAirport().getTerminal().equals(flight.getArrival().getAirport().getTerminal());
@@ -185,8 +185,8 @@ public class AlarmNotificationReceiver extends BroadcastReceiver {
                             final PendingIntent contentIntent =
                                     stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
 
-                            title = "Vuelo " + flight.getFlight_number() + " de " + flight.getAirline().getAirlineName();
-                            notif.createText(status, flight);
+                            title = context.getString(R.string.notif_single_flight_title_1) + flight.getFlight_number() + context.getString(R.string.notif_single_flight_title_2) + flight.getAirline().getAirlineName();
+                            notif.createText(status, flight,context);
                             // Create the pending intent granting the Operating System to launch activity
                             // when notification in action bar is clicked.
                             notification = new Notification.Builder(context)
@@ -213,7 +213,7 @@ public class AlarmNotificationReceiver extends BroadcastReceiver {
                             final PendingIntent contentIntent =
                                     stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
 
-                            title = changed_flights.size() + " vuelos han cambiado su Estado.";
+                            title = changed_flights.size() + context.getString(R.string.notif_multi_title);
                             notification = new NotificationCompat.Builder(context)
                                     .setSmallIcon(R.drawable.ic_flight)
                                     .setGroup(NOTIF_KEY)
@@ -223,7 +223,7 @@ public class AlarmNotificationReceiver extends BroadcastReceiver {
                             style.setBigContentTitle(title);
                             style.setSummaryText("NextFlight");
                             for (Flight f : changed_flights) {
-                                style.addLine("Vuelo:" + f.getFlight_number());
+                                style.addLine(context.getString(R.string.notif_flight_title) + f.getFlight_number());
                             }
                             notification.setStyle(style);
                             notificationManager.cancelAll();
@@ -248,21 +248,21 @@ public class AlarmNotificationReceiver extends BroadcastReceiver {
         private boolean departure_gate = false;
         private boolean baggage = false;
 
-        protected void createText(Status status, Flight flight){
+        protected void createText(Status status, Flight flight, Context context){
             text = "";
             if (!status.getStatus().equals(flight.getStatus()) || status_change){
                 status_change = true;
-                text += "Estado: ";
+                text += context.getString(R.string.status_state_title)+": ";
                 if (status.getStatus().equals("S")) {
-                    text += "Programado";
+                    text += context.getString(R.string.status_programmed);
                 } else if (status.getStatus().equals("L")) {
-                    text += "Aterrizado";
+                    text +=  context.getString(R.string.status_landed);
                 } else if (status.getStatus().equals("A")) {
-                    text += "Activo";
+                    text +=  context.getString(R.string.status_active);
                 } else if (status.getStatus().equals("C")) {
-                    text += "Cancelado";
+                    text +=  context.getString(R.string.status_canceled);
                 } else if (status.getStatus().equals("R")) {
-                    text += "Desviado";
+                    text +=  context.getString(R.string.status_delayed);
                 }
                 text += "\n";
             }
@@ -271,31 +271,31 @@ public class AlarmNotificationReceiver extends BroadcastReceiver {
                 if (!status.getArrival().getAirport().getBaggage().equals(flight.getArrival().getAirport().getBaggage())
                         || baggage){
                     baggage = true;
-                    text += "Retiro de equipaje: " + status.getArrival().getAirport().getBaggage() + "\n";
+                    text += context.getString(R.string.notif_baggage_title) + status.getArrival().getAirport().getBaggage() + "\n";
                 }
             }
 
             if(!status.getDeparture().getScheduled_time().equals(flight.getDeparture().getScheduled_time()) || departure_scheduled_time) {
                 departure_scheduled_time = true;
-                text += "Horario de partida: " + status.getDeparture().getScheduled_time() + "\n";
+                text += context.getString(R.string.notif_dep_time_title) + status.getDeparture().getScheduled_time() + "\n";
             }
 
             if (!status.getArrival().getScheduled_time().equals(flight.getArrival().getScheduled_time()) || arrival_scheduled_time){
                 arrival_scheduled_time = true;
-                text += "Horario de arribo: " + status.getArrival().getAirport().getBaggage() + "\n";
+                text += context.getString(R.string.notif_arr_time_title) + status.getArrival().getAirport().getBaggage() + "\n";
             }
 
             if (status.getDeparture().getAirport().getTerminal() != null) {
                 if (!status.getDeparture().getAirport().getTerminal().equals(flight.getDeparture().getAirport().getTerminal()) || departure_terminal) {
                     departure_terminal = true;
-                    text += "Terminal de partida: " + status.getArrival().getAirport().getTerminal() + "\n";
+                    text += context.getString(R.string.notif_dep_term_title) + status.getArrival().getAirport().getTerminal() + "\n";
                 }
             }
 
             if (status.getDeparture().getAirport().getGate() != null) {
                 if (!status.getDeparture().getAirport().getGate().equals(flight.getDeparture().getAirport().getGate()) || departure_gate) {
                     departure_gate = true;
-                    text += "Puerta de partida: " + status.getArrival().getAirport().getTerminal() + "\n";
+                    text += context.getString(R.string.notif_dep_gate_title) + status.getArrival().getAirport().getTerminal() + "\n";
                 }
             }
 
@@ -303,14 +303,14 @@ public class AlarmNotificationReceiver extends BroadcastReceiver {
 
                 if (!status.getArrival().getAirport().getTerminal().equals(flight.getArrival().getAirport().getTerminal()) || arrival_terminal) {
                     arrival_terminal = true;
-                    text += "Terminal de arribo: " + status.getArrival().getAirport().getTerminal() + "\n";
+                    text += context.getString(R.string.notif_arr_term_title) + status.getArrival().getAirport().getTerminal() + "\n";
                 }
             }
 
             if (status.getArrival().getAirport().getGate() != null) {
                 if (!status.getArrival().getAirport().getGate().equals(flight.getArrival().getAirport().getGate()) || arrival_gate) {
                     arrival_gate = true;
-                    text += "Puerta de arribo: " + status.getArrival().getAirport().getTerminal() + "\n";
+                    text += context.getString(R.string.notif_arr_gate_title) + status.getArrival().getAirport().getTerminal() + "\n";
                 }
             }
         }
