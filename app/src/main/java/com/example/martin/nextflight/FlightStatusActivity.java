@@ -26,6 +26,7 @@ import com.example.martin.nextflight.elements.Arrival;
 import com.example.martin.nextflight.elements.Departure;
 import com.example.martin.nextflight.elements.Flight;
 import com.example.martin.nextflight.elements.Status;
+import com.example.martin.nextflight.managers.AlarmNotificationReceiver;
 import com.example.martin.nextflight.managers.FileManager;
 import com.example.martin.nextflight.managers.ScreenUtility;
 import com.google.android.gms.vision.text.Text;
@@ -123,6 +124,9 @@ public class FlightStatusActivity extends AppCompatActivity{
         // Clear notifications.
         NotificationManager nMgr = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         nMgr.cancel(Integer.parseInt(flightNumber,10));
+        if (reload){
+            AlarmNotificationReceiver.notif = null;
+        }
     }
 
     private void fillTextView(){

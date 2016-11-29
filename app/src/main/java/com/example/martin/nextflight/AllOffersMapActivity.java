@@ -55,12 +55,12 @@ public class AllOffersMapActivity extends AppCompatActivity implements OnMapRead
 
         for ( Deal d : flights ){
             double price = d.getPrice();
-            if (currency != null) {
+            /*if (currency != null) {
                 if (currency.equals("Pesos"))
                     price *= 15.49;
                 else if (currency.equals("Reales"))
                     price *= 3.38;
-            }
+            }*/
             City arrival_city = d.getCity();
             addMarker(arrival_city);
             addRoute(arrival_city,departure_city, price);
