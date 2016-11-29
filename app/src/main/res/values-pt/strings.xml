@@ -171,4 +171,15 @@
 
     <string name="pref_title_vibrate">Ativar vibrador</string>
 
+    <string name="notif_single_flight_title_1">Voo </string>
+    <string name="notif_single_flight_title_2"> do </string>
+    <string name="notif_multi_title"> vôos mudaram seu estado.</string>
+    <string name="notif_flight_title">Voo:</string>
+    <string name="notif_baggage_title">Bagagem: </string>
+    <string name="notif_dep_time_title">Hora de partida: </string>
+    <string name="notif_arr_time_title">Hora de chegada: </string>
+    <string name="notif_dep_term_title">Terminal de partida: </string>
+    <string name="notif_arr_term_title">Terminal de chegada: </string>
+    <string name="notif_dep_gate_title">Porta de partida: </string>
+    <string name="notif_arr_gate_title">Porta de chegada: </string>
 </resources>

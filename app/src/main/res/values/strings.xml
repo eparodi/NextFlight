@@ -176,7 +176,7 @@
     <string name="notif_single_flight_title_1">Vuelo </string>
     <string name="notif_single_flight_title_2"> de </string>
     <string name="notif_multi_title"> vuelos han cambiado su Estado.</string>
-    <string name="notif_flight_title">Vuelo:</string>
+    <string name="notif_flight_title">Vuelo: </string>
     <string name="notif_baggage_title">Retiro de equipaje: </string>
     <string name="notif_dep_time_title">Horario de partida: </string>
     <string name="notif_arr_time_title">Horario de arribo: </string>
