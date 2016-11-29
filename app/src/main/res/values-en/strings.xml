@@ -24,6 +24,7 @@
     <string name="offer_search_title">Search for offers</string>
     <string name="title_activity_settings">Settings</string>
     <string name="title_activity_followed_flights">My flights</string>
+    <string name="title_activity_help">Help</string>
 
     <!--Input text validators-->
     <string name="empty_number_validator">"Enter the flight number."</string>
@@ -44,7 +45,7 @@
     <!--Review titles-->
     <string name="review_flight_title">Flight</string>
     <string name="review_airline_title">Airline</string>
-    <string name="review_general_rating_title">General puntuation</string>
+    <string name="review_general_rating_title">General rating</string>
     <string name="review_comments_list_title">Comments</string>
     <string name="review_submit_title">Rate the flight</string>
     <string name="review_submit_button">Send</string>
@@ -92,8 +93,6 @@
     <string name="null_information">Not available</string>
 
     <!--Help messages-->
-    <string name="no_followed_flights_information">Do not follow any flight currently.
-        Search one or choose from our offers.</string>
     <string name="help_main_search_title">Search flights</string>
     <string name="help_main_offers_title">Search offer</string>
     <string name="help_main_flight_title">Follow flight</string>
@@ -122,9 +121,24 @@
     <string name="str_button_review">View Opinions</string>
     <string name="str_button_map">Vew map</string>
 
+    <!--Help titles-->
+    <string name="no_followed_flights_information">Not following any flight at the moment. Search one or pick it from the flight deals.</string>
+    <string name="help_search_flight_title">Search flight</string>
+    <string name="help_search_offers_title">Search deal</string>
+    <string name="help_follow_flight_title">Follow flight</string>
+    <string name="help_search_review_title">Search reviews</string>
+    <string name="help_map_understanding_title">Deal\'s map</string>
+    <string name="help_map_cheap_deals">Lower price marked with green.</string>
+    <string name="help_map_expensive_deals">Higher price marked with red.</string>
+    <string name="help_map_usage">Clicking a label will show the destiny\'s name. Then search for that name in the deal\'s list.</string>
+    <string name="help_search_review">Enter a review clicking a comment from the list</string>
+    <string name="help_review_introduction">Click the star icon within the flight detail.</string>
+
     <string name="airline_name">Airline name</string>
     <string name="from_check_box">Use my actual ubication</string>
     <string name="from">"From: "</string>
+    <string name="to">To: </string>
+    <string name="offers_price">Price: </string>
     <string name="loading_message">"Loading images..."</string>
 
     <!-- Strings related to Settings -->

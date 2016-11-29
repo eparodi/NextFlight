@@ -72,7 +72,7 @@ public class OffersArrayAdapter extends ArrayAdapter<Deal> {
         }
         price = Math.floor(price * 100) / 100;
 
-        holder.offers_destination_text_view.setText("A: " + deal.getCity().getName());
+        holder.offers_destination_text_view.setText("" + deal.getCity().getName());
         holder.offers_price_text_view.setText("Precio: " + price);
         if (deal.getImage() == null && !deal.loadImage){
             deal.loadImage = true;

@@ -115,7 +115,7 @@
     <string name="str_button_map">Ver mapa</string>
 
     <!--Help titles-->
-    <string name="no_followed_flights_information">No sigue ningun vuelo actualmente. Búsque uno o elija de nuestras ofertas.</string>
+    <string name="no_followed_flights_information">No sigue ningùn vuelo actualmente. Búsque uno o elija de nuestras ofertas.</string>
     <string name="help_search_flight_title">Buscar vuelo</string>
     <string name="help_search_offers_title">Buscar oferta</string>
     <string name="help_follow_flight_title">Seguir vuelo</string>
@@ -130,6 +130,8 @@
     <string name="airline_name">Nombre de la aerolínea</string>
     <string name="from_check_box">Usar mi ubicación actual</string>
     <string name="from">"Desde: "</string>
+    <string name="to">A: </string>
+    <string name="offers_price">Precio: </string>
     <string name="loading_message">"Cargando imágenes..."</string>
 
     <!-- Strings related to Settings -->

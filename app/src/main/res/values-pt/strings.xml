@@ -24,6 +24,7 @@
     <string name="offer_search_title">Olhar licitação</string>
     <string name="title_activity_settings">Configurações</string>
     <string name="title_activity_followed_flights">Meus voos</string>
+    <string name="title_activity_help">Ajuda</string>
 
     <!--Input text validators-->
     <string name="empty_number_validator">"Digite o número do voo."</string>
@@ -92,8 +93,6 @@
     <string name="null_information">Não disponível</string>
 
     <!--Help messages-->
-    <string name="no_followed_flights_information">Não segue nenhuma vôo hoje.
-       Procure por um ou escolher entre as nossas ofertas.</string>
     <string name="help_main_search_title">Pesquisa voo</string>
     <string name="help_main_offers_title">Pesquisa oferta</string>
     <string name="help_main_flight_title">Siga voo</string>    
@@ -121,9 +120,24 @@
     <string name="str_button_review">Ver comentários</string>
     <string name="str_button_map">Ver mapa</string>
 
+    <!--Help titles-->
+    <string name="no_followed_flights_information">Não segue nenhuma vôo hoje. Procure por um ou escolher entre as nossas ofertas.</string>
+    <string name="help_search_flight_title">Procurar voo</string>
+    <string name="help_search_offers_title">Procurar oferta</string>
+    <string name="help_follow_flight_title">Siga voo</string>
+    <string name="help_search_review_title">Procurar opiniões</string>
+    <string name="help_map_understanding_title">Ofertas mapa</string>
+    <string name="help_map_cheap_deals">Preço mais baixo marcado com verde.</string>
+    <string name="help_map_expensive_deals">Maior preço marcado com vermelho.</string>
+    <string name="help_map_usage">Clicar em uma etiqueta mostrará o nome do destino. Em seguida, procure por esse nome na lista do negócio.</string>
+    <string name="help_search_review">Insira uma revisão clicando em um comentário da lista.</string>
+    <string name="help_review_introduction">Clique no ícone de estrela dentro do detalhe do voo.</string>
+
     <string name="airline_name">Nome da companhia aérea</string>
     <string name="from_check_box">Usar a minha localização actual</string>
     <string name="from">"De: "</string>
+    <string name="to">A: </string>
+    <string name="offer_price">Preço: </string>
     <string name="loading_message">"Carregamento de imagens..."</string>
 
     <!-- Strings related to Settings -->
