@@ -42,6 +42,7 @@ import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Type;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 
@@ -235,7 +236,7 @@ public class ReviewActivity extends AppCompatActivity {
             String comment_raw = review.getComments();
             try
             {
-                String comment = new String(comment_raw.getBytes(), "UTF-8");
+                String comment = URLDecoder.decode(comment_raw, "UTF-8");
                 result_list.add(comment);
             }
             catch (UnsupportedEncodingException e)

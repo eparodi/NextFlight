@@ -29,7 +29,7 @@ public class StatusMapsActivity extends AppCompatActivity implements OnMapReadyC
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_status_maps);
-        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
+        // Obtain the SupportMapFragment and get notified when the help_map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
 
@@ -47,8 +47,8 @@ public class StatusMapsActivity extends AppCompatActivity implements OnMapReadyC
 
 
     /**
-     * Manipulates the map once available.
-     * This callback is triggered when the map is ready to be used.
+     * Manipulates the help_map once available.
+     * This callback is triggered when the help_map is ready to be used.
      * This is where we can add markers or lines, add listeners or move the camera. In this case,
      * we just add a marker near Sydney, Australia.
      * If Google Play services is not installed on the device, the user will be prompted to install
@@ -72,7 +72,7 @@ public class StatusMapsActivity extends AppCompatActivity implements OnMapReadyC
                 .title(arrival_name)
                 .position(arrival_airport));
 
-        // Polylines are useful for marking paths and routes on the map.
+        // Polylines are useful for marking paths and routes on the help_map.
         mMap.addPolyline(new PolylineOptions().geodesic(true)
                 .add(departure_airport)  // Departure
                 .add(arrival_airport)  // Arrival

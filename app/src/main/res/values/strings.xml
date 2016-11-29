@@ -125,6 +125,7 @@
     <string name="help_map_expensive_deals">Mayor precio de color rojo.</string>
     <string name="help_map_usage">Haciendo click en una etiqueta podrá ver el nombre de destino. Luego búsque ese destino en la lista de ofertas.</string>
     <string name="help_search_review">Acceda a una opinión haciendo click en un comentario.</string>
+    <string name="help_review_introduction">Dentro del detalle de un vuelo haga click en la estrella.</string>
 
     <string name="airline_name">Nombre de la aerolínea</string>
     <string name="from_check_box">Usar mi ubicación actual</string>
