@@ -129,27 +129,27 @@ public class AlarmNotificationReceiver extends BroadcastReceiver {
             boolean baggage = false;
 
             if (status.getArrival().getAirport().getTerminal() != null){
-                arrival_terminal = !status.getArrival().getAirport().getTerminal().equals(flight.getArrival().getAirport().getTerminal());
+                arrival_terminal = status.getArrival().getAirport().getTerminal().equals(flight.getArrival().getAirport().getTerminal());
             }
             if (status.getArrival().getAirport().getGate() != null){
-                arrival_gate = !status.getArrival().getAirport().getGate().equals(flight.getArrival().getAirport().getGate());
+                arrival_gate = status.getArrival().getAirport().getGate().equals(flight.getArrival().getAirport().getGate());
             }
             if (status.getArrival().getAirport().getBaggage() != null){
-                baggage = !status.getArrival().getAirport().getBaggage().equals(flight.getArrival().getAirport().getBaggage());
+                baggage = status.getArrival().getAirport().getBaggage().equals(flight.getArrival().getAirport().getBaggage());
             }
             if (status.getDeparture().getAirport().getTerminal() != null){
-                departure_terminal = !status.getDeparture().getAirport().getTerminal().equals(flight.getDeparture().getAirport().getTerminal());
+                departure_terminal = status.getDeparture().getAirport().getTerminal().equals(flight.getDeparture().getAirport().getTerminal());
             }
             if (status.getDeparture().getAirport().getGate() != null){
-                departure_gate =  !status.getDeparture().getAirport().getGate().equals(flight.getDeparture().getAirport().getGate());
+                departure_gate =  status.getDeparture().getAirport().getGate().equals(flight.getDeparture().getAirport().getGate());
             }
-            return !status.getStatus().equals(flight.getStatus()) ||
-                    !status.getArrival().getScheduled_time().equals(flight.getArrival().getScheduled_time()) ||
-                    arrival_terminal ||
-                    arrival_gate ||
-                    baggage ||
-                    !status.getDeparture().getScheduled_time().equals(flight.getDeparture().getScheduled_time()) ||
-                    departure_gate || departure_terminal;
+            return !(status.getStatus().equals(flight.getStatus()) &&
+                    status.getArrival().getScheduled_time().equals(flight.getArrival().getScheduled_time()) &&
+                    arrival_terminal &&
+                    arrival_gate &&
+                    baggage &&
+                    status.getDeparture().getScheduled_time().equals(flight.getDeparture().getScheduled_time()) &&
+                    departure_gate && departure_terminal);
         }
 
         private void notifManager(com.example.martin.nextflight.elements.Status status){
